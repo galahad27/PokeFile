@@ -1,0 +1,90 @@
+.singleStatTable .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.singleStatTable .statNameCol {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statNameCol .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.singleStatTable .statNumCol {
+  position: absolute;
+  left: 200px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statNumCol .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.singleStatTable .statBarCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statBarCol .statBar {
+    position: absolute;
+    height: 25px;
+    margin: 8px; }
+  .singleStatTable .statBarCol .bar1 {
+    top: 0px; }
+  .singleStatTable .statBarCol .bar2 {
+    top: 40px; }
+  .singleStatTable .statBarCol .bar3 {
+    top: 80px; }
+  .singleStatTable .statBarCol .bar4 {
+    top: 120px; }
+  .singleStatTable .statBarCol .bar5 {
+    top: 160px; }
+  .singleStatTable .statBarCol .bar6 {
+    top: 200px; }
+  .singleStatTable .statBarCol .bar1Cover {
+    width: 546px;
+    left: 219px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar2Cover {
+    width: 342px;
+    left: 228px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar3Cover {
+    width: 465px;
+    left: 225px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar4Cover {
+    width: 339px;
+    left: 243px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar5Cover {
+    width: 390px;
+    left: 300px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar6Cover {
+    width: 240px;
+    left: 300px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol #baseHp {
+    width: 765px; }
+  .singleStatTable .statBarCol #baseAttack {
+    width: 570px; }
+  .singleStatTable .statBarCol #baseDefense {
+    width: 690px; }
+  .singleStatTable .statBarCol #baseSpAttack {
+    width: 582px; }
+  .singleStatTable .statBarCol #baseSpDefense {
+    width: 690px; }
+  .singleStatTable .statBarCol #baseSpeed {
+    width: 540px; }

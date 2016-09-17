@@ -1,0 +1,85 @@
+.doubleStatTable .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.doubleStatTable .statNameCol {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statNameCol .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.doubleStatTable .statNumCol {
+  position: absolute;
+  left: 200px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statNumCol .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.doubleStatTable .statBarMinCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statBarMinCol .statBarMin {
+    position: absolute;
+    height: 25px;
+    background: green;
+    margin: 8px;
+    z-index: 2; }
+  .doubleStatTable .statBarMinCol #hpBarMin {
+    width: 256px;
+    top: 0px; }
+  .doubleStatTable .statBarMinCol #attackBarMin {
+    width: 141px;
+    top: 40px; }
+  .doubleStatTable .statBarMinCol #defenseBarMin {
+    width: 139px;
+    top: 80px; }
+  .doubleStatTable .statBarMinCol #spAttackBarMin {
+    width: 150px;
+    top: 120px; }
+  .doubleStatTable .statBarMinCol #spDefenseBarMin {
+    width: 184px;
+    top: 160px; }
+  .doubleStatTable .statBarMinCol #speedBarMin {
+    width: 184px;
+    top: 200px; }
+
+.doubleStatTable .statBarMaxCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statBarMaxCol .statBarMax {
+    position: absolute;
+    height: 25px;
+    background: red;
+    margin: 8px; }
+  .doubleStatTable .statBarMaxCol #hpBarMax {
+    width: 350px;
+    top: 0px; }
+  .doubleStatTable .statBarMaxCol #attackBarMax {
+    width: 276px;
+    top: 40px; }
+  .doubleStatTable .statBarMaxCol #defenseBarMax {
+    width: 273px;
+    top: 80px; }
+  .doubleStatTable .statBarMaxCol #spAttackBarMax {
+    width: 287px;
+    top: 120px; }
+  .doubleStatTable .statBarMaxCol #spDefenseBarMax {
+    width: 328px;
+    top: 160px; }
+  .doubleStatTable .statBarMaxCol #speedBarMax {
+    width: 328px;
+    top: 200px; }

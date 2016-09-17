@@ -1,0 +1,19 @@
+#statsPage {
+  position: fixed;
+  width: 75%;
+  height: 75%;
+  left: 300px;
+  top: 139px;
+  z-index: -1;
+  overflow-y: scroll;
+  overflow-x: scroll; }
+
+#statsPage::-webkit-scrollbar {
+  display: none; }
+
+#baseStatTable {
+  position: relative; }
+
+#level100 {
+  position: relative;
+  top: 300px; }

@@ -1,0 +1,513 @@
+#pageHeader {
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 9999; }
+
+.normalBackground {
+  background: #A8A878; }
+
+.fireBackground {
+  background: #F08030; }
+
+.waterBackground {
+  background: #6890F0; }
+
+.electricBackground {
+  background: #F8D030; }
+
+.grassBackground {
+  background: #78C850; }
+
+.iceBackground {
+  background: #98D8D8; }
+
+.fightingBackground {
+  background: #C03028; }
+
+.poisonBackground {
+  background: #A040A0; }
+
+.groundBackground {
+  background: #E0C068; }
+
+.flyingBackground {
+  background: #A890F0; }
+
+.psychicBackground {
+  background: #F85888; }
+
+.bugBackground {
+  background: #A8B820; }
+
+.rockBackground {
+  background: #B8A038; }
+
+.ghostBackground {
+  background: #705898; }
+
+.dragonBackground {
+  background: #7038F8; }
+
+.darkBackground {
+  background: #705848; }
+
+.steelBackground {
+  background: #B8B8D0; }
+
+.fairyBackground {
+  background: #EE99AC; }
+
+.psychic-fairy {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F85888), color-stop(100%, #EE99AC)); }
+
+.rangeBackgroundHp {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundAttack {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundDefense {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpAttack {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpDefense {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpeed {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime)); }
+
+.webBackground {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }
+
+.mainBarMenu {
+  position: fixed;
+  top: 40px;
+  left: 0px;
+  width: 99.5%;
+  list-style-type: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px 0px 10px 10px;
+  z-index: 100; }
+  .mainBarMenu li {
+    display: inline; }
+    .mainBarMenu li a {
+      display: inline-block;
+      color: black;
+      text-align: center;
+      padding: 12px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px; }
+
+.normalBorder {
+  border: 3px solid #A87878; }
+
+.fireBorder {
+  border: 3px solid #F05030; }
+
+.waterBorder {
+  border: 3px solid #6860F0; }
+
+.electricBorder {
+  border: 3px solid #F8A030; }
+
+.grassBorder {
+  border: 3px solid #789850; }
+
+.iceBorder {
+  border: 3px solid #98A8D8; }
+
+.fightingBorder {
+  border: 3px solid #C00028; }
+
+.poisonBorder {
+  border: 3px solid #A010A0; }
+
+.groundBorder {
+  border: 3px solid #E09068; }
+
+.flyingBorder {
+  border: 3px solid #A860F0; }
+
+.psychicBorder {
+  border: 3px solid #F82888; }
+
+.bugBorder {
+  border: 3px solid #A88820; }
+
+.rockBorder {
+  border: 3px solid #B87038; }
+
+.ghostBorder {
+  border: 3px solid #702898; }
+
+.dragonBorder {
+  border: 3px solid #7008F8; }
+
+.darkBorder {
+  border: 3px solid #702848; }
+
+.steelBorder {
+  border: 3px solid #B888D0; }
+
+.fairyBorder {
+  border: 3px solid #EE69AC; }
+
+.doubleStatTable .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.doubleStatTable .statNameCol {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statNameCol .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.doubleStatTable .statNumCol {
+  position: absolute;
+  left: 200px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statNumCol .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.doubleStatTable .statBarMinCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statBarMinCol .statBarMin {
+    position: absolute;
+    height: 25px;
+    background: green;
+    margin: 8px;
+    z-index: 2; }
+  .doubleStatTable .statBarMinCol #hpBarMin {
+    width: 256px;
+    top: 0px; }
+  .doubleStatTable .statBarMinCol #attackBarMin {
+    width: 141px;
+    top: 40px; }
+  .doubleStatTable .statBarMinCol #defenseBarMin {
+    width: 139px;
+    top: 80px; }
+  .doubleStatTable .statBarMinCol #spAttackBarMin {
+    width: 150px;
+    top: 120px; }
+  .doubleStatTable .statBarMinCol #spDefenseBarMin {
+    width: 184px;
+    top: 160px; }
+  .doubleStatTable .statBarMinCol #speedBarMin {
+    width: 184px;
+    top: 200px; }
+
+.doubleStatTable .statBarMaxCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .doubleStatTable .statBarMaxCol .statBarMax {
+    position: absolute;
+    height: 25px;
+    background: red;
+    margin: 8px; }
+  .doubleStatTable .statBarMaxCol #hpBarMax {
+    width: 350px;
+    top: 0px; }
+  .doubleStatTable .statBarMaxCol #attackBarMax {
+    width: 276px;
+    top: 40px; }
+  .doubleStatTable .statBarMaxCol #defenseBarMax {
+    width: 273px;
+    top: 80px; }
+  .doubleStatTable .statBarMaxCol #spAttackBarMax {
+    width: 287px;
+    top: 120px; }
+  .doubleStatTable .statBarMaxCol #spDefenseBarMax {
+    width: 328px;
+    top: 160px; }
+  .doubleStatTable .statBarMaxCol #speedBarMax {
+    width: 328px;
+    top: 200px; }
+
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 40px;
+  background: black;
+  z-index: 100; }
+  .header p {
+    font-size: 27px;
+    text-align: center;
+    color: white;
+    margin: 0px; }
+
+.mainBarMenu {
+  position: fixed;
+  top: 40px;
+  left: 0px;
+  width: 99.5%;
+  list-style-type: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px 0px 10px 10px;
+  z-index: 100; }
+  .mainBarMenu li {
+    display: inline; }
+    .mainBarMenu li a {
+      display: inline-block;
+      color: black;
+      text-align: center;
+      padding: 12px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px; }
+
+.poke_page {
+  display: none; }
+
+.pokedexEntry {
+  padding-left: 10px; }
+
+.singleStatTable .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.singleStatTable .statNameCol {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statNameCol .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.singleStatTable .statNumCol {
+  position: absolute;
+  left: 200px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statNumCol .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.singleStatTable .statBarCol {
+  position: absolute;
+  left: 300px;
+  top: 40px;
+  margin: 0px; }
+  .singleStatTable .statBarCol .statBar {
+    position: absolute;
+    height: 25px;
+    margin: 8px; }
+  .singleStatTable .statBarCol .bar1 {
+    top: 0px; }
+  .singleStatTable .statBarCol .bar2 {
+    top: 40px; }
+  .singleStatTable .statBarCol .bar3 {
+    top: 80px; }
+  .singleStatTable .statBarCol .bar4 {
+    top: 120px; }
+  .singleStatTable .statBarCol .bar5 {
+    top: 160px; }
+  .singleStatTable .statBarCol .bar6 {
+    top: 200px; }
+  .singleStatTable .statBarCol .bar1Cover {
+    width: 546px;
+    left: 219px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar2Cover {
+    width: 342px;
+    left: 228px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar3Cover {
+    width: 465px;
+    left: 225px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar4Cover {
+    width: 339px;
+    left: 243px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar5Cover {
+    width: 390px;
+    left: 300px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol .bar6Cover {
+    width: 240px;
+    left: 300px;
+    background: white;
+    z-postion: 2; }
+  .singleStatTable .statBarCol #baseHp {
+    width: 765px; }
+  .singleStatTable .statBarCol #baseAttack {
+    width: 570px; }
+  .singleStatTable .statBarCol #baseDefense {
+    width: 690px; }
+  .singleStatTable .statBarCol #baseSpAttack {
+    width: 582px; }
+  .singleStatTable .statBarCol #baseSpDefense {
+    width: 690px; }
+  .singleStatTable .statBarCol #baseSpeed {
+    width: 540px; }
+
+.statBarGraph .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.statBarGraph .col0 {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .statBarGraph .col0 .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.statBarGraph .col1 {
+  display: inline-block; }
+  .statBarGraph .col1 .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  .tab li {
+    float: left; }
+    .tab li a {
+      display: inline-block;
+      color: black;
+      text-align: center;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px;
+      border-radius: 10px 10px 0px 0px; }
+
+#pokemonImage {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 256px;
+  height: 256px;
+  margin-left: 10px; }
+  #pokemonImage img {
+    width: 256px;
+    height: 256px; }
+
+#basicInfo {
+  position: absolute;
+  width: 256px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  top: 400px;
+  left: 0px; }
+  #basicInfo div {
+    margin: 5px; }
+  #basicInfo h1 {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo .subtitle {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo #altName {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 15px; }
+
+#basicInfo {
+  position: absolute;
+  width: 256px;
+  margin-left: 10px;
+  top: 400px;
+  left: 0px; }
+  #basicInfo p {
+    margin: 5px; }
+  #basicInfo h1 {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo .subtitle {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo #altName {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 15px; }
+  #basicInfo .dataLine {
+    margin: 5px; }
+    #basicInfo .dataLine .data {
+      display: inline;
+      margin: 0; }
+
+#statsPage {
+  position: fixed;
+  width: 75%;
+  height: 75%;
+  left: 300px;
+  top: 139px;
+  z-index: -1;
+  overflow-y: scroll;
+  overflow-x: scroll; }
+
+#statsPage::-webkit-scrollbar {
+  display: none; }
+
+#baseStatTable {
+  position: relative; }
+
+#level100 {
+  position: relative;
+  top: 300px; }
+
+#pokemonImage {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 256px;
+  height: 256px;
+  margin-left: 10px; }
+  #pokemonImage img {
+    width: 256px;
+    height: 256px; }
+
+#statPageTab {
+  position: fixed;
+  width: 75%;
+  left: 300px;
+  top: 100px; }

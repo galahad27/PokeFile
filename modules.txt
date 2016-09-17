@@ -1,0 +1,10 @@
+browser-sync
+del
+gulp
+gulp-concat
+gulp-cssnano
+gulp-if
+gulp-sass
+gulp-uglify
+gulp-useref
+run-sequence

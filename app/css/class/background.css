@@ -1,0 +1,77 @@
+.normalBackground {
+  background: #A8A878; }
+
+.fireBackground {
+  background: #F08030; }
+
+.waterBackground {
+  background: #6890F0; }
+
+.electricBackground {
+  background: #F8D030; }
+
+.grassBackground {
+  background: #78C850; }
+
+.iceBackground {
+  background: #98D8D8; }
+
+.fightingBackground {
+  background: #C03028; }
+
+.poisonBackground {
+  background: #A040A0; }
+
+.groundBackground {
+  background: #E0C068; }
+
+.flyingBackground {
+  background: #A890F0; }
+
+.psychicBackground {
+  background: #F85888; }
+
+.bugBackground {
+  background: #A8B820; }
+
+.rockBackground {
+  background: #B8A038; }
+
+.ghostBackground {
+  background: #705898; }
+
+.dragonBackground {
+  background: #7038F8; }
+
+.darkBackground {
+  background: #705848; }
+
+.steelBackground {
+  background: #B8B8D0; }
+
+.fairyBackground {
+  background: #EE99AC; }
+
+.psychic-fairy {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F85888), color-stop(100%, #EE99AC)); }
+
+.rangeBackgroundHp {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundAttack {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundDefense {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpAttack {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpDefense {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
+
+.rangeBackgroundSpeed {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime)); }
+
+.webBackground {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }

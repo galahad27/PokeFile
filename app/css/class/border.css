@@ -1,0 +1,53 @@
+.normalBorder {
+  border: 3px solid #A87878; }
+
+.fireBorder {
+  border: 3px solid #F05030; }
+
+.waterBorder {
+  border: 3px solid #6860F0; }
+
+.electricBorder {
+  border: 3px solid #F8A030; }
+
+.grassBorder {
+  border: 3px solid #789850; }
+
+.iceBorder {
+  border: 3px solid #98A8D8; }
+
+.fightingBorder {
+  border: 3px solid #C00028; }
+
+.poisonBorder {
+  border: 3px solid #A010A0; }
+
+.groundBorder {
+  border: 3px solid #E09068; }
+
+.flyingBorder {
+  border: 3px solid #A860F0; }
+
+.psychicBorder {
+  border: 3px solid #F82888; }
+
+.bugBorder {
+  border: 3px solid #A88820; }
+
+.rockBorder {
+  border: 3px solid #B87038; }
+
+.ghostBorder {
+  border: 3px solid #702898; }
+
+.dragonBorder {
+  border: 3px solid #7008F8; }
+
+.darkBorder {
+  border: 3px solid #702848; }
+
+.steelBorder {
+  border: 3px solid #B888D0; }
+
+.fairyBorder {
+  border: 3px solid #EE69AC; }

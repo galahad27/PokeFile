@@ -1,0 +1,23 @@
+.statBarGraph .tableTitle {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 5px; }
+
+.statBarGraph .col0 {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  margin: 0px; }
+  .statBarGraph .col0 .statName {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
+
+.statBarGraph .col1 {
+  display: inline-block; }
+  .statBarGraph .col1 .statNum {
+    font-size: 20pt;
+    margin: 0px;
+    padding: 5px; }
