@@ -2,6 +2,7 @@
 	var dev = {};
 
 	dev.ninetales = {
+		name : "Ninetales",
 		pokedex : {
 			Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
 			Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
@@ -52,15 +53,27 @@
 	};
 
 	html.containers = {
-		POKEDEX : "<div class=\"container\" type-insert=\"pokedexEntry\"></div>",
-		STATBARGRAPH : "<div class=\"container statBarGraph\" type-insert=\"statBarGraph\"></div>",
+		POKEDEX : function(id){ return "<div id=\""+id+"\" class=\"container pokedexEntry\" type-insert=\"pokedexEntry\"></div>";},
+		STATBARGRAPH : function(id){return "<div id=\""+id+"\" class=\"container statBarGraph\" type-insert=\"statBarGraph\"></div>";},
+		STATTABLE : function(id){return "<div id=\""+id+"\" class=\"container statTable\" type-insert=\"statTable\"></div>";},
 	}
 
 	root.html = html;
 })(this);
 
 (function(root){
-	
+
+	var R = {
+		STATMODIFIER : 3,
+		HP : 255,
+		ATTACK : 190,
+		DEFENSE : 230,
+		SPATTACK : 194,
+		SPDEFENSE : 230,
+		SPEED : 180,
+	}
+
+	root.R = R;
 })(this);
 (function(root){
 })(this);
@@ -136,76 +149,80 @@
 (function(root){
 	html.statBarGraph = function(input){
 		return ""+
-			"<h1 class=\"tableTitle\">Base Stats</h1>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">HP</div>"+
-			"	<div id = \"baseHPStat\" class=\"cell col1\">"+input.HP+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"<h1 class=\"graphTitle\">Base Stats</h1>"+
+			"<div class=\"graphData\">"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">HP</div>"+
+			"		<div id = \"baseHPStat\" class=\"cell col1\">"+input.HP+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar hpBar\"></div>"+
+			"			<div class=\"statBar barCover hpBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
-			"</div>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">Attack</div>"+
-			"	<div id = \"baseAttackStat\" class=\"cell col1\">"+input.ATTACK+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">Attack</div>"+
+			"		<div id = \"baseAttackStat\" class=\"cell col1\">"+input.ATTACK+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar attackBar\"></div>"+
+			"			<div class=\"statBar barCover attackBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
-			"</div>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">Defense</div>"+
-			"	<div id = \"baseDefenseStat\" class=\"cell col1\">"+input.DEFENSE+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">Defense</div>"+
+			"		<div id = \"baseDefenseStat\" class=\"cell col1\">"+input.DEFENSE+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar defenseBar\"></div>"+
+			"			<div class=\"statBar barCover defenseBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
-			"</div>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">Sp. Attack</div>"+
-			"	<div id = \"baseSpAttackStat\" class=\"cell col1\">"+input.SPATTACK+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">Sp. Attack</div>"+
+			"		<div id = \"baseSpAttackStat\" class=\"cell col1\">"+input.SPATTACK+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar spAttackBar\"></div>"+
+			"			<div class=\"statBar barCover spAttackBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
-			"</div>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">Sp. Defense</div>"+
-			"	<div id = \"baseSpDefenseStat\" class=\"cell col1\">"+input.SPDEFENSE+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">Sp. Defense</div>"+
+			"		<div id = \"baseSpDefenseStat\" class=\"cell col1\">"+input.SPDEFENSE+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar spDefenseBar\"></div>"+
+			"			<div class=\"statBar barCover spDefenseBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
-			"</div>"+
-			"<div class=\"row\">"+
-			"	<div class=\"cell\">Speed</div>"+
-			"	<div id = \"baseSpeedStat\" class=\"cell col1\">"+input.SPEED+"</div>"+
-			"	<div class=\"cell\">"+
-			"		<div class=\"statBar rangeBackgroundHp\"></div>"+
-			"		<div class=\"statBar barCover\"></div>"+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell col0\">Speed</div>"+
+			"		<div id = \"baseSpeedStat\" class=\"cell col1\">"+input.SPEED+"</div>"+
+			"		<div class=\"cell col2\">"+
+			"			<div class=\"statBar speedBar\"></div>"+
+			"			<div class=\"statBar barCover speedBarCover\"></div>"+
+			"		</div>"+
 			"	</div>"+
 			"</div>";
 	}
 })(this);
 (function(root){
-	html.statTable = ""+
-		"<h1 class=\"tableTitle\"></h1>"+
-		"<div class=\"row\">"+
-		"	<div class=\"cell\">Min</div>"+
-		"	<div id=\"minStatData\" class=\"cell\"></div>"+
-		"</div>"+
-		"<div class=\"row\">"+
-		"	<div class=\"cell\">Max IV/Min EV</div>"+
-		"	<div id=\"maxMinStatData\" class=\"cell\"></div>"+
-		"</div>"+
-		"<div class=\"row\">"+
-		"	<div class=\"cell\">Max IV/Max EV</div>"+
-		"	<div id=\"maxMaxStatData\" class=\"cell\"></div>"+
-		"</div>"+
-		"<div class=\"row\">"+
-		"	<div class=\"cell\">Max</div>"+
-		"	<div id=\"maxStatData\" class=\"cell\"></div>"+
-		"</div>";
+	html.statTable = function(input){
+		return ""+
+			"<h1 class=\"tableTitle\">"+input+"</h1>"+
+			"<div class=\"row\">"+
+			"	<div class=\"cell\">Min</div>"+
+			"	<div id=\"minStatData\" class=\"cell\"></div>"+
+			"</div>"+
+			"<div class=\"row\">"+
+			"	<div class=\"cell\">Max IV/Min EV</div>"+
+			"	<div id=\"maxMinStatData\" class=\"cell\"></div>"+
+			"</div>"+
+			"<div class=\"row\">"+
+			"	<div class=\"cell\">Max IV/Max EV</div>"+
+			"	<div id=\"maxMaxStatData\" class=\"cell\"></div>"+
+			"</div>"+
+			"<div class=\"row\">"+
+			"	<div class=\"cell\">Max</div>"+
+			"	<div id=\"maxStatData\" class=\"cell\"></div>"+
+			"</div>";
+	}
 })(this);
 (function(root){
 
@@ -255,7 +272,8 @@
 		resetBorderWidth();
 		stats.style.borderTopWidth = "6px";
 		$(statsPage).empty();
-		insertBaseStats();
+		insertBarGraph();
+		insertTables();
 	};
 	typeStatsClick = function(){
 		resetBorderWidth();
@@ -267,6 +285,8 @@
 		moves.style.borderTopWidth = "6px";
 		$(statsPage).empty();
 	}
+
+
 	resetBorderWidth = function(){
 		pokedex.style.borderWidth = "3px";
 		stats.style.borderWidth = "3px";
@@ -275,21 +295,76 @@
 	}
 	insertPokedexEntries = function(){
 		$(statsPage).append(html.containers.POKEDEX);
-		statsContainers = page.querySelector(".container");
+		var entries = page.querySelector(".pokedexEntry");
 		var keys = _.keys(dev.ninetales.pokedex);
 		keys.forEach(function(key){
 			var input = [key, dev.ninetales.pokedex[key]];
-			html.load(statsContainers, input);
+			html.load(entries, input);
 		})
 	}
-	insertBaseStats = function(){
-		statsPage.innerHTML = html.containers.STATBARGRAPH;
-		statsContainers = [];
-		statsContainers.push(page.querySelector(".container"));
+	insertBarGraph = function(){
+		$(statsPage).append(html.containers.STATBARGRAPH(dev.ninetales.name+"BarGraph"));
+		var barGraph = page.querySelector(".statBarGraph");
 		var input = dev.ninetales.base;
-		statsContainers.forEach(function(container){
-			html.load(container, input)
-		});
+		html.load(barGraph, input);
+		updateBarLength();
+	}
+	insertTables = function(){
+		var hpId = dev.ninetales.name+"HPTable";
+		var attackId = dev.ninetales.name+"AttackTable";
+		var defenseId = dev.ninetales.name+"DefenseTable";
+		var spAttackId = dev.ninetales.name+"SpAttackTable";
+		var spDefenseId = dev.ninetales.name+"SpDefenseTable";
+		var speedId = dev.ninetales.name+"SpeedTable";
+		$(statsPage).append(html.containers.STATTABLE(hpId));
+		$(statsPage).append(html.containers.STATTABLE(attackId));
+		$(statsPage).append(html.containers.STATTABLE(defenseId));
+		$(statsPage).append(html.containers.STATTABLE(spAttackId));
+		$(statsPage).append(html.containers.STATTABLE(spDefenseId));
+		$(statsPage).append(html.containers.STATTABLE(speedId));
+
+		var tables = page.querySelectorAll(".statTable");
+		var titles[hpId] = "HP";
+		var titles[attackId] = "Attack";
+		var titles[defenseId] = "Defense";
+		var titles[spAttackId] = "Sp. Attack";
+		var titles[spDefenseId] = "Sp. Defense";
+		var titles[speedId] = "Speed";
+		var baseName[hpId] = "HP";
+		var baseName[attackId] = "ATTACK";
+		var baseName[defenseId] = "DEFENSE";
+		var baseName[spAttackId] = "SPATTACK";
+		var baseName[spDefenseId] = "SPDEFENSE";
+		var baseName[speedId] = "SPEED";
+	
+		tables.forEach(function(table){
+			input.title = title[table.getAttribute("id")];
+			input.base = dev.ninetales.base[baseName[table.getAttribute("id")]]
+			html.load(table, input);
+		})
+	}
+	updateBarLength = function(){
+		var barGraph = statsPage.querySelector(".statBarGraph");
+		var hpCover = barGraph.querySelector(".hpBarCover");
+		var attackCover = barGraph.querySelector(".attackBarCover");
+		var defenseCover = barGraph.querySelector(".defenseBarCover");
+		var spAttackCover = barGraph.querySelector(".spAttackBarCover");
+		var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
+		var speedCover = barGraph.querySelector(".speedBarCover");
+
+		hpCover.style.width = (R.HP-dev.ninetales.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.width = (R.ATTACK-dev.ninetales.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.width = (R.DEFENSE-dev.ninetales.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.width = (R.SPATTACK-dev.ninetales.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.width = (R.SPDEFENSE-dev.ninetales.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.width = (R.SPEED-dev.ninetales.base.SPEED)*R.STATMODIFIER+"px";
+
+		hpCover.style.marginLeft = -1*(R.HP-dev.ninetales.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.marginLeft = -1*(R.ATTACK-dev.ninetales.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.marginLeft = -1*(R.DEFENSE-dev.ninetales.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.marginLeft = -1*(R.SPATTACK-dev.ninetales.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.marginLeft = -1*(R.SPDEFENSE-dev.ninetales.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.marginLeft = -1*(R.SPEED-dev.ninetales.base.SPEED)*R.STATMODIFIER+"px";
 	}
 })(this);
 (function(root){

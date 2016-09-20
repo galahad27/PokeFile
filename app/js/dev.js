@@ -2,6 +2,7 @@
 	var dev = {};
 
 	dev.ninetales = {
+		name : "Ninetales",
 		pokedex : {
 			Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
 			Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",

@@ -1,124 +1,94 @@
-$statModifierSmall: 3;
-$statModifierLarge: 1.5;
+$statModifier: 3;
 
-$hpMax: 255;
-$attackMax: 190;
-$defenseMax: 230;
-$spAttackMax: 194;
-$spDefenseMax: 230;
-$speedMax: 180;
+$hpMax: 255px;
+$attackMax: 190px;
+$defenseMax: 230px;
+$spAttackMax: 194px;
+$spDefenseMax: 230px;
+$speedMax: 180px;
+
+$baseBarColorHp: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(31%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
+
+$baseBarColorAttack: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(47%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
+
+$baseBarColorDefense: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(36%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
+
+$baseBarColorSpAttack: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(44%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
+
+$baseBarColorSpDefense: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(36%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
+
+$baseBarColorSpeed: -webkit-gradient(linear, left top, right top,
+					color-stop(0%, rgba(255, 0, 0, 1)),
+					color-stop(43%, rgba(255, 255, 0, 1)),
+					color-stop(100%, rgba(0, 255, 0, 1)));
 
 .statBarGraph{
-	.tableTitle{
-		position: absolute;
-		left: 0px;
-		top: 0px;
-		margin: 0px;
-		padding: 5px;
+	.graphTitle{
+		margin-left: 10px;
 	}
-	.col0{
-		position: absolute;
-		left: 0px;
-		top: 40px;
-		margin: 0px;
-		.statName{
-			font-size: 20pt;
-			margin: 0px;
-			padding: 5px;
+	.graphData{
+		margin-left: 10px;
+		.row{
+			margin: 10px 0px 0px 0px;
+			white-space: nowrap;
+		}
+		.cell{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.col0{
+			width: 100px;
+		}
+		.col1{
+			width: 50px;
+		}
+		.col2{
+			.statBar{
+				height: 25px;
+				display: inline-block;
+			}
+			.barCover{
+				background: white;
+			}
+			.hpBar{
+				background: $baseBarColorHp;
+				width: $hpMax * $statModifier;
+			}
+			.attackBar{
+				background: $baseBarColorAttack;
+				width: $attackMax * $statModifier;
+			}
+			.defenseBar{
+				background: $baseBarColorDefense;
+				width: $defenseMax * $statModifier;
+			}
+			.spAttackBar{
+				background: $baseBarColorSpAttack;
+				width: $spAttackMax * $statModifier;
+			}
+			.spDefenseBar{
+				background: $baseBarColorSpDefense;
+				width: $spDefenseMax * $statModifier;
+			}
+			.speedBar{
+				background: $baseBarColorSpeed;
+				width: $speedMax * $statModifier;
+			}
 		}
 	}
-	.col1{
-		display: inline-block;
-		.statNum{
-			font-size: 20pt;
-			margin: 0px;
-			padding: 5px;
-		}
-	}
-	
-	// .statBarCol{
-	// 	position: absolute;
-	// 	left: 300px;
-	// 	top: 40px;
-	// 	margin: 0px;
-	// 	.statBar{
-	// 		position: absolute;
-	// 		height: 25px;
-	// 		margin: 8px;
-	// 	}
-	// 	.bar1{
-	// 		top: 0px;
-	// 	}
-	// 	.bar2{
-	// 		top: 40px;
-	// 	}
-	// 	.bar3{
-	// 		top: 80px;
-	// 	}
-	// 	.bar4{
-	// 		top: 120px;
-	// 	}
-	// 	.bar5{
-	// 		top: 160px;
-	// 	}
-	// 	.bar6{
-	// 		top: 200px;
-	// 	}
-
-	// 	.bar1Cover{
-	// 		width: (255-73px) * $statModifierSmall;
-	// 		left: 73px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-	// 	.bar2Cover{
-	// 		width: (190px-76px) * $statModifierSmall;
-	// 		left: 76px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-	// 	.bar3Cover{
-	// 		width: (230px-75px) * $statModifierSmall;
-	// 		left: 75px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-	// 	.bar4Cover{
-	// 		width: (194px-81px) * $statModifierSmall;
-	// 		left: 81px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-	// 	.bar5Cover{
-	// 		width: (230px-100px) * $statModifierSmall;
-	// 		left: 100px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-	// 	.bar6Cover{
-	// 		width: (180px-100px) * $statModifierSmall;
-	// 		left: 100px * $statModifierSmall;
-	// 		background: white;
-	// 		z-postion: 2;
-	// 	}
-
-	// 	#baseHp{
-	// 		width: 255px * $statModifierSmall;
-	// 	}
-	// 	#baseAttack{
-	// 		width: 190px * $statModifierSmall;
-	// 	}
-	// 	#baseDefense{
-	// 		width: 230px * $statModifierSmall;
-	// 	}
-	// 	#baseSpAttack{
-	// 		width: 194px * $statModifierSmall;
-	// 	}
-	// 	#baseSpDefense{
-	// 		width: 230px * $statModifierSmall;
-	// 	}
-	// 	#baseSpeed{
-	// 		width: 180px * $statModifierSmall;
-	// 	}
-	// }
 }

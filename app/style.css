@@ -62,24 +62,6 @@
 .psychic-fairy {
   background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F85888), color-stop(100%, #EE99AC)); }
 
-.rangeBackgroundHp {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime)); }
-
-.rangeBackgroundAttack {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime)); }
-
-.rangeBackgroundDefense {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
-
-.rangeBackgroundSpAttack {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime)); }
-
-.rangeBackgroundSpDefense {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime)); }
-
-.rangeBackgroundSpeed {
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime)); }
-
 .webBackground {
   background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }
 
@@ -376,29 +358,44 @@
   .singleStatTable .statBarCol #baseSpeed {
     width: 540px; }
 
-.statBarGraph .tableTitle {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  margin: 0px;
-  padding: 5px; }
+.statBarGraph .graphTitle {
+  margin-left: 10px; }
 
-.statBarGraph .col0 {
-  position: absolute;
-  left: 0px;
-  top: 40px;
-  margin: 0px; }
-  .statBarGraph .col0 .statName {
-    font-size: 20pt;
-    margin: 0px;
-    padding: 5px; }
-
-.statBarGraph .col1 {
-  display: inline-block; }
-  .statBarGraph .col1 .statNum {
-    font-size: 20pt;
-    margin: 0px;
-    padding: 5px; }
+.statBarGraph .graphData {
+  margin-left: 10px; }
+  .statBarGraph .graphData .row {
+    margin: 10px 0px 0px 0px;
+    white-space: nowrap; }
+  .statBarGraph .graphData .cell {
+    display: inline-block;
+    vertical-align: middle; }
+  .statBarGraph .graphData .col0 {
+    width: 100px; }
+  .statBarGraph .graphData .col1 {
+    width: 50px; }
+  .statBarGraph .graphData .col2 .statBar {
+    height: 25px;
+    display: inline-block; }
+  .statBarGraph .graphData .col2 .barCover {
+    background: white; }
+  .statBarGraph .graphData .col2 .hpBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime));
+    width: 765px; }
+  .statBarGraph .graphData .col2 .attackBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime));
+    width: 570px; }
+  .statBarGraph .graphData .col2 .defenseBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
+    width: 690px; }
+  .statBarGraph .graphData .col2 .spAttackBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime));
+    width: 582px; }
+  .statBarGraph .graphData .col2 .spDefenseBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
+    width: 690px; }
+  .statBarGraph .graphData .col2 .speedBar {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime));
+    width: 540px; }
 
 .tab {
   list-style-type: none;

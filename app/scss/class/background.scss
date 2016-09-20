@@ -21,36 +21,6 @@ $psychic-fairy: -webkit-gradient(linear, left top, right bottom,
 			color-stop(25%, $psychicBackground),
 			color-stop(100%, $fairyBackground));
 
-$baseBarColorHp: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(31%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
-$baseBarColorAttack: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(47%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
-$baseBarColorDefense: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(36%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
-$baseBarColorSpAttack: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(44%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
-$baseBarColorSpDefense: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(36%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
-$baseBarColorSpeed: -webkit-gradient(linear, left top, right top,
-					color-stop(0%, rgba(255, 0, 0, 1)),
-					color-stop(43%, rgba(255, 255, 0, 1)),
-					color-stop(100%, rgba(0, 255, 0, 1)));
-
 .normalBackground{
 	background: $normalBackground;
 }
@@ -108,25 +78,6 @@ $baseBarColorSpeed: -webkit-gradient(linear, left top, right top,
 .psychic-fairy{
 	background: $psychic-fairy;
 }
-.rangeBackgroundHp{
-	background: $baseBarColorHp;
-}
-.rangeBackgroundAttack{
-	background: $baseBarColorAttack;
-}
-.rangeBackgroundDefense{
-	background: $baseBarColorDefense;
-}
-.rangeBackgroundSpAttack{
-	background: $baseBarColorSpAttack;
-}
-.rangeBackgroundSpDefense{
-	background: $baseBarColorSpDefense;
-}
-.rangeBackgroundSpeed{
-	background: $baseBarColorSpeed;
-}
-
 
 $webColors: -webkit-gradient(linear, left top, right bottom,
 			color-stop(25%, $fireBackground),
