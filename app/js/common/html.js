@@ -14,7 +14,7 @@
 	html.containers = {
 		POKEDEX : function(id){ return "<div id=\""+id+"\" class=\"container pokedexEntry\" type-insert=\"pokedexEntry\"></div>";},
 		STATBARGRAPH : function(id){return "<div id=\""+id+"\" class=\"container statBarGraph\" type-insert=\"statBarGraph\"></div>";},
-		STATTABLE : function(id){return "<div id=\""+id+"\" class=\"container statTable\" type-insert=\"statTable\"></div>";},
+		STATTABLE : function(stat, name, level){return "<div class=\"container statTable\" stat=\""+stat+"\" name=\""+name+"\" level=\""+level+"\" type-insert=\"statTable\"></div>";},
 	}
 
 	root.html = html;

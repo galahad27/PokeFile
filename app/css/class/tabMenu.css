@@ -1,10 +1,10 @@
-.tab {
+.tabMenu {
   list-style-type: none;
   margin: 0;
   padding: 0; }
-  .tab li {
+  .tabMenu li {
     float: left; }
-    .tab li a {
+    .tabMenu li a {
       display: inline-block;
       color: black;
       text-align: center;

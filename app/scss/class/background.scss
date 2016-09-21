@@ -1,82 +1,80 @@
-$normalBackground: #A8A878;
-$fireBackground: #F08030;
-$waterBackground: #6890F0;
-$electricBackground: #F8D030;
-$grassBackground: #78C850;
-$iceBackground: #98D8D8;
-$fightingBackground: #C03028;
-$poisonBackground: #A040A0;
-$groundBackground: #E0C068;
-$flyingBackground: #A890F0;
-$psychicBackground: #F85888;
 $bugBackground: #A8B820;
-$rockBackground: #B8A038;
-$ghostBackground: #705898;
-$dragonBackground: #7038F8;
 $darkBackground: #705848;
-$steelBackground: #B8B8D0;
+$dragonBackground: #7038F8;
+$electricBackground: #F8D030;
 $fairyBackground: #EE99AC;
+$fireBackground: #F08030;
+$fightingBackground: #C03028;
+$flyingBackground: #A890F0;
+$ghostBackground: #705898;
+$grassBackground: #78C850;
+$groundBackground: #E0C068;
+$iceBackground: #98D8D8;
+$normalBackground: #A8A878;
+$poisonBackground: #A040A0;
+$psychicBackground: #F85888;
+$rockBackground: #B8A038;
+$steelBackground: #B8B8D0;
+$waterBackground: #6890F0;
 
-$psychic-fairy: -webkit-gradient(linear, left top, right bottom,
-			color-stop(25%, $psychicBackground),
-			color-stop(100%, $fairyBackground));
+$fireIceBackground: linear-gradient($fireBackground, $iceBackground);
 
-.normalBackground{
-	background: $normalBackground;
-}
-.fireBackground{
-	background: $fireBackground;
-}
-.waterBackground{
-	background: $waterBackground;
-}
-.electricBackground{
-	background: $electricBackground;
-}
-.grassBackground{
-	background: $grassBackground;
-}
-.iceBackground{
-	background: $iceBackground;
-}
-.fightingBackground{
-	background: $fightingBackground;
-}
-.poisonBackground{
-	background: $poisonBackground;
-}
-.groundBackground{
-	background: $groundBackground;
-}
-.flyingBackground{
-	background: $flyingBackground;
-}
-.psychicBackground{
-	background: $psychicBackground;
-}
-.bugBackground{
+[background="Bug"]{
 	background: $bugBackground;
 }
-.rockBackground{
-	background: $rockBackground;
-}
-.ghostBackground{
-	background: $ghostBackground;
-}
-.dragonBackground{
-	background: $dragonBackground;
-}
-.darkBackground{
+[background="Dark"]{
 	background: $darkBackground;
 }
-.steelBackground{
-	background: $steelBackground;
+[background="Dragon"]{
+	background: $dragonBackground;
 }
-.fairyBackground{
+[background="Electric"]{
+	background: $electricBackground;
+}
+[background="Fairy"]{
 	background: $fairyBackground;
 }
-.psychic-fairy{
-	background: $psychic-fairy;
+[background="Fighting"]{
+	background: $fightingBackground;
+}
+[background="Fire"]{
+	background: $fireBackground;
+}
+[background="Flying"]{
+	background: $flyingBackground;
+}
+[background="Ghost"]{
+	background: $ghostBackground;
+}
+[background="Grass"]{
+	background: $grassBackground;
+}
+[background="Ground"]{
+	background: $groundBackground;
+}
+[background="Ice"]{
+	background: $iceBackground;
+}
+[background="Normal"]{
+	background: $normalBackground;
+}
+[background="Poison"]{
+	background: $poisonBackground;
+}
+[background="Psychic"]{
+	background: $psychicBackground;
+}
+[background="Rock"]{
+	background: $rockBackground;
+}
+[background="Steel"]{
+	background: $steelBackground;
+}
+[background="Water"]{
+	background: $waterBackground;
+}
+[background="FireIce"]{
+	background: $fireIceBackground;
 }
 
 $webColors: -webkit-gradient(linear, left top, right bottom,

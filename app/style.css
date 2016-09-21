@@ -5,62 +5,62 @@
   top: 0px;
   z-index: 9999; }
 
-.normalBackground {
-  background: #A8A878; }
-
-.fireBackground {
-  background: #F08030; }
-
-.waterBackground {
-  background: #6890F0; }
-
-.electricBackground {
-  background: #F8D030; }
-
-.grassBackground {
-  background: #78C850; }
-
-.iceBackground {
-  background: #98D8D8; }
-
-.fightingBackground {
-  background: #C03028; }
-
-.poisonBackground {
-  background: #A040A0; }
-
-.groundBackground {
-  background: #E0C068; }
-
-.flyingBackground {
-  background: #A890F0; }
-
-.psychicBackground {
-  background: #F85888; }
-
-.bugBackground {
+[background="Bug"] {
   background: #A8B820; }
 
-.rockBackground {
-  background: #B8A038; }
-
-.ghostBackground {
-  background: #705898; }
-
-.dragonBackground {
-  background: #7038F8; }
-
-.darkBackground {
+[background="Dark"] {
   background: #705848; }
 
-.steelBackground {
-  background: #B8B8D0; }
+[background="Dragon"] {
+  background: #7038F8; }
 
-.fairyBackground {
+[background="Electric"] {
+  background: #F8D030; }
+
+[background="Fairy"] {
   background: #EE99AC; }
 
-.psychic-fairy {
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F85888), color-stop(100%, #EE99AC)); }
+[background="Fighting"] {
+  background: #C03028; }
+
+[background="Fire"] {
+  background: #F08030; }
+
+[background="Flying"] {
+  background: #A890F0; }
+
+[background="Ghost"] {
+  background: #705898; }
+
+[background="Grass"] {
+  background: #78C850; }
+
+[background="Ground"] {
+  background: #E0C068; }
+
+[background="Ice"] {
+  background: #98D8D8; }
+
+[background="Normal"] {
+  background: #A8A878; }
+
+[background="Poison"] {
+  background: #A040A0; }
+
+[background="Psychic"] {
+  background: #F85888; }
+
+[background="Rock"] {
+  background: #B8A038; }
+
+[background="Steel"] {
+  background: #B8B8D0; }
+
+[background="Water"] {
+  background: #6890F0; }
+
+[background="FireIce"] {
+  background: linear-gradient(#F08030, #98D8D8); }
 
 .webBackground {
   background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }
@@ -86,59 +86,59 @@
       transition: 0.3s;
       font-size: 17px; }
 
-.normalBorder {
-  border: 3px solid #A87878; }
-
-.fireBorder {
-  border: 3px solid #F05030; }
-
-.waterBorder {
-  border: 3px solid #6860F0; }
-
-.electricBorder {
-  border: 3px solid #F8A030; }
-
-.grassBorder {
-  border: 3px solid #789850; }
-
-.iceBorder {
-  border: 3px solid #98A8D8; }
-
-.fightingBorder {
-  border: 3px solid #C00028; }
-
-.poisonBorder {
-  border: 3px solid #A010A0; }
-
-.groundBorder {
-  border: 3px solid #E09068; }
-
-.flyingBorder {
-  border: 3px solid #A860F0; }
-
-.psychicBorder {
-  border: 3px solid #F82888; }
-
-.bugBorder {
+[border="Bug"] {
   border: 3px solid #A88820; }
 
-.rockBorder {
-  border: 3px solid #B87038; }
-
-.ghostBorder {
-  border: 3px solid #702898; }
-
-.dragonBorder {
-  border: 3px solid #7008F8; }
-
-.darkBorder {
+[border="Dark"] {
   border: 3px solid #702848; }
 
-.steelBorder {
+[border="Dragon"] {
+  border: 3px solid #7008F8; }
+
+[border="Electric"] {
+  border: 3px solid #F8A030; }
+
+[border="Fairy"] {
+  border: 3px solid #EE69AC; }
+
+[border="Fighting"] {
+  border: 3px solid #C00028; }
+
+[border="Fire"] {
+  border: 3px solid #F05030; }
+
+[border="Flying"] {
+  border: 3px solid #A860F0; }
+
+[border="Ghost"] {
+  border: 3px solid #702898; }
+
+[border="Grass"] {
+  border: 3px solid #789850; }
+
+[border="Ground"] {
+  border: 3px solid #E09068; }
+
+[border="Ice"] {
+  border: 3px solid #98A8D8; }
+
+[border="Normal"] {
+  border: 3px solid #A87878; }
+
+[border="Poison"] {
+  border: 3px solid #A010A0; }
+
+[border="Psychic"] {
+  border: 3px solid #F82888; }
+
+[border="Rock"] {
+  border: 3px solid #B87038; }
+
+[border="Steel"] {
   border: 3px solid #B888D0; }
 
-.fairyBorder {
-  border: 3px solid #EE69AC; }
+[border="Water"] {
+  border: 3px solid #6860F0; }
 
 .doubleStatTable .tableTitle {
   position: absolute;
@@ -244,7 +244,7 @@
   position: fixed;
   top: 40px;
   left: 0px;
-  width: 99.5%;
+  width: 100%;
   list-style-type: none;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
@@ -263,9 +263,6 @@
 
 .poke_page {
   display: none; }
-
-.pokedexEntry {
-  padding-left: 10px; }
 
 .singleStatTable .tableTitle {
   position: absolute;
@@ -358,52 +355,72 @@
   .singleStatTable .statBarCol #baseSpeed {
     width: 540px; }
 
-.statBarGraph .graphTitle {
-  margin-left: 10px; }
+.statBarGraph .graphData .row {
+  margin: 10px 0px 0px 0px;
+  white-space: nowrap; }
 
-.statBarGraph .graphData {
-  margin-left: 10px; }
-  .statBarGraph .graphData .row {
-    margin: 10px 0px 0px 0px;
-    white-space: nowrap; }
-  .statBarGraph .graphData .cell {
-    display: inline-block;
-    vertical-align: middle; }
-  .statBarGraph .graphData .col0 {
-    width: 100px; }
-  .statBarGraph .graphData .col1 {
-    width: 50px; }
-  .statBarGraph .graphData .col2 .statBar {
-    height: 25px;
-    display: inline-block; }
-  .statBarGraph .graphData .col2 .barCover {
-    background: white; }
-  .statBarGraph .graphData .col2 .hpBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime));
-    width: 765px; }
-  .statBarGraph .graphData .col2 .attackBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime));
-    width: 570px; }
-  .statBarGraph .graphData .col2 .defenseBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
-    width: 690px; }
-  .statBarGraph .graphData .col2 .spAttackBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime));
-    width: 582px; }
-  .statBarGraph .graphData .col2 .spDefenseBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
-    width: 690px; }
-  .statBarGraph .graphData .col2 .speedBar {
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime));
-    width: 540px; }
+.statBarGraph .graphData .cell {
+  display: inline-block;
+  vertical-align: middle; }
 
-.tab {
+.statBarGraph .graphData .col0 {
+  width: 100px; }
+
+.statBarGraph .graphData .col1 {
+  width: 50px; }
+
+.statBarGraph .graphData .col2 .statBar {
+  height: 25px;
+  display: inline-block; }
+
+.statBarGraph .graphData .col2 .barCover {
+  background: white; }
+
+.statBarGraph .graphData .col2 .hpBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime));
+  width: 765px; }
+
+.statBarGraph .graphData .col2 .attackBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime));
+  width: 570px; }
+
+.statBarGraph .graphData .col2 .defenseBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
+  width: 690px; }
+
+.statBarGraph .graphData .col2 .spAttackBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime));
+  width: 582px; }
+
+.statBarGraph .graphData .col2 .spDefenseBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
+  width: 690px; }
+
+.statBarGraph .graphData .col2 .speedBar {
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime));
+  width: 540px; }
+
+.statTable .tableData .row {
+  margin: 10px 0px 0px 0px;
+  white-space: nowrap; }
+
+.statTable .tableData .cell {
+  display: inline-block;
+  vertical-align: middle; }
+
+.statTable .tableData .col0 {
+  width: 150px; }
+
+.statTable .tableData .col1 {
+  width: 50px; }
+
+.tabMenu {
   list-style-type: none;
   margin: 0;
   padding: 0; }
-  .tab li {
+  .tabMenu li {
     float: left; }
-    .tab li a {
+    .tabMenu li a {
       display: inline-block;
       color: black;
       text-align: center;
@@ -446,31 +463,11 @@
     margin-top: 0px;
     margin-bottom: 15px; }
 
-#basicInfo {
-  position: absolute;
-  width: 256px;
-  margin-left: 10px;
-  top: 400px;
-  left: 0px; }
-  #basicInfo p {
-    margin: 5px; }
-  #basicInfo h1 {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo .subtitle {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo #altName {
-    margin-left: 5px;
-    margin-top: 0px;
-    margin-bottom: 15px; }
-  #basicInfo .dataLine {
-    margin: 5px; }
-    #basicInfo .dataLine .data {
-      display: inline;
-      margin: 0; }
+#statPageTab {
+  position: fixed;
+  width: 75%;
+  left: 300px;
+  top: 100px; }
 
 #statsPage {
   position: fixed;
@@ -481,30 +478,20 @@
   z-index: -1;
   overflow-y: scroll;
   overflow-x: scroll; }
+  #statsPage .pokedexEntry {
+    margin-left: 10px; }
+  #statsPage .statBarGraph {
+    margin: 0px 0px 0px 20px; }
+  #statsPage .tableRow {
+    margin: 0px 0px 0px 20px; }
+    #statsPage .tableRow .statTable {
+      display: inline-block; }
+  #statsPage #row3 {
+    margin-bottom: 20px; }
+  #statsPage #level100 {
+    margin: 20px 0px 0px 20px; }
+  #statsPage #level50 {
+    margin: 20px 0px 0px 20px; }
 
 #statsPage::-webkit-scrollbar {
   display: none; }
-
-#baseStatTable {
-  position: relative; }
-
-#level100 {
-  position: relative;
-  top: 300px; }
-
-#pokemonImage {
-  position: absolute;
-  top: 100px;
-  left: 0px;
-  width: 256px;
-  height: 256px;
-  margin-left: 10px; }
-  #pokemonImage img {
-    width: 256px;
-    height: 256px; }
-
-#statPageTab {
-  position: fixed;
-  width: 75%;
-  left: 300px;
-  top: 100px; }

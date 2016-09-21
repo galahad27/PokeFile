@@ -1,0 +1,21 @@
+.statTable{
+	.tableTitle{
+		
+	}
+	.tableData{
+		.row{
+			margin: 10px 0px 0px 0px;
+			white-space: nowrap;
+		}
+		.cell{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.col0{
+			width: 150px;
+		}
+		.col1{
+			width: 50px;
+		}
+	}
+}

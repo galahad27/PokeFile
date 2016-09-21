@@ -1,59 +1,59 @@
-.normalBackground {
-  background: #A8A878; }
-
-.fireBackground {
-  background: #F08030; }
-
-.waterBackground {
-  background: #6890F0; }
-
-.electricBackground {
-  background: #F8D030; }
-
-.grassBackground {
-  background: #78C850; }
-
-.iceBackground {
-  background: #98D8D8; }
-
-.fightingBackground {
-  background: #C03028; }
-
-.poisonBackground {
-  background: #A040A0; }
-
-.groundBackground {
-  background: #E0C068; }
-
-.flyingBackground {
-  background: #A890F0; }
-
-.psychicBackground {
-  background: #F85888; }
-
-.bugBackground {
+[background="Bug"] {
   background: #A8B820; }
 
-.rockBackground {
-  background: #B8A038; }
-
-.ghostBackground {
-  background: #705898; }
-
-.dragonBackground {
-  background: #7038F8; }
-
-.darkBackground {
+[background="Dark"] {
   background: #705848; }
 
-.steelBackground {
-  background: #B8B8D0; }
+[background="Dragon"] {
+  background: #7038F8; }
 
-.fairyBackground {
+[background="Electric"] {
+  background: #F8D030; }
+
+[background="Fairy"] {
   background: #EE99AC; }
 
-.psychic-fairy {
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F85888), color-stop(100%, #EE99AC)); }
+[background="Fighting"] {
+  background: #C03028; }
+
+[background="Fire"] {
+  background: #F08030; }
+
+[background="Flying"] {
+  background: #A890F0; }
+
+[background="Ghost"] {
+  background: #705898; }
+
+[background="Grass"] {
+  background: #78C850; }
+
+[background="Ground"] {
+  background: #E0C068; }
+
+[background="Ice"] {
+  background: #98D8D8; }
+
+[background="Normal"] {
+  background: #A8A878; }
+
+[background="Poison"] {
+  background: #A040A0; }
+
+[background="Psychic"] {
+  background: #F85888; }
+
+[background="Rock"] {
+  background: #B8A038; }
+
+[background="Steel"] {
+  background: #B8B8D0; }
+
+[background="Water"] {
+  background: #6890F0; }
+
+[background="FireIce"] {
+  background: linear-gradient(#F08030, #98D8D8); }
 
 .webBackground {
   background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }

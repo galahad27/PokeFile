@@ -2,7 +2,69 @@
 	var dev = {};
 
 	dev.ninetales = {
-		name : "Ninetales",
+		name : {
+			en: "Ninetales",
+			jap: "Kyukon",
+		},
+		localNum : {
+			Red : "38",
+			Blue : "38",
+			Yellow : "38",
+			Gold : "126",
+			Silver : "126",
+			Crystal : "126",
+			Ruby : "154",
+			Sapphire : "154",
+			FireRed : "38",
+			LeafGreen : "38",
+			Emerald : "154",
+			Dimond : null,
+			Pearl : null,
+			Platinum : null,
+			HeartGold : "128",
+			SoulSilver : "128",
+			Black : null,
+			White : null,
+			Black2 : "249",
+			White2 : "249",
+			X : null,
+			Y : null,
+			OmegaRuby : "161",
+			AlphaSapphire : "161",
+		},
+		basic : {
+			nationalNum : "38",
+			species : "Fox Pokemon",
+			height : "1.09 m",
+			weight : "19.9 kg",
+		},
+		breeding : {
+			eggGroup : "Field",
+			eggCycle : "21",
+			male : "25",
+			female : "75",
+		},
+		training : {
+			ev : {
+				hp : null,
+				attack : null,
+				defense : null,
+				spAttack : null,
+				spDefense : 1,
+				speed : 1,
+			},
+			catchRate : "75",
+			happiness : "70",
+			exp : "178",
+			growthRate : "Medium Fast",
+		},
+		battle : {
+			primaryType : "Fire",
+			secondaryType : null,
+			firstAbility : "Flash Fire",
+			secondAbility : null,
+			hiddenAbility : "Drought",
+		},
 		pokedex : {
 			Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
 			Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
@@ -28,13 +90,16 @@
 			Y : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
 		},
 		base : {
-			HP : "73",
-			ATTACK : "76",
-			DEFENSE : "75",
-			SPATTACK : "81",
-			SPDEFENSE : "100",
-			SPEED : "100",
+			HP : 73,
+			ATTACK : 76,
+			DEFENSE : 75,
+			SPATTACK : 81,
+			SPDEFENSE : 100,
+			SPEED : 100,
 		},
+		img : {
+			url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
+		}
 	}
 
 	root.dev = dev;

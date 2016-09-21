@@ -38,3 +38,44 @@
 		margin-bottom: 15px;
 	}
 }
+#statPageTab{
+	position: fixed;
+	width: 75%;
+	left: 300px;
+	top: 100px;
+}
+#statsPage{
+	position: fixed;
+	width: 75%;
+	height: 75%;
+	left: 300px;
+	top: 139px;
+	z-index: -1;
+	overflow-y: scroll;
+	overflow-x: scroll;
+
+	.pokedexEntry{
+		margin-left: 10px;
+	}
+	.statBarGraph{
+		margin: 0px 0px 0px 20px;
+	}
+	.tableRow{
+		margin: 0px 0px 0px 20px;
+		.statTable{
+			display: inline-block;
+		}
+	}
+	#row3{
+		margin-bottom: 20px;
+	}
+	#level100{
+		margin: 20px 0px 0px 20px; 
+	}
+	#level50{
+		margin: 20px 0px 0px 20px;
+	}
+}
+#statsPage::-webkit-scrollbar{
+	display: none;
+}
