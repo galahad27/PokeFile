@@ -52,8 +52,5 @@
 [background="Water"] {
   background: #6890F0; }
 
-[background="FireIce"] {
-  background: linear-gradient(#F08030, #98D8D8); }
-
 .webBackground {
   background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }

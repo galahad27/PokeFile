@@ -73,9 +73,6 @@ $fireIceBackground: linear-gradient($fireBackground, $iceBackground);
 [background="Water"]{
 	background: $waterBackground;
 }
-[background="FireIce"]{
-	background: $fireIceBackground;
-}
 
 $webColors: -webkit-gradient(linear, left top, right bottom,
 			color-stop(25%, $fireBackground),

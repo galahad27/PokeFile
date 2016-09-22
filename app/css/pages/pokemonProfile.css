@@ -60,6 +60,10 @@
     margin: 20px 0px 0px 20px; }
   #statsPage #level50 {
     margin: 20px 0px 0px 20px; }
+  #statsPage .movesList {
+    border: 1px solid black;
+    margin: 10px 10px 10px 10px;
+    display: inline-block; }
 
 #statsPage::-webkit-scrollbar {
   display: none; }
