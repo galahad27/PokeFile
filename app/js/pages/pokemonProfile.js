@@ -38,9 +38,11 @@
 	var hiddenAbility = basicInfo.querySelector("#hiddenAbility");
 
 	var primaryPokemon;
-	var currImageIndex = 0;
+	var currImageIndex;
+	var movesListNum;
 
 	page.onBeforeShow = function(){
+		init();
 		primaryPokemon = getData();
 		setImage(stockImage, primaryPokemon, 0);
 		setBasicInfo(primaryPokemon);
@@ -58,6 +60,10 @@
 
 	};
 
+	init = function(){
+		currImageIndex = 0;
+		movesListNum = 0;
+	}
 	addEventListeners = function(){
 		$(pokedex).on("click", pokedexClick);
 		$(stats).on("click", statsClick);
@@ -75,7 +81,7 @@
 
 	/***************************Getters***************************/
 	getData = function(){
-		return dev.ninetales;
+		return dev.pokemon.ninetales;
 	}
 	/***************************Setters***************************/
 	setBarLength = function(){
@@ -87,19 +93,19 @@
 		var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
 		var speedCover = barGraph.querySelector(".speedBarCover");
 
-		hpCover.style.width = (R.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.width = (R.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.width = (R.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.width = (R.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.width = (R.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.width = (R.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
+		hpCover.style.width = (R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.width = (R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.width = (R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.width = (R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.width = (R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.width = (R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
 
-		hpCover.style.marginLeft = -1*(R.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.marginLeft = -1*(R.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.marginLeft = -1*(R.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.marginLeft = -1*(R.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.marginLeft = -1*(R.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.marginLeft = -1*(R.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
+		hpCover.style.marginLeft = -1*(R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.marginLeft = -1*(R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.marginLeft = -1*(R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.marginLeft = -1*(R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.marginLeft = -1*(R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.marginLeft = -1*(R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
 	}
 	setBorderWidth = function(){
 		pokedex.style.borderWidth = "3px";
@@ -108,22 +114,12 @@
 		moves.style.borderWidth = "3px";
 	}
 	setColorTheme = function(pokemon){
-		if(!!pokemon.battle.secondaryType){
-			pokemonImage.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			basicInfo.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			pokedex.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			stats.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			typeStats.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			moves.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			console.log(pokemon.battle.primaryType+pokemon.battle.secondaryType);
-		}else{
-			pokemonImage.setAttribute("background", pokemon.battle.primaryType);
-			basicInfo.setAttribute("background", pokemon.battle.primaryType);
-			pokedex.setAttribute("background", pokemon.battle.primaryType);
-			stats.setAttribute("background", pokemon.battle.primaryType);
-			typeStats.setAttribute("background", pokemon.battle.primaryType);
-			moves.setAttribute("background", pokemon.battle.primaryType);
-		}
+		pokemonImage.setAttribute("background", pokemon.battle.primaryType);
+		basicInfo.setAttribute("background", pokemon.battle.primaryType);
+		pokedex.setAttribute("background", pokemon.battle.primaryType);
+		stats.setAttribute("background", pokemon.battle.primaryType);
+		typeStats.setAttribute("background", pokemon.battle.primaryType);
+		moves.setAttribute("background", pokemon.battle.primaryType);
 
 		pokemonImage.setAttribute("border", pokemon.battle.primaryType);
 		basicInfo.setAttribute("border", pokemon.battle.primaryType);
@@ -132,6 +128,11 @@
 		typeStats.setAttribute("border", pokemon.battle.primaryType);
 		moves.setAttribute("border", pokemon.battle.primaryType);
 		statsPage.setAttribute("border", pokemon.battle.primaryType);
+
+		if(!!pokemon.battle.secondaryType){
+			pokemonImage.style.background = "linear-gradient("+R.typeColors[pokemon.battle.primaryType]+","+R.typeColors[pokemon.battle.secondaryType]+")";
+			basicInfo.style.background = "linear-gradient("+R.typeColors[pokemon.battle.primaryType]+","+R.typeColors[pokemon.battle.secondaryType]+")";
+		}
 	}
 	setBasicInfo = function(pokemon){
 		name.innerHTML = pokemon.name.en;
@@ -207,6 +208,7 @@
 		setBorderWidth();
 		moves.style.borderTopWidth = "6px";
 		$(statsPage).empty();
+		addMovesList();
 	}
 	pokedexClick = function(){
 		setBorderWidth();
@@ -242,6 +244,21 @@
 		var input = primaryPokemon.base;
 		html.load(barGraph, input);
 		setBarLength();
+	}
+	addMovesList = function(){
+		$(statsPage).append(html.containers.MOVESLIST("movesList"+movesListNum));
+		var movesList = statsPage.querySelector("#movesList"+movesListNum);
+		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
+		html.load(movesList, primaryPokemon);
+		movesListNum++;
+		var movesBar = movesList.querySelector(".movesTable");
+		primaryPokemon.moves.all.forEach(function(move){
+			var input = {
+				type : primaryPokemon.battle.primaryType,
+				move : dev.moves[move],
+			};
+			html.load(movesBar, input);
+		});
 	}
 	addPokedexEntries = function(){
 		$(statsPage).append(html.containers.POKEDEX);

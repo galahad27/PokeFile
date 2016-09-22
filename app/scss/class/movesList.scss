@@ -1,0 +1,141 @@
+.movesList{ 
+	.col{
+		display: inline-block;
+		vertical-align: top;
+	}
+	.ccol{
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.movesFilter{
+		.types{
+			margin: 10px 10px 10px 10px;
+			h3{
+				margin: 0px 0px 5px 4px;
+			}
+			.checkbox{
+				padding: 2px 0px 2px 0px;
+				margin: 0px 10px 0px 0px;
+				.box{
+					margin: 3px 0px 3px 4px;
+				}
+				.text{
+					width: 70px;
+					text-align: center;
+					border-radius: 7px;
+				}
+			}
+		}
+		.category{
+			margin: 10px 10px 10px 10px;
+			h3{
+				margin: 0px 0px 5px 4px;
+			}
+			.checkbox{
+				padding: 2px 0px 2px 0px;
+				margin: 0px 10px 0px 0px;
+				.box{
+					margin: 3px 0px 3px 4px;
+				}
+				.text{
+				}
+			}
+		}
+		.learned{
+			margin: 10px 10px 10px 10px;
+			h3{
+				margin: 0px 0px 5px 4px;
+			}
+			.checkbox{
+				padding: 2px 0px 2px 0px;
+				margin: 0px 10px 0px 0px;
+				.box{
+					margin: 3px 0px 3px 4px;
+				}
+				.text{
+				}
+			}
+		}
+		.power{
+			margin: 0px 10px 10px 10px;
+			h3{
+				margin: 0px 0px 5px 0px;
+			}
+			.textBox{
+				.text{
+
+				}
+				.box{
+					width: 30px;
+				}
+			}
+		}
+		.accuracy{
+			margin: 0px 60px 10px 60px;
+			h3{
+				margin: 0px 0px 5px 0px;
+			}
+			.textBox{
+				.text{
+
+				}
+				.box{
+					width: 30px;
+				}
+			}
+		}
+		.pp{
+			margin: 0px 10px 10px 10px;
+			h3{
+				margin: 0px 0px 5px 0px;
+			}
+			.textBox{
+				.text{
+
+				}
+				.box{
+					width: 30px;
+				}
+			}
+		}
+	}
+	.movesTable{
+		width: 585px;
+		
+		white-space: nowrap;
+		overflow: hidden;
+		.row{
+			font-size: 0;
+		}
+	    .cell{
+	    	display: inline-block;
+	    	padding: 5px 0px 5px 0px;
+	    	text-align:center;
+	    	border-width: 1px;
+			margin-bottom: -1px;
+			margin-left: -1px;
+			font-size: 1rem;
+	    }
+	    .move{
+	    	width: 28%;
+	    }
+	    .type{
+	    	width: 12%;	
+	    }
+	    .category{
+			width: 12%;
+	    }
+	    .power{
+	    	width: 12%;	
+	    }
+	    .accuracy{
+	    	width: 12%;
+	    }
+	    .effect{
+	    	width: 12%;
+	    }
+	    .chance{
+	    	width: 12%;
+	    }
+	}
+}

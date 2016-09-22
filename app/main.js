@@ -1,104 +1,130 @@
 (function(root){
 	var dev = {};
 
-	dev.ninetales = {
-		name : {
-			en: "Ninetales",
-			jap: "Kyukon",
-		},
-		localNum : {
-			Red : "38",
-			Blue : "38",
-			Yellow : "38",
-			Gold : "126",
-			Silver : "126",
-			Crystal : "126",
-			Ruby : "154",
-			Sapphire : "154",
-			FireRed : "38",
-			LeafGreen : "38",
-			Emerald : "154",
-			Dimond : null,
-			Pearl : null,
-			Platinum : null,
-			HeartGold : "128",
-			SoulSilver : "128",
-			Black : null,
-			White : null,
-			Black2 : "249",
-			White2 : "249",
-			X : null,
-			Y : null,
-			OmegaRuby : "161",
-			AlphaSapphire : "161",
-		},
-		basic : {
-			nationalNum : "38",
-			species : "Fox Pokemon",
-			height : "1.09 m",
-			weight : "19.9 kg",
-		},
-		breeding : {
-			eggGroup : "Field",
-			eggCycle : "21",
-			male : "25",
-			female : "75",
-		},
-		training : {
-			ev : {
-				hp : null,
-				attack : null,
-				defense : null,
-				spAttack : null,
-				spDefense : 1,
-				speed : 1,
+	dev.pokemon = {
+		ninetales : {
+			name : {
+				en: "Ninetales",
+				jap: "Kyukon",
 			},
-			catchRate : "75",
-			happiness : "70",
-			exp : "178",
-			growthRate : "Medium Fast",
-		},
-		battle : {
-			primaryType : "Fire",
-			secondaryType : null,
-			firstAbility : "Flash Fire",
-			secondAbility : null,
-			hiddenAbility : "Drought",
-		},
-		pokedex : {
-			Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
-			Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
-			Yellow : "According to an enduring legend, 9 noble saints were united and reincarnated as this POKéMON.",
-			Gold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
-			Silver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
-			Crystal : "It is said to live a thousand years, and each of its tails is loaded with supernatural powers.",
-			Ruby : "NINETALES casts a sinister light from its bright red eyes to gain total control over its foe’s mind. This POKéMON is said to live for a thousand years.",
-			Sapphire : "Legend has it that NINETALES came into being when nine wizards possessing sacred powers merged into one. This POKéMON is highly intelligent - it can understand human speech.",
-			FireRed : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
-			LeafGreen : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
-			Emerald : "It has long been said that each of the nine tails embody an enchanted power. A long-lived NINETALES will have fur that shines like gold.",
-			Dimond : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-			Pearl : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-			Platinum : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-			HeartGold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
-			SoulSilver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
-			Black : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-			White : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-			Black2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
-			White2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
-			X : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
-			Y : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
-		},
-		base : {
-			HP : 73,
-			ATTACK : 76,
-			DEFENSE : 75,
-			SPATTACK : 81,
-			SPDEFENSE : 100,
-			SPEED : 100,
-		},
-		img : {
-			url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
+			localNum : {
+				Red : "38",
+				Blue : "38",
+				Yellow : "38",
+				Gold : "126",
+				Silver : "126",
+				Crystal : "126",
+				Ruby : "154",
+				Sapphire : "154",
+				FireRed : "38",
+				LeafGreen : "38",
+				Emerald : "154",
+				Dimond : null,
+				Pearl : null,
+				Platinum : null,
+				HeartGold : "128",
+				SoulSilver : "128",
+				Black : null,
+				White : null,
+				Black2 : "249",
+				White2 : "249",
+				X : null,
+				Y : null,
+				OmegaRuby : "161",
+				AlphaSapphire : "161",
+			},
+			basic : {
+				nationalNum : "38",
+				species : "Fox Pokemon",
+				height : "1.09 m",
+				weight : "19.9 kg",
+			},
+			breeding : {
+				eggGroup : "Field",
+				eggCycle : "21",
+				male : "25",
+				female : "75",
+			},
+			training : {
+				ev : {
+					hp : null,
+					attack : null,
+					defense : null,
+					spAttack : null,
+					spDefense : 1,
+					speed : 1,
+				},
+				catchRate : "75",
+				happiness : "70",
+				exp : "178",
+				growthRate : "Medium Fast",
+			},
+			battle : {
+				primaryType : "Fire",
+				secondaryType : null,
+				firstAbility : "Flash Fire",
+				secondAbility : null,
+				hiddenAbility : "Drought",
+			},
+			pokedex : {
+				Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
+				Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
+				Yellow : "According to an enduring legend, 9 noble saints were united and reincarnated as this POKéMON.",
+				Gold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
+				Silver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
+				Crystal : "It is said to live a thousand years, and each of its tails is loaded with supernatural powers.",
+				Ruby : "NINETALES casts a sinister light from its bright red eyes to gain total control over its foe’s mind. This POKéMON is said to live for a thousand years.",
+				Sapphire : "Legend has it that NINETALES came into being when nine wizards possessing sacred powers merged into one. This POKéMON is highly intelligent - it can understand human speech.",
+				FireRed : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
+				LeafGreen : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
+				Emerald : "It has long been said that each of the nine tails embody an enchanted power. A long-lived NINETALES will have fur that shines like gold.",
+				Dimond : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				Pearl : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				Platinum : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				HeartGold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
+				SoulSilver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
+				Black : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				White : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				Black2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
+				White2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
+				X : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
+				Y : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
+			},
+			base : {
+				HP : 73,
+				ATTACK : 76,
+				DEFENSE : 75,
+				SPATTACK : 81,
+				SPDEFENSE : 100,
+				SPEED : 100,
+			},
+			img : {
+				url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
+			},
+			moves : {
+				all : ["flamethrower"],
+				level : ["flamethrower"],
+				egg : [],
+				tutor : [],
+				preEvolution : [],
+				hm : [],
+				tm : ["flamethrower"],
+				transfer : [],
+			},
+		}
+	}
+	dev.moves = {
+		flamethrower : {
+			name : "Flamethrower",
+			type : "Fire",
+			category : "Special",
+			power : "90",
+			accuracy : "100",
+			pp : "15",
+			effects : {
+				burn : "10",
+			},
+			pokemon : ["ninetales"],
 		}
 	}
 
@@ -121,6 +147,7 @@
 		POKEDEX : function(id){ return "<div id=\""+id+"\" class=\"container pokedexEntry\" type-insert=\"pokedexEntry\"></div>";},
 		STATBARGRAPH : function(id){return "<div id=\""+id+"\" class=\"container statBarGraph\" type-insert=\"statBarGraph\"></div>";},
 		STATTABLE : function(stat, name, level){return "<div class=\"container statTable\" stat=\""+stat+"\" name=\""+name+"\" level=\""+level+"\" type-insert=\"statTable\"></div>";},
+		MOVESLIST : function(id){return "<div id=\""+id+"\" class=\"container movesList\" type-insert=\"movesList\"></div>";},
 	}
 
 	root.html = html;
@@ -130,12 +157,34 @@
 
 	var R = {
 		STATMODIFIER : 3,
-		HP : 255,
-		ATTACK : 190,
-		DEFENSE : 230,
-		SPATTACK : 194,
-		SPDEFENSE : 230,
-		SPEED : 180,
+		maxStats : {
+			HP : 255,
+			ATTACK : 190,
+			DEFENSE : 230,
+			SPATTACK : 194,
+			SPDEFENSE : 230,
+			SPEED : 180,
+		},
+		typeColors : {
+			Bug : "#A8B820",
+			Dark : "#705848",
+			Dragon : "#7038F8",
+			Electric : "#F8D030",
+			Fairy : "#EE99AC",
+			Fire : "#F08030",
+			Fighting : "#C03028",
+			Flying : "#A890F0",
+			Ghost : "#705898",
+			Grass : "#78C850",
+			Ground : "#E0C068",
+			Ice : "#98D8D8",
+			Normal : "#A8A878",
+			Poison : "#A040A0",
+			Psychic : "#F85888",
+			Rock : "#B8A038",
+			Steel : "#B8B8D0",
+			Water : "#6890F0",
+		},
 	}
 
 	root.R = R;
@@ -153,6 +202,23 @@
 	}
 
 	root.utill = utill;
+})(this);
+(function(root){
+	var pages = {};
+	var elements = document.querySelectorAll(".poke_page");
+
+	elements.forEach(function(page){
+		pageId = page.getAttribute("id");
+		pages[pageId] = page;
+	})
+
+	pages.activePage = null;
+
+	pages.pageIds = {
+		POKEMONPROFILE : "pokemonProfile",
+	}
+
+	root.pages = pages;
 })(this);
 (function(root){
 })(this);
@@ -191,21 +257,196 @@
 	root.loadPage = loadPage;
 })(this);
 (function(root){
-	var pages = {};
-	var elements = document.querySelectorAll(".poke_page");
-
-	elements.forEach(function(page){
-		pageId = page.getAttribute("id");
-		pages[pageId] = page;
-	})
-
-	pages.activePage = null;
-
-	pages.pageIds = {
-		POKEMONPROFILE : "pokemonProfile",
+	html.movesList = function(pokemon){
+		return ""+
+		"	<div class=\"movesFilter\">"+
+		"		<div class=\"col types\">"+
+		"			<h3>Types</h3>"+
+		"			<div class=\"col\">"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Bug\">Bug</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Dark\">Dark</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Dragon\">Dragon</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Electric\">Electric</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Fairy\">Fairy</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Fire\">Fire</div>"+
+		"				</div>"+
+		"			</div>"+
+		"			<div class=\"col\">"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Fighting\">Fighting</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Flying\">Flying</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Ghost\">Ghost</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Grass\">Grass</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Ground\">Ground</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Ice\">Ice</div>"+
+		"				</div>"+
+		"			</div>"+
+		"			<div class=\"col\">"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Normal\">Normal</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Poison\">Poison</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Psychic\">Psychic</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Rock\">Rock</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Steel\">Steel</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\" background=\"Water\">Water</div>"+
+		"				</div>"+
+		"			</div>"+
+		"		</div>"+
+		"		<div class=\"col category\">"+
+		"			<h3>Category</h3>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Physical</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Special</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Status</div>"+
+		"			</div>"+
+		"		</div>"+
+		"		<div class=\"col learned\">"+
+		"			<h3>Learned By</h3>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Egg</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">HM</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Level</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Pre-Evolution</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">TM</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Transfer</div>"+
+		"			</div>"+
+		"			<div class=\"checkbox\">"+
+		"				<input class=\"box ccol\" type=\"checkbox\">"+
+		"				<div class=\"text ccol\">Tutor</div>"+
+		"			</div>"+
+		"		</div>"+
+		"		<div>"+
+		"			<div class=\"power col\">"+
+		"				<h3>Power</h3>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Min</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Max</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"			</div>"+
+		"			<div class=\"accuracy col\">"+
+		"				<h3>Accuracy</h3>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Min</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Max</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"			</div>"+
+		"			<div class=\"pp col\">"+
+		"				<h3>PP</h3>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Min</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"				<div class=\"textBox ccol\">"+
+		"					<div class=\"text ccol\">Max</div>"+
+		"					<input class=\"box ccol\" type=\"text\">"+
+		"				</div>"+
+		"			</div>"+
+		"		</div>"+
+		"	</div>"+
+		"	<div class=\"movesTable\" type-insert=\"moves\">"+
+		"		<div class=\"row\" background=\""+pokemon.battle.primaryType+"\">"+
+		"			<div class=\"move cell\" border=\""+pokemon.battle.primaryType+"\">Move</div>"+
+		"			<div class=\"type cell\" border=\""+pokemon.battle.primaryType+"\">Type</div>"+
+		"			<div class=\"category cell\" border=\""+pokemon.battle.primaryType+"\">Category</div>"+
+		"			<div class=\"power cell\" border=\""+pokemon.battle.primaryType+"\">Power</div>"+
+		"			<div class=\"accuracy cell\" border=\""+pokemon.battle.primaryType+"\">Accuracy</div>"+
+		"			<div class=\"effect cell\" border=\""+pokemon.battle.primaryType+"\">Effect</div>"+
+		"			<div class=\"chance cell\" border=\""+pokemon.battle.primaryType+"\">Chance</div>"+
+		"		</div>"+
+		"	</div>";
 	}
-
-	root.pages = pages;
+	html.moves = function(move){
+		return ""+
+		"		<div class=\"row\">"+
+		"			<div class=\"move cell\" border=\""+move.type+"\">"+move.move.name+"</div>"+
+		"			<div class=\"type cell\" border=\""+move.type+"\">"+move.move.type+"</div>"+
+		"			<div class=\"category cell\" border=\""+move.type+"\">"+move.move.category+"</div>"+
+		"			<div class=\"power cell\" border=\""+move.type+"\">"+move.move.power+"</div>"+
+		"			<div class=\"accuracy cell\" border=\""+move.type+"\">"+move.move.accuracy+"</div>"+
+		"			<div class=\"effect cell\" border=\""+move.type+"\"></div>"+
+		"			<div class=\"chance cell\" border=\""+move.type+"\"></div>"+
+		"		</div>";
+	}
 })(this);
 (function(root){
 	html.pageHeader = ""+
@@ -347,9 +588,11 @@
 	var hiddenAbility = basicInfo.querySelector("#hiddenAbility");
 
 	var primaryPokemon;
-	var currImageIndex = 0;
+	var currImageIndex;
+	var movesListNum;
 
 	page.onBeforeShow = function(){
+		init();
 		primaryPokemon = getData();
 		setImage(stockImage, primaryPokemon, 0);
 		setBasicInfo(primaryPokemon);
@@ -367,6 +610,10 @@
 
 	};
 
+	init = function(){
+		currImageIndex = 0;
+		movesListNum = 0;
+	}
 	addEventListeners = function(){
 		$(pokedex).on("click", pokedexClick);
 		$(stats).on("click", statsClick);
@@ -384,7 +631,7 @@
 
 	/***************************Getters***************************/
 	getData = function(){
-		return dev.ninetales;
+		return dev.pokemon.ninetales;
 	}
 	/***************************Setters***************************/
 	setBarLength = function(){
@@ -396,19 +643,19 @@
 		var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
 		var speedCover = barGraph.querySelector(".speedBarCover");
 
-		hpCover.style.width = (R.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.width = (R.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.width = (R.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.width = (R.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.width = (R.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.width = (R.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
+		hpCover.style.width = (R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.width = (R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.width = (R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.width = (R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.width = (R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.width = (R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
 
-		hpCover.style.marginLeft = -1*(R.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.marginLeft = -1*(R.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.marginLeft = -1*(R.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.marginLeft = -1*(R.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.marginLeft = -1*(R.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.marginLeft = -1*(R.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
+		hpCover.style.marginLeft = -1*(R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
+		attackCover.style.marginLeft = -1*(R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
+		defenseCover.style.marginLeft = -1*(R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
+		spAttackCover.style.marginLeft = -1*(R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
+		spDefenseCover.style.marginLeft = -1*(R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
+		speedCover.style.marginLeft = -1*(R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
 	}
 	setBorderWidth = function(){
 		pokedex.style.borderWidth = "3px";
@@ -417,22 +664,12 @@
 		moves.style.borderWidth = "3px";
 	}
 	setColorTheme = function(pokemon){
-		if(!!pokemon.battle.secondaryType){
-			pokemonImage.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			basicInfo.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			pokedex.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			stats.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			typeStats.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			moves.setAttribute("background", pokemon.battle.primaryType+pokemon.battle.secondaryType);
-			console.log(pokemon.battle.primaryType+pokemon.battle.secondaryType);
-		}else{
-			pokemonImage.setAttribute("background", pokemon.battle.primaryType);
-			basicInfo.setAttribute("background", pokemon.battle.primaryType);
-			pokedex.setAttribute("background", pokemon.battle.primaryType);
-			stats.setAttribute("background", pokemon.battle.primaryType);
-			typeStats.setAttribute("background", pokemon.battle.primaryType);
-			moves.setAttribute("background", pokemon.battle.primaryType);
-		}
+		pokemonImage.setAttribute("background", pokemon.battle.primaryType);
+		basicInfo.setAttribute("background", pokemon.battle.primaryType);
+		pokedex.setAttribute("background", pokemon.battle.primaryType);
+		stats.setAttribute("background", pokemon.battle.primaryType);
+		typeStats.setAttribute("background", pokemon.battle.primaryType);
+		moves.setAttribute("background", pokemon.battle.primaryType);
 
 		pokemonImage.setAttribute("border", pokemon.battle.primaryType);
 		basicInfo.setAttribute("border", pokemon.battle.primaryType);
@@ -441,6 +678,11 @@
 		typeStats.setAttribute("border", pokemon.battle.primaryType);
 		moves.setAttribute("border", pokemon.battle.primaryType);
 		statsPage.setAttribute("border", pokemon.battle.primaryType);
+
+		if(!!pokemon.battle.secondaryType){
+			pokemonImage.style.background = "linear-gradient("+R.typeColors[pokemon.battle.primaryType]+","+R.typeColors[pokemon.battle.secondaryType]+")";
+			basicInfo.style.background = "linear-gradient("+R.typeColors[pokemon.battle.primaryType]+","+R.typeColors[pokemon.battle.secondaryType]+")";
+		}
 	}
 	setBasicInfo = function(pokemon){
 		name.innerHTML = pokemon.name.en;
@@ -516,6 +758,7 @@
 		setBorderWidth();
 		moves.style.borderTopWidth = "6px";
 		$(statsPage).empty();
+		addMovesList();
 	}
 	pokedexClick = function(){
 		setBorderWidth();
@@ -551,6 +794,21 @@
 		var input = primaryPokemon.base;
 		html.load(barGraph, input);
 		setBarLength();
+	}
+	addMovesList = function(){
+		$(statsPage).append(html.containers.MOVESLIST("movesList"+movesListNum));
+		var movesList = statsPage.querySelector("#movesList"+movesListNum);
+		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
+		html.load(movesList, primaryPokemon);
+		movesListNum++;
+		var movesBar = movesList.querySelector(".movesTable");
+		primaryPokemon.moves.all.forEach(function(move){
+			var input = {
+				type : primaryPokemon.battle.primaryType,
+				move : dev.moves[move],
+			};
+			html.load(movesBar, input);
+		});
 	}
 	addPokedexEntries = function(){
 		$(statsPage).append(html.containers.POKEDEX);
