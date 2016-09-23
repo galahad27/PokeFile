@@ -5,6 +5,76 @@
   top: 0px;
   z-index: 9999; }
 
+#pokemonImage {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 256px;
+  height: 256px;
+  margin-left: 10px; }
+  #pokemonImage img {
+    width: 256px;
+    height: 256px; }
+
+#basicInfo {
+  position: absolute;
+  width: 256px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  top: 400px;
+  left: 0px; }
+  #basicInfo div {
+    margin: 5px; }
+  #basicInfo h1 {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo .subtitle {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo #altName {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 15px; }
+
+#statPageTab {
+  position: fixed;
+  width: 75%;
+  left: 300px;
+  top: 110px; }
+
+#statsPage {
+  position: fixed;
+  top: 137px;
+  bottom: 10px;
+  left: 300px;
+  right: 10px;
+  z-index: -1;
+  overflow-y: scroll;
+  overflow-x: scroll; }
+  #statsPage .pokedexEntry {
+    margin-left: 10px; }
+  #statsPage .statBarGraph {
+    margin: 0px 0px 0px 20px; }
+  #statsPage .tableRow {
+    margin: 0px 0px 0px 20px; }
+    #statsPage .tableRow .statTable {
+      display: inline-block; }
+  #statsPage #row3 {
+    margin-bottom: 20px; }
+  #statsPage #level100 {
+    margin: 20px 0px 0px 20px; }
+  #statsPage #level50 {
+    margin: 20px 0px 0px 20px; }
+  #statsPage .movesList {
+    border: 1px solid black;
+    margin: 10px 10px 10px 10px;
+    display: inline-block; }
+
+#statsPage::-webkit-scrollbar {
+  display: none; }
+
 [background="Bug"] {
   background: #A8B820; }
 
@@ -492,73 +562,3 @@
       font-size: 17px;
       border-radius: 10px 10px 0px 0px;
       margin-right: -3px; }
-
-#pokemonImage {
-  position: absolute;
-  top: 100px;
-  left: 0px;
-  width: 256px;
-  height: 256px;
-  margin-left: 10px; }
-  #pokemonImage img {
-    width: 256px;
-    height: 256px; }
-
-#basicInfo {
-  position: absolute;
-  width: 256px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  top: 400px;
-  left: 0px; }
-  #basicInfo div {
-    margin: 5px; }
-  #basicInfo h1 {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo .subtitle {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo #altName {
-    margin-left: 5px;
-    margin-top: 0px;
-    margin-bottom: 15px; }
-
-#statPageTab {
-  position: fixed;
-  width: 75%;
-  left: 300px;
-  top: 110px; }
-
-#statsPage {
-  position: fixed;
-  top: 137px;
-  bottom: 10px;
-  left: 300px;
-  right: 10px;
-  z-index: -1;
-  overflow-y: scroll;
-  overflow-x: scroll; }
-  #statsPage .pokedexEntry {
-    margin-left: 10px; }
-  #statsPage .statBarGraph {
-    margin: 0px 0px 0px 20px; }
-  #statsPage .tableRow {
-    margin: 0px 0px 0px 20px; }
-    #statsPage .tableRow .statTable {
-      display: inline-block; }
-  #statsPage #row3 {
-    margin-bottom: 20px; }
-  #statsPage #level100 {
-    margin: 20px 0px 0px 20px; }
-  #statsPage #level50 {
-    margin: 20px 0px 0px 20px; }
-  #statsPage .movesList {
-    border: 1px solid black;
-    margin: 10px 10px 10px 10px;
-    display: inline-block; }
-
-#statsPage::-webkit-scrollbar {
-  display: none; }

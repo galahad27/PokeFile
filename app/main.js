@@ -102,13 +102,13 @@
 				url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
 			},
 			moves : {
-				all : ["flamethrower","extrasensory","heatWave"],
-				level : ["flamethrower"],
+				all : ["flamethrower","extrasensory","heatWave","confuseRay","imprison","nastyPlot","quickAttack","safeguard"],
+				level : ["flamethrower","confuseRay","imprison","nastyPlot","quickAttack","safeguard"],
 				egg : ["extrasensory","heatWave"],
 				tutor : ["heatWave"],
 				preEvolution : ["extrasensory"],
 				hm : [],
-				tm : ["flamethrower"],
+				tm : ["flamethrower","safeguard"],
 				transfer : [],
 			},
 		}
@@ -122,8 +122,9 @@
 			accuracy : "100",
 			pp : "15",
 			effects : {
-				condition : ["burn"],
+				condition : ["Burn"],
 				percentage : ["10"],
+				increase : [null],
 			},
 			pokemon : ["ninetales"],
 		},
@@ -135,8 +136,9 @@
 			accuracy : "100",
 			pp : "20",
 			effects : {
-				condition : ["flinch"],
+				condition : ["Flinch"],
 				percentage : ["10"],
+				increase : [null],
 			},
 			pokemon : ["ninetales"],	
 		},
@@ -148,11 +150,82 @@
 			accuracy : "90",
 			pp : "10",
 			effects : {
-				condition : ["burn"],
+				condition : ["Burn"],
 				percentage : ["10"],
+				increase : [null],
 			},
 			pokemon : ["ninetales"],
-		}
+		},
+		confuseRay : {
+			name : "Confuse Ray",
+			type : "Ghost",
+			category : "Status",
+			power : "",
+			accuracy : "100",
+			pp : "10",
+			effects : {
+				condition : ["Confusion"],
+				percentage : ["100"],
+				increase : [null],
+			},
+			pokemon : ["ninetales"],
+		},
+		imprison : {
+			name : "Imprison",
+			type : "Psychic",
+			category : "Status",
+			power : "",
+			accuracy : "",
+			pp : "10",
+			effects : {
+				condition : [],
+				percentage : [],
+				increase : [],
+			},
+			pokemon : ["ninetales"],
+		},
+		nastyPlot : {
+			name : "Nasty Plot",
+			type : "Dark",
+			category : "Status",
+			power : "",
+			accuracy : "",
+			pp : "20",
+			effects : {
+				condition : [{stat:"Special Attack",dir:"+",num:"2"}],
+				percentage : [null],
+				increase : [null],
+			},
+			pokemon : ["ninetales"],
+		},
+		quickAttack : {
+			name : "Quick Attack",
+			type : "Normal",
+			category : "Physical",
+			power : "40",
+			accuracy : "100",
+			pp : "30",
+			effects : {
+				condition : ["Priority"],
+				percentage : [null],
+				increase : ["+1"],
+			},
+			pokemon : ["ninetales"],
+		},
+		safeguard : {
+			name : "Safeguard",
+			type : "Normal",
+			category : "Status",
+			power : "",
+			accuracy : "",
+			pp : "25",
+			effects : {
+				condition : [],
+				percentage : [],
+				increase : [],
+			},
+			pokemon : ["ninetales"],
+		},
 	}
 
 	root.dev = dev;
@@ -292,79 +365,79 @@
 		"				<h3>Types</h3>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Bug\">"+
 		"						<div class=\"typeText ccol\" background=\"Bug\">Bug</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Dark\">"+
 		"						<div class=\"typeText ccol\" background=\"Dark\">Dark</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Dragon\">"+
 		"						<div class=\"typeText ccol\" background=\"Dragon\">Dragon</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Electric\">"+
 		"						<div class=\"typeText ccol\" background=\"Electric\">Electric</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Fairy\">"+
 		"						<div class=\"typeText ccol\" background=\"Fairy\">Fairy</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\" section=\"type\" catagory=\"Fire\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Fire\">"+
 		"						<div class=\"typeText ccol\" background=\"Fire\">Fire</div>"+
 		"					</div>"+
 		"				</div>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Fighting\">"+
 		"						<div class=\"typeText ccol\" background=\"Fighting\">Fighting</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Flying\">"+
 		"						<div class=\"typeText ccol\" background=\"Flying\">Flying</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Ghost\">"+
 		"						<div class=\"typeText ccol\" background=\"Ghost\">Ghost</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Grass\">"+
 		"						<div class=\"typeText ccol\" background=\"Grass\">Grass</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Ground\">"+
 		"						<div class=\"typeText ccol\" background=\"Ground\">Ground</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Ice\">"+
 		"						<div class=\"typeText ccol\" background=\"Ice\">Ice</div>"+
 		"					</div>"+
 		"				</div>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Normal\">"+
 		"						<div class=\"typeText ccol\" background=\"Normal\">Normal</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Poison\">"+
 		"						<div class=\"typeText ccol\" background=\"Poison\">Poison</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Psychic\">"+
 		"						<div class=\"typeText ccol\" background=\"Psychic\">Psychic</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Rock\">"+
 		"						<div class=\"typeText ccol\" background=\"Rock\">Rock</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Steel\">"+
 		"						<div class=\"typeText ccol\" background=\"Steel\">Steel</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"type\" filter=\"Water\">"+
 		"						<div class=\"typeText ccol\" background=\"Water\">Water</div>"+
 		"					</div>"+
 		"				</div>"+
@@ -372,65 +445,65 @@
 		"			<div class=\"col checkBoxCatagory\">"+
 		"				<h3>Category</h3>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"category\" filter=\"Physical\">"+
 		"					<div class=\"text ccol\">Physical</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"category\" filter=\"Special\">"+
 		"					<div class=\"text ccol\">Special</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"category\" filter=\"Status\">"+
 		"					<div class=\"text ccol\">Status</div>"+
 		"				</div>"+
 		"			</div>"+
 		"			<div class=\"col checkBoxCatagory\">"+
 		"				<h3>Status Effect</h3>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"status\" filter=\"Burn\">"+
 		"					<div class=\"text ccol\">Burn</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"status\" filter=\"Freeze\">"+
 		"					<div class=\"text ccol\">Freeze</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"status\" filter=\"Paralysis\">"+
 		"					<div class=\"text ccol\">Paralysis</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"status\" filter=\"Poison\">"+
 		"					<div class=\"text ccol\">Poison</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"status\" filter=\"Sleep\">"+
 		"					<div class=\"text ccol\">Sleep</div>"+
 		"				</div>"+
 		"			</div>"+
 		"			<div class=\"col checkBoxCatagory\">"+
 		"				<h3>Battle Effects</h3>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Confusion\">"+
 		"					<div class=\"text ccol\">Confusion</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Crit\">"+
 		"					<div class=\"text ccol\">Crit</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Flinch\">"+
 		"					<div class=\"text ccol\">Flinch</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Heal\">"+
 		"					<div class=\"text ccol\">Heal</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Priority\">"+
 		"					<div class=\"text ccol\">Priority</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"battle\" filter=\"Trap\">"+
 		"					<div class=\"text ccol\">Trap</div>"+
 		"				</div>"+
 		"			</div>"+
@@ -440,67 +513,67 @@
 		"				<h3>Stat Changes</h3>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Attack\">"+
 		"						<div class=\"text ccol\">Attack</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Defense\">"+
 		"						<div class=\"text ccol\">Defense</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Special Attack\">"+
 		"						<div class=\"text ccol\">Sp. Attack</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Special Defense\">"+
 		"						<div class=\"text ccol\">Sp. Defense</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Speed\">"+
 		"						<div class=\"text ccol\">Speed</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Accuracy\">"+
 		"						<div class=\"text ccol\">Accuracy</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"stat\" filter=\"Evasion\">"+
 		"						<div class=\"text ccol\">Evasion</div>"+
 		"					</div>"+
 		"				</div>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statDir\" filter=\"+\">"+
 		"						<div class=\"text ccol\">+</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statDir\" filter=\"-\">"+
 		"						<div class=\"text ccol\">-</div>"+
 		"					</div>"+
 		"				</div>"+
 		"				<div class=\"col\">"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"1\">"+
 		"						<div class=\"text ccol\">1</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"2\">"+
 		"						<div class=\"text ccol\">2</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"3\">"+
 		"						<div class=\"text ccol\">3</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"4\">"+
 		"						<div class=\"text ccol\">4</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"5\">"+
 		"						<div class=\"text ccol\">5</div>"+
 		"					</div>"+
 		"					<div class=\"checkbox\">"+
-		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" filterType=\"statNum\" filter=\"6\">"+
 		"						<div class=\"text ccol\">6</div>"+
 		"					</div>"+
 		"				</div>"+
@@ -508,31 +581,31 @@
 		"			<div class=\"col checkBoxCatagory\">"+
 		"				<h3>Learned By</h3>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"egg\">"+
 		"					<div class=\"text ccol\">Egg</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"hm\">"+
 		"					<div class=\"text ccol\">HM</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"level\">"+
 		"					<div class=\"text ccol\">Level</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"preEvolution\">"+
 		"					<div class=\"text ccol\">Pre-Evolution</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"tm\">"+
 		"					<div class=\"text ccol\">TM</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"transfer\">"+
 		"					<div class=\"text ccol\">Transfer</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\" filterType=\"learn\" filter=\"tutor\">"+
 		"					<div class=\"text ccol\">Tutor</div>"+
 		"				</div>"+
 		"			</div>"+
@@ -755,18 +828,18 @@
 	var currImageIndex;
 	var movesListNum;
 
-	var typeFilter = [];
-	var categoryFilter = [];
-	var statusFilter = [];
-	var battleFilter = [];
-	var statFilter = [];
-	var statDirFilter = [];
-	var statNumFilter = [];
-	var learnFilter = [];
-	var powerFilter = [];
-	var accuracyFilter = [];
-	var ppFilter = [];
-	var filteredList = [];
+	var typeFilter;
+	var categoryFilter;
+	var statusFilter;
+	var battleFilter;
+	var statFilter;
+	var statDirFilter;
+	var statNumFilter;
+	var learnFilter;
+	var powerFilter;
+	var accuracyFilter;
+	var ppFilter;
+	var filteredList;
 
 	page.onBeforeShow = function(){
 		init();
@@ -790,6 +863,19 @@
 	init = function(){
 		currImageIndex = 0;
 		movesListNum = 0;
+
+		filteredList = [];
+		typeFilter = [];
+		categoryFilter = [];
+		statusFilter = [];
+		battleFilter = [];
+		statFilter = [];
+		statDirFilter = [];
+		statNumFilter = [];
+		learnFilter = [];
+		powerFilter = [];
+		accuracyFilter = [];
+		ppFilter = [];
 	}
 	addEventListeners = function(){
 		$(pokedex).on("click", pokedexClick);
@@ -889,6 +975,7 @@
 			var callback = function(){
 				checkBoxClick(box, movesTable);
 			}
+			$(box).off("click");
 			$(box).on("click", callback);
 		});
 	}
@@ -942,6 +1029,17 @@
 					string = string+" | "+effects.percentage[index]+"%";
 				}	
 			}
+			if(!!effects.increase[index]){
+				if(string == ""){
+					string = effects.increase[index];
+				}else{
+					if(!!effects.percentage[index]){
+						string = string+" "+effects.increase[index];
+					}else{
+						string = string+" | "+effects.increase[index];
+					}
+				}	
+			}
 			if(!!effect.stat){
 				if(string == ""){
 					string = effect.dir + effect.num + " " +effect.stat;
@@ -956,7 +1054,7 @@
 				if(string == ""){
 					string = effect;
 				}else{
-					if(!!effects.percentage[index]){
+					if(!!effects.percentage[index] || !!effects.increase[index]){
 						string = string + " " + effect;
 					}else{
 						string = string + " | " + effect;
@@ -984,68 +1082,69 @@
 	checkBoxClick = function(box, movesTable){
 		$(movesTable).empty();
 		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
+		var filterType = box.getAttribute("filterType")
 		var filter = box.getAttribute("filter");
-		if(filter == "type"){
+		if(filterType == "type"){
 			if(box.checked){
 				typeFilter.push(filter);
 			}else{
 				typeFilter = _.without(typeFilter, filter);
 			}
-		}else if(filter == "category"){
+		}else if(filterType == "category"){
 			if(box.checked){
 				categoryFilter.push(filter);
 			}else{
 				categoryFilter = _.without(categoryFilter, filter);
 			}
-		}else if(filter == "status"){
+		}else if(filterType == "status"){
 			if(box.checked){
 				statusFilter.push(filter);
 			}else{
 				statusFilter = _.without(statusFilter, filter);
 			}
-		}else if(filter == "battle"){
+		}else if(filterType == "battle"){
 			if(box.checked){
 				battleFilter.push(filter);
 			}else{
 				battleFilter = _.without(battleFilter, filter);
 			}
-		}else if(filter == "stat"){
+		}else if(filterType == "stat"){
 			if(box.checked){
 				statFilter.push(filter);
 			}else{
 				statFilter = _.without(statFilter, filter);
 			}
-		}else if(filter == "statDir"){
+		}else if(filterType == "statDir"){
 			if(box.checked){
 				statDirFilter.push(filter);
 			}else{
 				statDirFilter = _.without(statDirFilter, filter);
 			}
-		}else if(filter == "statNum"){
+		}else if(filterType == "statNum"){
 			if(box.checked){
 				statNumFilter.push(filter);
 			}else{
 				statNumFilter = _.without(statNumFilter, filter);
 			}
-		}else if(filter == "learn"){
+		}else if(filterType == "learn"){
 			if(box.checked){
 				learnFilter.push(filter);
 			}else{
 				learnFilter = _.without(learnFilter, filter);
 			}
-		}else if(filter == "power"){
+		}else if(filterType == "power"){
 			if(box.checked){
 				powerFilter.push(filter);
 			}else{
 				powerFilter = _.without(powerFilter, filter);
 			}
-		}else if(filter == "accuracy"){
+		}else if(filterType == "accuracy"){
 			if(box.checked){
 				accuracyFilter.push(filter);
 			}else{
 				accuracyFilter = _.without(accuracyFilter, filter);
 			}
-		}else if(filter == "pp"){
+		}else if(filterType == "pp"){
 			if(box.checked){
 				ppFilter.push(filter);
 			}else{
@@ -1096,14 +1195,7 @@
 		html.load(movesList, primaryPokemon);
 		var movesFilter = movesList.querySelector(".movesFilter");
 		var movesTable = movesList.querySelector(".movesTable");
-		primaryPokemon.moves.all.forEach(function(move){
-			var input = {
-				type : primaryPokemon.battle.primaryType,
-				move : dev.moves[move],
-				effect : moveEffectsToString(dev.moves[move].effects),
-			};
-			html.load(movesTable, input);
-		});
+		filterTable(movesTable);
 		setFilterEventListeners(movesFilter, movesTable);
 		movesListNum++;
 	}
@@ -1160,89 +1252,149 @@
 	}
 	/***************************Misc***************************/
 	filterTable = function(movesTable){
+		var filteredList = [];
+		var filtered = false;
+		var typeFilterList = [];
+		var categoryFilterList = [];
+		var statusFilterList = [];
+		var battleFilterList = [];
+		var statFilterList = [];
+		var statDirFilterList = [];
+		var statNumFilterList = [];
+		var learnFilterList = [];
+		var powerFilterList = [];
+		var accuracyFilterList = [];
+		var ppFilterList = [];
+		if(typeFilter.length == 0){
+			typeFilterList = primaryPokemon.moves.all;
+		}
+		if(categoryFilter.length == 0){
+			categoryFilterList = primaryPokemon.moves.all;
+		}
+		if(statusFilter.length == 0){
+			statusFilterList = primaryPokemon.moves.all;
+		}
+		if(battleFilter.length == 0){
+			battleFilterList = primaryPokemon.moves.all;
+		}
+		if(statFilter.length == 0){
+			statFilterList = primaryPokemon.moves.all;
+		}
+		if(statDirFilter.length == 0){
+			statDirFilterList = primaryPokemon.moves.all;
+		}
+		if(statNumFilter.length == 0){
+			statNumFilterList = primaryPokemon.moves.all;
+		}
+		if(learnFilter.length == 0){
+			learnFilterList = primaryPokemon.moves.all;
+		}
+		if(powerFilter.length == 0){
+			powerFilterList = primaryPokemon.moves.all;
+		}
+		if(accuracyFilter.length == 0){
+			accuracyFilterList = primaryPokemon.moves.all;
+		}
+		if(ppFilter.length == 0){
+			ppFilterList = primaryPokemon.moves.all;
+		}
 		typeFilter.forEach(function(type){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
 				if(dev.moves[move].type == type){
-					filteredList.push(move);
+					typeFilterList.push(move);
 				}
 			});
 		});
 		categoryFilter.forEach(function(category){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
 				if(dev.moves[move].category == category){
-					filteredList.push(move);
+					categoryFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
+		statusFilter.forEach(function(status){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
+				if(_.contains(dev.moves[move].effects.condition, status)){
+					statusFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
+		battleFilter.forEach(function(battle){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
+				if(_.contains(dev.moves[move].effects.condition, battle)){
+					battleFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
+		statFilter.forEach(function(stat){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
+				var contains = _.some(dev.moves[move].effects.condition, function(el){
+					if(!!el.stat){
+						return el.stat == stat;
+					}else{
+						return false;
+					}
+				});
+				if(contains){
+					statFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
+		statDirFilter.forEach(function(dir){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
+				var contains = _.some(dev.moves[move].effects.condition, function(el){
+					if(!!el.dir){
+						return el.dir == dir;
+					}else{
+						return false;
+					}
+				});
+				if(contains){
+					statDirFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
+		statNumFilter.forEach(function(num){
+			filtered = true;
 			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
+				var contains = _.some(dev.moves[move].effects.condition, function(el){
+					if(!!el.num){
+						return el.num == num;
+					}else{
+						return false;
+					}
+				});
+				if(contains){
+					statNumFilterList.push(move);
 				}
 			});
 		});
-		typeFilter.forEach(function(type){
-			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
-				}
+		learnFilter.forEach(function(learn){
+			filtered = true;
+			primaryPokemon.moves[learn].forEach(function(move){
+				learnFilterList.push(move);
 			});
 		});
-		typeFilter.forEach(function(type){
-			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
-				}
-			});
+
+		if(filtered){
+			filteredList = _.intersection(typeFilterList,categoryFilterList,statusFilterList,battleFilterList,statFilterList,statDirFilterList,statNumFilterList,learnFilterList,powerFilterList,accuracyFilterList,ppFilterList);
+		}else{
+			filteredList = primaryPokemon.moves.all;
+		}
+		filteredList.forEach(function(move){
+			var input = {
+				type : primaryPokemon.battle.primaryType,
+				move : dev.moves[move],
+				effect : moveEffectsToString(dev.moves[move].effects),
+			};
+			html.load(movesTable, input);
 		});
-		typeFilter.forEach(function(type){
-			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
-				}
-			});
-		});
-		typeFilter.forEach(function(type){
-			primaryPokemon.moves.all.forEach(function(move){
-				if(dev.moves[move].type == type){
-					filteredList.push(move);
-				}
-			});
-		});
-		// var input = {
-		// 	type : primaryPokemon.battle.primaryType,
-		// 	move : dev.moves[move],
-		// 	effect : moveEffectsToString(dev.moves[move].effects),
-		// };
-		// html.load(movesTable, input);
 	}
 })(this);
 (function(root){
