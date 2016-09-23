@@ -204,23 +204,6 @@
 	root.utill = utill;
 })(this);
 (function(root){
-	var pages = {};
-	var elements = document.querySelectorAll(".poke_page");
-
-	elements.forEach(function(page){
-		pageId = page.getAttribute("id");
-		pages[pageId] = page;
-	})
-
-	pages.activePage = null;
-
-	pages.pageIds = {
-		POKEMONPROFILE : "pokemonProfile",
-	}
-
-	root.pages = pages;
-})(this);
-(function(root){
 })(this);
 (function(root){
 	var activePage;
@@ -255,6 +238,23 @@
 		!!pages.activePage.onShow && pages.activePage.onShow();
 	};
 	root.loadPage = loadPage;
+})(this);
+(function(root){
+	var pages = {};
+	var elements = document.querySelectorAll(".poke_page");
+
+	elements.forEach(function(page){
+		pageId = page.getAttribute("id");
+		pages[pageId] = page;
+	})
+
+	pages.activePage = null;
+
+	pages.pageIds = {
+		POKEMONPROFILE : "pokemonProfile",
+	}
+
+	root.pages = pages;
 })(this);
 (function(root){
 	html.movesList = function(pokemon){
