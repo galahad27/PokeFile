@@ -1,91 +1,63 @@
-.movesList .col {
-  display: inline-block;
-  vertical-align: top; }
-
-.movesList .ccol {
-  display: inline-block;
-  vertical-align: middle; }
-
-.movesList .movesFilter .types {
-  margin: 10px 10px 10px 10px; }
-  .movesList .movesFilter .types h3 {
-    margin: 0px 0px 5px 4px; }
-  .movesList .movesFilter .types .checkbox {
-    padding: 2px 0px 2px 0px;
-    margin: 0px 10px 0px 0px; }
-    .movesList .movesFilter .types .checkbox .box {
-      margin: 3px 0px 3px 4px; }
-    .movesList .movesFilter .types .checkbox .text {
-      width: 70px;
-      text-align: center;
-      border-radius: 7px; }
-
-.movesList .movesFilter .category {
-  margin: 10px 10px 10px 10px; }
-  .movesList .movesFilter .category h3 {
-    margin: 0px 0px 5px 4px; }
-  .movesList .movesFilter .category .checkbox {
-    padding: 2px 0px 2px 0px;
-    margin: 0px 10px 0px 0px; }
-    .movesList .movesFilter .category .checkbox .box {
-      margin: 3px 0px 3px 4px; }
-
-.movesList .movesFilter .learned {
-  margin: 10px 10px 10px 10px; }
-  .movesList .movesFilter .learned h3 {
-    margin: 0px 0px 5px 4px; }
-  .movesList .movesFilter .learned .checkbox {
-    padding: 2px 0px 2px 0px;
-    margin: 0px 10px 0px 0px; }
-    .movesList .movesFilter .learned .checkbox .box {
-      margin: 3px 0px 3px 4px; }
-
-.movesList .movesFilter .power {
-  margin: 0px 10px 10px 10px; }
-  .movesList .movesFilter .power h3 {
-    margin: 0px 0px 5px 0px; }
-  .movesList .movesFilter .power .textBox .box {
-    width: 30px; }
-
-.movesList .movesFilter .accuracy {
-  margin: 0px 60px 10px 60px; }
-  .movesList .movesFilter .accuracy h3 {
-    margin: 0px 0px 5px 0px; }
-  .movesList .movesFilter .accuracy .textBox .box {
-    width: 30px; }
-
-.movesList .movesFilter .pp {
-  margin: 0px 10px 10px 10px; }
-  .movesList .movesFilter .pp h3 {
-    margin: 0px 0px 5px 0px; }
-  .movesList .movesFilter .pp .textBox .box {
-    width: 30px; }
-
-.movesList .movesTable {
-  width: 585px;
-  white-space: nowrap;
-  overflow: hidden; }
-  .movesList .movesTable .row {
-    font-size: 0; }
-  .movesList .movesTable .cell {
+.movesList {
+  white-space: nowrap; }
+  .movesList .col {
     display: inline-block;
-    padding: 5px 0px 5px 0px;
-    text-align: center;
-    border-width: 1px;
-    margin-bottom: -1px;
-    margin-left: -1px;
-    font-size: 1rem; }
-  .movesList .movesTable .move {
-    width: 28%; }
-  .movesList .movesTable .type {
-    width: 12%; }
-  .movesList .movesTable .category {
-    width: 12%; }
-  .movesList .movesTable .power {
-    width: 12%; }
-  .movesList .movesTable .accuracy {
-    width: 12%; }
-  .movesList .movesTable .effect {
-    width: 12%; }
-  .movesList .movesTable .chance {
-    width: 12%; }
+    vertical-align: top; }
+  .movesList .ccol {
+    display: inline-block;
+    vertical-align: middle; }
+  .movesList .movesFilter .checkBoxCatagory {
+    margin: 10px 10px 10px 10px; }
+    .movesList .movesFilter .checkBoxCatagory h3 {
+      margin: 0px 0px 5px 4px; }
+    .movesList .movesFilter .checkBoxCatagory .checkbox {
+      padding: 2px 0px 2px 0px;
+      margin: 0px 10px 0px 0px; }
+      .movesList .movesFilter .checkBoxCatagory .checkbox .box {
+        margin: 3px 0px 3px 4px; }
+      .movesList .movesFilter .checkBoxCatagory .checkbox .typeText {
+        width: 70px;
+        text-align: center;
+        border-radius: 7px; }
+  .movesList .movesFilter .standardTextbox {
+    margin: 10px 10px 10px 10px; }
+    .movesList .movesFilter .standardTextbox h3 {
+      margin: 0px 0px 5px 0px; }
+    .movesList .movesFilter .standardTextbox .textBox .box {
+      width: 30px; }
+  .movesList .movesTable {
+    width: 706px;
+    white-space: nowrap;
+    overflow: hidden; }
+    .movesList .movesTable .row {
+      font-size: 0;
+      display: flex; }
+    .movesList .movesTable .cell {
+      align-items: stretch;
+      display: inline-block;
+      padding: 5px 0px 5px 0px;
+      text-align: center;
+      border-width: 1px;
+      margin-bottom: -1px;
+      margin-left: -1px;
+      font-size: 1rem; }
+    .movesList .movesTable .move {
+      width: 20%; }
+    .movesList .movesTable .type {
+      width: 10%; }
+      .movesList .movesTable .type .text {
+        margin: auto;
+        width: 70px;
+        border-radius: 7px; }
+    .movesList .movesTable .category {
+      width: 10%; }
+    .movesList .movesTable .power {
+      width: 5%; }
+    .movesList .movesTable .accuracy {
+      width: 5%; }
+    .movesList .movesTable .effect {
+      width: 44%;
+      white-space: normal;
+      overflow: hidden; }
+    .movesList .movesTable .pp {
+      width: 5%; }

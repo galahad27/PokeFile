@@ -1,4 +1,5 @@
 .movesList{ 
+	white-space: nowrap;
 	.col{
 		display: inline-block;
 		vertical-align: top;
@@ -8,7 +9,7 @@
 		vertical-align: middle;
 	}
 	.movesFilter{
-		.types{
+		.checkBoxCatagory{
 			margin: 10px 10px 10px 10px;
 			h3{
 				margin: 0px 0px 5px 4px;
@@ -19,73 +20,17 @@
 				.box{
 					margin: 3px 0px 3px 4px;
 				}
-				.text{
+				.normalText{
+				}
+				.typeText{
 					width: 70px;
 					text-align: center;
 					border-radius: 7px;
 				}
 			}
 		}
-		.category{
+		.standardTextbox{
 			margin: 10px 10px 10px 10px;
-			h3{
-				margin: 0px 0px 5px 4px;
-			}
-			.checkbox{
-				padding: 2px 0px 2px 0px;
-				margin: 0px 10px 0px 0px;
-				.box{
-					margin: 3px 0px 3px 4px;
-				}
-				.text{
-				}
-			}
-		}
-		.learned{
-			margin: 10px 10px 10px 10px;
-			h3{
-				margin: 0px 0px 5px 4px;
-			}
-			.checkbox{
-				padding: 2px 0px 2px 0px;
-				margin: 0px 10px 0px 0px;
-				.box{
-					margin: 3px 0px 3px 4px;
-				}
-				.text{
-				}
-			}
-		}
-		.power{
-			margin: 0px 10px 10px 10px;
-			h3{
-				margin: 0px 0px 5px 0px;
-			}
-			.textBox{
-				.text{
-
-				}
-				.box{
-					width: 30px;
-				}
-			}
-		}
-		.accuracy{
-			margin: 0px 60px 10px 60px;
-			h3{
-				margin: 0px 0px 5px 0px;
-			}
-			.textBox{
-				.text{
-
-				}
-				.box{
-					width: 30px;
-				}
-			}
-		}
-		.pp{
-			margin: 0px 10px 10px 10px;
 			h3{
 				margin: 0px 0px 5px 0px;
 			}
@@ -100,14 +45,15 @@
 		}
 	}
 	.movesTable{
-		width: 585px;
-		
+		width: 706px;
 		white-space: nowrap;
 		overflow: hidden;
 		.row{
 			font-size: 0;
+			display: flex;
 		}
 	    .cell{
+	    	align-items: stretch;
 	    	display: inline-block;
 	    	padding: 5px 0px 5px 0px;
 	    	text-align:center;
@@ -117,25 +63,32 @@
 			font-size: 1rem;
 	    }
 	    .move{
-	    	width: 28%;
+	    	width: 20%;
 	    }
 	    .type{
-	    	width: 12%;	
+	    	width: 10%;
+	    	.text{
+	    		margin: auto;
+				width: 70px;
+				border-radius: 7px;
+			}	
 	    }
 	    .category{
-			width: 12%;
+			width: 10%;
 	    }
 	    .power{
-	    	width: 12%;	
+	    	width: 5%;	
 	    }
 	    .accuracy{
-	    	width: 12%;
+	    	width: 5%;
 	    }
 	    .effect{
-	    	width: 12%;
+	    	width: 44%;
+	    	white-space: normal;
+	    	overflow: hidden;
 	    }
-	    .chance{
-	    	width: 12%;
+	    .pp{
+	    	width: 5%;
 	    }
 	}
 }

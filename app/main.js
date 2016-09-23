@@ -102,11 +102,11 @@
 				url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
 			},
 			moves : {
-				all : ["flamethrower"],
+				all : ["flamethrower","extrasensory","heatWave"],
 				level : ["flamethrower"],
-				egg : [],
-				tutor : [],
-				preEvolution : [],
+				egg : ["extrasensory","heatWave"],
+				tutor : ["heatWave"],
+				preEvolution : ["extrasensory"],
 				hm : [],
 				tm : ["flamethrower"],
 				transfer : [],
@@ -122,7 +122,34 @@
 			accuracy : "100",
 			pp : "15",
 			effects : {
-				burn : "10",
+				condition : ["burn"],
+				percentage : ["10"],
+			},
+			pokemon : ["ninetales"],
+		},
+		extrasensory : {
+			name : "Extrasensory",
+			type : "Psychic",
+			category : "Special",
+			power : "80",
+			accuracy : "100",
+			pp : "20",
+			effects : {
+				condition : ["flinch"],
+				percentage : ["10"],
+			},
+			pokemon : ["ninetales"],	
+		},
+		heatWave : {
+			name : "Heat Wave",
+			type : "Fire",
+			category : "Special",
+			power : "95",
+			accuracy : "90",
+			pp : "10",
+			effects : {
+				condition : ["burn"],
+				percentage : ["10"],
 			},
 			pokemon : ["ninetales"],
 		}
@@ -204,23 +231,6 @@
 	root.utill = utill;
 })(this);
 (function(root){
-	var pages = {};
-	var elements = document.querySelectorAll(".poke_page");
-
-	elements.forEach(function(page){
-		pageId = page.getAttribute("id");
-		pages[pageId] = page;
-	})
-
-	pages.activePage = null;
-
-	pages.pageIds = {
-		POKEMONPROFILE : "pokemonProfile",
-	}
-
-	root.pages = pages;
-})(this);
-(function(root){
 })(this);
 (function(root){
 	var activePage;
@@ -257,168 +267,308 @@
 	root.loadPage = loadPage;
 })(this);
 (function(root){
+	var pages = {};
+	var elements = document.querySelectorAll(".poke_page");
+
+	elements.forEach(function(page){
+		pageId = page.getAttribute("id");
+		pages[pageId] = page;
+	})
+
+	pages.activePage = null;
+
+	pages.pageIds = {
+		POKEMONPROFILE : "pokemonProfile",
+	}
+
+	root.pages = pages;
+})(this);
+(function(root){
 	html.movesList = function(pokemon){
 		return ""+
 		"	<div class=\"movesFilter\">"+
-		"		<div class=\"col types\">"+
-		"			<h3>Types</h3>"+
-		"			<div class=\"col\">"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Bug\">Bug</div>"+
+		"		<div>"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Types</h3>"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Bug\">Bug</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Dark\">Dark</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Dragon\">Dragon</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Electric\">Electric</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Fairy\">Fairy</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\" section=\"type\" catagory=\"Fire\">"+
+		"						<div class=\"typeText ccol\" background=\"Fire\">Fire</div>"+
+		"					</div>"+
 		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Dark\">Dark</div>"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Fighting\">Fighting</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Flying\">Flying</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Ghost\">Ghost</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Grass\">Grass</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Ground\">Ground</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Ice\">Ice</div>"+
+		"					</div>"+
 		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Dragon\">Dragon</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Electric\">Electric</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Fairy\">Fairy</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Fire\">Fire</div>"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Normal\">Normal</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Poison\">Poison</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Psychic\">Psychic</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Rock\">Rock</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Steel\">Steel</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"typeText ccol\" background=\"Water\">Water</div>"+
+		"					</div>"+
 		"				</div>"+
 		"			</div>"+
-		"			<div class=\"col\">"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Category</h3>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Fighting\">Fighting</div>"+
+		"					<div class=\"text ccol\">Physical</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Flying\">Flying</div>"+
+		"					<div class=\"text ccol\">Special</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Ghost\">Ghost</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Grass\">Grass</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Ground\">Ground</div>"+
-		"				</div>"+
-		"				<div class=\"checkbox\">"+
-		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Ice\">Ice</div>"+
+		"					<div class=\"text ccol\">Status</div>"+
 		"				</div>"+
 		"			</div>"+
-		"			<div class=\"col\">"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Status Effect</h3>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Normal\">Normal</div>"+
+		"					<div class=\"text ccol\">Burn</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Poison\">Poison</div>"+
+		"					<div class=\"text ccol\">Freeze</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Psychic\">Psychic</div>"+
+		"					<div class=\"text ccol\">Paralysis</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Rock\">Rock</div>"+
+		"					<div class=\"text ccol\">Poison</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Steel\">Steel</div>"+
+		"					<div class=\"text ccol\">Sleep</div>"+
+		"				</div>"+
+		"			</div>"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Battle Effects</h3>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Confusion</div>"+
 		"				</div>"+
 		"				<div class=\"checkbox\">"+
 		"					<input class=\"box ccol\" type=\"checkbox\">"+
-		"					<div class=\"text ccol\" background=\"Water\">Water</div>"+
+		"					<div class=\"text ccol\">Crit</div>"+
 		"				</div>"+
-		"			</div>"+
-		"		</div>"+
-		"		<div class=\"col category\">"+
-		"			<h3>Category</h3>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Physical</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Special</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Status</div>"+
-		"			</div>"+
-		"		</div>"+
-		"		<div class=\"col learned\">"+
-		"			<h3>Learned By</h3>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Egg</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">HM</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Level</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Pre-Evolution</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">TM</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Transfer</div>"+
-		"			</div>"+
-		"			<div class=\"checkbox\">"+
-		"				<input class=\"box ccol\" type=\"checkbox\">"+
-		"				<div class=\"text ccol\">Tutor</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Flinch</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Heal</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Priority</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Trap</div>"+
+		"				</div>"+
 		"			</div>"+
 		"		</div>"+
 		"		<div>"+
-		"			<div class=\"power col\">"+
-		"				<h3>Power</h3>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Min</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Stat Changes</h3>"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Attack</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Defense</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Sp. Attack</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Sp. Defense</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Speed</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Accuracy</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">Evasion</div>"+
+		"					</div>"+
 		"				</div>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Max</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">+</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">-</div>"+
+		"					</div>"+
+		"				</div>"+
+		"				<div class=\"col\">"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">1</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">2</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">3</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">4</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">5</div>"+
+		"					</div>"+
+		"					<div class=\"checkbox\">"+
+		"						<input class=\"box ccol\" type=\"checkbox\">"+
+		"						<div class=\"text ccol\">6</div>"+
+		"					</div>"+
 		"				</div>"+
 		"			</div>"+
-		"			<div class=\"accuracy col\">"+
-		"				<h3>Accuracy</h3>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Min</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"			<div class=\"col checkBoxCatagory\">"+
+		"				<h3>Learned By</h3>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Egg</div>"+
 		"				</div>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Max</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">HM</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Level</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Pre-Evolution</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">TM</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Transfer</div>"+
+		"				</div>"+
+		"				<div class=\"checkbox\">"+
+		"					<input class=\"box ccol\" type=\"checkbox\">"+
+		"					<div class=\"text ccol\">Tutor</div>"+
 		"				</div>"+
 		"			</div>"+
-		"			<div class=\"pp col\">"+
-		"				<h3>PP</h3>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Min</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"			<div class=\"col\">"+
+		"				<div class=\"standardTextbox\">"+
+		"					<h3>Power</h3>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Min</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Max</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
 		"				</div>"+
-		"				<div class=\"textBox ccol\">"+
-		"					<div class=\"text ccol\">Max</div>"+
-		"					<input class=\"box ccol\" type=\"text\">"+
+		"				<div class=\"standardTextbox\">"+
+		"					<h3>Accuracy</h3>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Min</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Max</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
+		"				</div>"+
+		"				<div class=\"standardTextbox\">"+
+		"					<h3>PP</h3>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Min</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
+		"					<div class=\"textBox ccol\">"+
+		"						<div class=\"text ccol\">Max</div>"+
+		"						<input class=\"box ccol\" type=\"text\">"+
+		"					</div>"+
 		"				</div>"+
 		"			</div>"+
 		"		</div>"+
@@ -428,10 +578,10 @@
 		"			<div class=\"move cell\" border=\""+pokemon.battle.primaryType+"\">Move</div>"+
 		"			<div class=\"type cell\" border=\""+pokemon.battle.primaryType+"\">Type</div>"+
 		"			<div class=\"category cell\" border=\""+pokemon.battle.primaryType+"\">Category</div>"+
-		"			<div class=\"power cell\" border=\""+pokemon.battle.primaryType+"\">Power</div>"+
-		"			<div class=\"accuracy cell\" border=\""+pokemon.battle.primaryType+"\">Accuracy</div>"+
+		"			<div class=\"power cell\" border=\""+pokemon.battle.primaryType+"\">Pwr</div>"+
+		"			<div class=\"accuracy cell\" border=\""+pokemon.battle.primaryType+"\">Acc</div>"+
 		"			<div class=\"effect cell\" border=\""+pokemon.battle.primaryType+"\">Effect</div>"+
-		"			<div class=\"chance cell\" border=\""+pokemon.battle.primaryType+"\">Chance</div>"+
+		"			<div class=\"pp cell\" border=\""+pokemon.battle.primaryType+"\">PP</div>"+
 		"		</div>"+
 		"	</div>";
 	}
@@ -439,13 +589,27 @@
 		return ""+
 		"		<div class=\"row\">"+
 		"			<div class=\"move cell\" border=\""+move.type+"\">"+move.move.name+"</div>"+
-		"			<div class=\"type cell\" border=\""+move.type+"\">"+move.move.type+"</div>"+
+		"			<div class=\"type cell\" border=\""+move.type+"\">"+
+		"				<div class=\"text\" background=\""+move.move.type+"\">"+move.move.type+"</div>"+
+		"			</div>"+
 		"			<div class=\"category cell\" border=\""+move.type+"\">"+move.move.category+"</div>"+
 		"			<div class=\"power cell\" border=\""+move.type+"\">"+move.move.power+"</div>"+
 		"			<div class=\"accuracy cell\" border=\""+move.type+"\">"+move.move.accuracy+"</div>"+
-		"			<div class=\"effect cell\" border=\""+move.type+"\"></div>"+
-		"			<div class=\"chance cell\" border=\""+move.type+"\"></div>"+
+		"			<div class=\"effect cell\" border=\""+move.type+"\">"+move.effect+"</div>"+
+		"			<div class=\"pp cell\" border=\""+move.type+"\">"+move.move.pp+"</div>"+
 		"		</div>";
+	}
+	html.movesHeader = function(type){
+		return ""+
+		"	<div class=\"row\" background=\""+type+"\">"+
+		"		<div class=\"move cell\" border=\""+type+"\">Move</div>"+
+		"		<div class=\"type cell\" border=\""+type+"\">Type</div>"+
+		"		<div class=\"category cell\" border=\""+type+"\">Category</div>"+
+		"		<div class=\"power cell\" border=\""+type+"\">Pwr</div>"+
+		"		<div class=\"accuracy cell\" border=\""+type+"\">Acc</div>"+
+		"		<div class=\"effect cell\" border=\""+type+"\">Effect</div>"+
+		"		<div class=\"pp cell\" border=\""+type+"\">PP</div>"+
+		"	</div>";
 	}
 })(this);
 (function(root){
@@ -590,6 +754,7 @@
 	var primaryPokemon;
 	var currImageIndex;
 	var movesListNum;
+	var typeFilter = [];
 
 	page.onBeforeShow = function(){
 		init();
@@ -706,6 +871,15 @@
 		abilities.innerHTML = "Abilities: " + abilitiesToString(pokemon);
 		hiddenAbility.innerHTML = "Hidden Ability: " + hiddenAbilityToString(pokemon);
 	}
+	setFilterEventListeners = function(movesFilter, movesTable){
+		var checkBoxes = movesFilter.querySelectorAll(".box");
+		checkBoxes.forEach(function(box){
+			var callback = function(){
+				checkBoxClick(box, movesTable);
+			}
+			box.addEventListener("click", callback);
+		});
+	}
 	setImage = function(img, pokemon, index){
 		img.setAttribute("src", pokemon.img.url[index]);
 		currImageIndex = index;
@@ -746,6 +920,41 @@
 		}
 		return tempHidden;
 	}
+	moveEffectsToString = function(effects){
+		var string = "";
+		effects.condition.forEach(function(effect, index){
+			if(!!effects.percentage[index]){
+				if(string == ""){
+					string = effects.percentage[index]+"%";
+				}else{
+					string = string+" | "+effects.percentage[index]+"%";
+				}	
+			}
+			if(!!effect.stat){
+				if(string == ""){
+					string = effect.dir + effect.num + " " +effect.stat;
+				}else{
+					if(!!effects.percentage[index]){
+						string = string + " " + effect.dir + effect.num + " " +effect.stat;
+					}else{
+						string = string + " | " + effect.dir + effect.num + " " +effect.stat;
+					}	
+				}
+			}else{
+				if(string == ""){
+					string = effect;
+				}else{
+					if(!!effects.percentage[index]){
+						string = string + " " + effect;
+					}else{
+						string = string + " | " + effect;
+					}
+					
+				}
+			}
+		});
+		return string;
+	}
 	typesToString = function(pokemon){
 		tempTypes = pokemon.battle.primaryType;
 		if(!!pokemon.battle.secondaryType){
@@ -756,19 +965,43 @@
 	/***************************Events***************************/
 	movesClick = function(){
 		setBorderWidth();
-		moves.style.borderTopWidth = "6px";
+		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addMovesList();
 	}
+	checkBoxClick = function(box, movesTable){
+		$(movesTable).empty();
+		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
+		console.log(box);
+		if(box.getAttribute("section") == "type"){
+			if(box.checked == true){
+				typeFilter.push(box.getAttribute("catagory"));
+			}else{
+				
+			}
+			typeFilter.forEach(function(type){
+				primaryPokemon.moves.all.forEach(function(move){
+					if(dev.moves[move].type == type){
+						var input = {
+							type : primaryPokemon.battle.primaryType,
+							move : dev.moves[move],
+							effect : moveEffectsToString(dev.moves[move].effects),
+						};
+						html.load(movesTable, input);
+					}
+				})
+			});
+		}
+	}
 	pokedexClick = function(){
 		setBorderWidth();
-		pokedex.style.borderTopWidth = "6px";
+		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
 	};
 	statsClick = function(){
 		setBorderWidth();
-		stats.style.borderTopWidth = "6px";
+		stats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addBarGraph();
 		addTables();
@@ -784,7 +1017,7 @@
 	}
 	typeStatsClick = function(){
 		setBorderWidth();
-		typeStats.style.borderTopWidth = "6px";
+		typeStats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 	};
 	/***************************Add***************************/
@@ -800,15 +1033,18 @@
 		var movesList = statsPage.querySelector("#movesList"+movesListNum);
 		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
 		html.load(movesList, primaryPokemon);
-		movesListNum++;
-		var movesBar = movesList.querySelector(".movesTable");
+		var movesFilter = movesList.querySelector(".movesFilter");
+		var movesTable = movesList.querySelector(".movesTable");
 		primaryPokemon.moves.all.forEach(function(move){
 			var input = {
 				type : primaryPokemon.battle.primaryType,
 				move : dev.moves[move],
+				effect : moveEffectsToString(dev.moves[move].effects),
 			};
-			html.load(movesBar, input);
+			html.load(movesTable, input);
 		});
+		setFilterEventListeners(movesFilter, movesTable);
+		movesListNum++;
 	}
 	addPokedexEntries = function(){
 		$(statsPage).append(html.containers.POKEDEX);
