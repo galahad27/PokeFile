@@ -40,6 +40,7 @@
 	var primaryPokemon;
 	var currImageIndex;
 	var movesListNum;
+	var typeFilter = [];
 
 	page.onBeforeShow = function(){
 		init();
@@ -156,6 +157,15 @@
 		abilities.innerHTML = "Abilities: " + abilitiesToString(pokemon);
 		hiddenAbility.innerHTML = "Hidden Ability: " + hiddenAbilityToString(pokemon);
 	}
+	setFilterEventListeners = function(movesFilter, movesTable){
+		var checkBoxes = movesFilter.querySelectorAll(".box");
+		checkBoxes.forEach(function(box){
+			var callback = function(){
+				checkBoxClick(box, movesTable);
+			}
+			box.addEventListener("click", callback);
+		});
+	}
 	setImage = function(img, pokemon, index){
 		img.setAttribute("src", pokemon.img.url[index]);
 		currImageIndex = index;
@@ -196,6 +206,41 @@
 		}
 		return tempHidden;
 	}
+	moveEffectsToString = function(effects){
+		var string = "";
+		effects.condition.forEach(function(effect, index){
+			if(!!effects.percentage[index]){
+				if(string == ""){
+					string = effects.percentage[index]+"%";
+				}else{
+					string = string+" | "+effects.percentage[index]+"%";
+				}	
+			}
+			if(!!effect.stat){
+				if(string == ""){
+					string = effect.dir + effect.num + " " +effect.stat;
+				}else{
+					if(!!effects.percentage[index]){
+						string = string + " " + effect.dir + effect.num + " " +effect.stat;
+					}else{
+						string = string + " | " + effect.dir + effect.num + " " +effect.stat;
+					}	
+				}
+			}else{
+				if(string == ""){
+					string = effect;
+				}else{
+					if(!!effects.percentage[index]){
+						string = string + " " + effect;
+					}else{
+						string = string + " | " + effect;
+					}
+					
+				}
+			}
+		});
+		return string;
+	}
 	typesToString = function(pokemon){
 		tempTypes = pokemon.battle.primaryType;
 		if(!!pokemon.battle.secondaryType){
@@ -206,19 +251,43 @@
 	/***************************Events***************************/
 	movesClick = function(){
 		setBorderWidth();
-		moves.style.borderTopWidth = "6px";
+		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addMovesList();
 	}
+	checkBoxClick = function(box, movesTable){
+		$(movesTable).empty();
+		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
+		console.log(box);
+		if(box.getAttribute("section") == "type"){
+			if(box.checked == true){
+				typeFilter.push(box.getAttribute("catagory"));
+			}else{
+				
+			}
+			typeFilter.forEach(function(type){
+				primaryPokemon.moves.all.forEach(function(move){
+					if(dev.moves[move].type == type){
+						var input = {
+							type : primaryPokemon.battle.primaryType,
+							move : dev.moves[move],
+							effect : moveEffectsToString(dev.moves[move].effects),
+						};
+						html.load(movesTable, input);
+					}
+				})
+			});
+		}
+	}
 	pokedexClick = function(){
 		setBorderWidth();
-		pokedex.style.borderTopWidth = "6px";
+		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
 	};
 	statsClick = function(){
 		setBorderWidth();
-		stats.style.borderTopWidth = "6px";
+		stats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addBarGraph();
 		addTables();
@@ -234,7 +303,7 @@
 	}
 	typeStatsClick = function(){
 		setBorderWidth();
-		typeStats.style.borderTopWidth = "6px";
+		typeStats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 	};
 	/***************************Add***************************/
@@ -250,15 +319,18 @@
 		var movesList = statsPage.querySelector("#movesList"+movesListNum);
 		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
 		html.load(movesList, primaryPokemon);
-		movesListNum++;
-		var movesBar = movesList.querySelector(".movesTable");
+		var movesFilter = movesList.querySelector(".movesFilter");
+		var movesTable = movesList.querySelector(".movesTable");
 		primaryPokemon.moves.all.forEach(function(move){
 			var input = {
 				type : primaryPokemon.battle.primaryType,
 				move : dev.moves[move],
+				effect : moveEffectsToString(dev.moves[move].effects),
 			};
-			html.load(movesBar, input);
+			html.load(movesTable, input);
 		});
+		setFilterEventListeners(movesFilter, movesTable);
+		movesListNum++;
 	}
 	addPokedexEntries = function(){
 		$(statsPage).append(html.containers.POKEDEX);
