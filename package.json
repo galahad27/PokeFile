@@ -1,5 +1,5 @@
 {
-  "name": "pokedex",
+  "name": "pokefile",
   "version": "1.0.0",
   "description": "Advance web pokedex site",
   "main": "gulpfile.js",
@@ -9,5 +9,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Paul Jones",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galahad27/PokeFile.git"
+  },
+  "bugs": {
+    "url": "https://github.com/galahad27/PokeFile/issues"
+  },
+  "homepage": "https://github.com/galahad27/PokeFile#readme"
 }
