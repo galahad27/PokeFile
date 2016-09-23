@@ -754,7 +754,19 @@
 	var primaryPokemon;
 	var currImageIndex;
 	var movesListNum;
+
 	var typeFilter = [];
+	var categoryFilter = [];
+	var statusFilter = [];
+	var battleFilter = [];
+	var statFilter = [];
+	var statDirFilter = [];
+	var statNumFilter = [];
+	var learnFilter = [];
+	var powerFilter = [];
+	var accuracyFilter = [];
+	var ppFilter = [];
+	var filteredList = [];
 
 	page.onBeforeShow = function(){
 		init();
@@ -877,7 +889,7 @@
 			var callback = function(){
 				checkBoxClick(box, movesTable);
 			}
-			box.addEventListener("click", callback);
+			$(box).on("click", callback);
 		});
 	}
 	setImage = function(img, pokemon, index){
@@ -972,26 +984,75 @@
 	checkBoxClick = function(box, movesTable){
 		$(movesTable).empty();
 		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
-		console.log(box);
-		if(box.getAttribute("section") == "type"){
-			if(box.checked == true){
-				typeFilter.push(box.getAttribute("catagory"));
+		var filter = box.getAttribute("filter");
+		if(filter == "type"){
+			if(box.checked){
+				typeFilter.push(filter);
 			}else{
-				
+				typeFilter = _.without(typeFilter, filter);
 			}
-			typeFilter.forEach(function(type){
-				primaryPokemon.moves.all.forEach(function(move){
-					if(dev.moves[move].type == type){
-						var input = {
-							type : primaryPokemon.battle.primaryType,
-							move : dev.moves[move],
-							effect : moveEffectsToString(dev.moves[move].effects),
-						};
-						html.load(movesTable, input);
-					}
-				})
-			});
+		}else if(filter == "category"){
+			if(box.checked){
+				categoryFilter.push(filter);
+			}else{
+				categoryFilter = _.without(categoryFilter, filter);
+			}
+		}else if(filter == "status"){
+			if(box.checked){
+				statusFilter.push(filter);
+			}else{
+				statusFilter = _.without(statusFilter, filter);
+			}
+		}else if(filter == "battle"){
+			if(box.checked){
+				battleFilter.push(filter);
+			}else{
+				battleFilter = _.without(battleFilter, filter);
+			}
+		}else if(filter == "stat"){
+			if(box.checked){
+				statFilter.push(filter);
+			}else{
+				statFilter = _.without(statFilter, filter);
+			}
+		}else if(filter == "statDir"){
+			if(box.checked){
+				statDirFilter.push(filter);
+			}else{
+				statDirFilter = _.without(statDirFilter, filter);
+			}
+		}else if(filter == "statNum"){
+			if(box.checked){
+				statNumFilter.push(filter);
+			}else{
+				statNumFilter = _.without(statNumFilter, filter);
+			}
+		}else if(filter == "learn"){
+			if(box.checked){
+				learnFilter.push(filter);
+			}else{
+				learnFilter = _.without(learnFilter, filter);
+			}
+		}else if(filter == "power"){
+			if(box.checked){
+				powerFilter.push(filter);
+			}else{
+				powerFilter = _.without(powerFilter, filter);
+			}
+		}else if(filter == "accuracy"){
+			if(box.checked){
+				accuracyFilter.push(filter);
+			}else{
+				accuracyFilter = _.without(accuracyFilter, filter);
+			}
+		}else if(filter == "pp"){
+			if(box.checked){
+				ppFilter.push(filter);
+			}else{
+				ppFilter = _.without(ppFilter, filter);
+			}
 		}
+		filterTable(movesTable);
 	}
 	pokedexClick = function(){
 		setBorderWidth();
@@ -1096,6 +1157,92 @@
 			}
 			html.load(table, input);
 		})
+	}
+	/***************************Misc***************************/
+	filterTable = function(movesTable){
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		categoryFilter.forEach(function(category){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].category == category){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		typeFilter.forEach(function(type){
+			primaryPokemon.moves.all.forEach(function(move){
+				if(dev.moves[move].type == type){
+					filteredList.push(move);
+				}
+			});
+		});
+		// var input = {
+		// 	type : primaryPokemon.battle.primaryType,
+		// 	move : dev.moves[move],
+		// 	effect : moveEffectsToString(dev.moves[move].effects),
+		// };
+		// html.load(movesTable, input);
 	}
 })(this);
 (function(root){
