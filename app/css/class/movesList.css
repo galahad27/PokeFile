@@ -25,6 +25,8 @@
       margin: 0px 0px 5px 0px; }
     .movesList .movesFilter .standardTextbox .textBox .box {
       width: 30px; }
+  .movesList .movesFilter .submitButton {
+    margin: 0px 0px 0px 10px; }
   .movesList .movesTable {
     width: 706px;
     white-space: nowrap;

@@ -256,34 +256,37 @@
 		"					<h3>Power</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol minBox\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox\" type=\"text\">"+
 		"					</div>"+
+		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"power\">Submit</button>"+
 		"				</div>"+
 		"				<div class=\"standardTextbox\">"+
 		"					<h3>Accuracy</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol minBox\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox\" type=\"text\">"+
 		"					</div>"+
+		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"accuracy\">Submit</button>"+
 		"				</div>"+
 		"				<div class=\"standardTextbox\">"+
 		"					<h3>PP</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol minBox\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox\" type=\"text\">"+
 		"					</div>"+
+		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"pp\">Submit</button>"+
 		"				</div>"+
 		"			</div>"+
 		"		</div>"+

@@ -40,6 +40,7 @@
 	var primaryPokemon;
 	var currImageIndex;
 	var movesListNum;
+	var checkedBoxes;
 
 	var typeFilter;
 	var categoryFilter;
@@ -76,6 +77,7 @@
 	init = function(){
 		currImageIndex = 0;
 		movesListNum = 0;
+		checkedBoxes = [];
 
 		filteredList = [];
 		typeFilter = [];
@@ -186,11 +188,24 @@
 		var checkBoxes = movesFilter.querySelectorAll(".box");
 		checkBoxes.forEach(function(box){
 			var callback = function(){
-				checkBoxClick(box, movesTable);
+				buttonClick(box, movesTable);
 			}
 			$(box).off("click");
 			$(box).on("click", callback);
 		});
+		var buttons = movesFilter.querySelectorAll(".submitButton");
+		buttons.forEach(function(button){
+			var callback = function(){
+				buttonClick(button, movesTable);
+			}
+			var parent = button.parentNode;
+			var minBox = parent.querySelector(".minBox");
+			var maxBox = parent.querySelector(".maxBox");
+			$(minBox).off("click");
+			$(maxBox).off("click");
+			$(button).off("click");
+			$(button).on("click", callback);
+		})
 	}
 	setImage = function(img, pokemon, index){
 		img.setAttribute("src", pokemon.img.url[index]);
@@ -292,76 +307,106 @@
 		$(statsPage).empty();
 		addMovesList();
 	}
-	checkBoxClick = function(box, movesTable){
+	buttonClick = function(button, movesTable){
 		$(movesTable).empty();
 		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
-		var filterType = box.getAttribute("filterType")
-		var filter = box.getAttribute("filter");
+		var filterType = button.getAttribute("filterType")
+		var filter = button.getAttribute("filter");
+		if(button.checked){
+			checkedBoxes.push(filter);
+		}else{
+			checkedBoxes = _.without(checkedBoxes, filter);
+		}
 		if(filterType == "type"){
-			if(box.checked){
+			if(button.checked){
 				typeFilter.push(filter);
 			}else{
-				typeFilter = _.without(typeFilter, filter);
+				typeFilter = _.without(typeFilter, filter); 
 			}
 		}else if(filterType == "category"){
-			if(box.checked){
+			if(button.checked){
 				categoryFilter.push(filter);
 			}else{
 				categoryFilter = _.without(categoryFilter, filter);
 			}
 		}else if(filterType == "status"){
-			if(box.checked){
+			if(button.checked){
 				statusFilter.push(filter);
 			}else{
 				statusFilter = _.without(statusFilter, filter);
 			}
 		}else if(filterType == "battle"){
-			if(box.checked){
+			if(button.checked){
 				battleFilter.push(filter);
 			}else{
 				battleFilter = _.without(battleFilter, filter);
 			}
 		}else if(filterType == "stat"){
-			if(box.checked){
+			if(button.checked){
 				statFilter.push(filter);
 			}else{
 				statFilter = _.without(statFilter, filter);
 			}
 		}else if(filterType == "statDir"){
-			if(box.checked){
+			if(button.checked){
 				statDirFilter.push(filter);
 			}else{
 				statDirFilter = _.without(statDirFilter, filter);
 			}
 		}else if(filterType == "statNum"){
-			if(box.checked){
+			if(button.checked){
 				statNumFilter.push(filter);
 			}else{
 				statNumFilter = _.without(statNumFilter, filter);
 			}
 		}else if(filterType == "learn"){
-			if(box.checked){
+			if(button.checked){
 				learnFilter.push(filter);
 			}else{
 				learnFilter = _.without(learnFilter, filter);
 			}
-		}else if(filterType == "power"){
-			if(box.checked){
-				powerFilter.push(filter);
-			}else{
-				powerFilter = _.without(powerFilter, filter);
+		}else if(filterType == "power" || filterType == "accuracy" || filterType == "pp"){
+			var regex;
+			if(filterType == "power"){
+				regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
+			}else if(filterType == "accuracy"){
+				regex = /^([0-9]|[1-9][0-9]|100)$/;
+			}else if(filterType == "pp"){
+				regex = /^([0-9]|[1-3][0-9]|40)$/;
 			}
-		}else if(filterType == "accuracy"){
-			if(box.checked){
-				accuracyFilter.push(filter);
+			var parent = button.parentNode;
+			var minBox = parent.querySelector(".minBox");
+			var maxBox = parent.querySelector(".maxBox");
+			var minValue = minBox.value;
+			var maxValue = maxBox.value;
+			var validMin = utill.regex(minValue,regex);
+			var validMax = utill.regex(maxValue,regex);
+			if(validMin || validMax){
+				if(validMin){
+					minValue=parseInt(minValue);
+				}else{
+					minValue=0;
+				}
+				if(validMax){
+					maxValue=parseInt(maxValue);
+				}else{
+					maxValue=250;
+				}
+				if(filterType == "power"){
+					powerFilter = [minValue,maxValue];
+				}else if(filterType == "accuracy"){
+					accuracyFilter = [minValue,maxValue];
+				}else if(filterType == "pp"){
+					ppFilter = [minValue,maxValue];
+				}
 			}else{
-				accuracyFilter = _.without(accuracyFilter, filter);
-			}
-		}else if(filterType == "pp"){
-			if(box.checked){
-				ppFilter.push(filter);
-			}else{
-				ppFilter = _.without(ppFilter, filter);
+				if(filterType == "power"){
+					powerFilter = [];
+				}else if(filterType == "accuracy"){
+					accuracyFilter = [];
+				}else if(filterType == "pp"){
+					ppFilter = [];
+				}
 			}
 		}
 		filterTable(movesTable);
@@ -408,6 +453,7 @@
 		html.load(movesList, primaryPokemon);
 		var movesFilter = movesList.querySelector(".movesFilter");
 		var movesTable = movesList.querySelector(".movesTable");
+		fillCheckBoxes();
 		filterTable(movesTable);
 		setFilterEventListeners(movesFilter, movesTable);
 		movesListNum++;
@@ -464,6 +510,13 @@
 		})
 	}
 	/***************************Misc***************************/
+	fillCheckBoxes = function(){
+		console.log(checkedBoxes);
+		checkedBoxes.forEach(function(x){
+			console.log(x.checked);
+			x.checked = true;
+		});
+	}
 	filterTable = function(movesTable){
 		var filteredList = [];
 		var filtered = false;
@@ -593,6 +646,23 @@
 			primaryPokemon.moves[learn].forEach(function(move){
 				learnFilterList.push(move);
 			});
+		});
+		primaryPokemon.moves.all.forEach(function(move){
+			var movePower = parseInt(dev.moves[move].power);
+			var moveAcc = parseInt(dev.moves[move].accuracy);
+			var movePP = parseInt(dev.moves[move].pp);
+			if(!!powerFilter[0]||!!accuracyFilter[0]||!!ppFilter[0]){
+				filtered = true;
+			}
+			if(movePower>=powerFilter[0] && movePower<=powerFilter[1]){
+				powerFilterList.push(move);
+			}
+			if(moveAcc>=accuracyFilter[0] && moveAcc<=accuracyFilter[1]){
+				accuracyFilterList.push(move);
+			}
+			if(movePP>=ppFilter[0] && movePP<=ppFilter[1]){
+				ppFilterList.push(move);
+			}
 		});
 
 		if(filtered){

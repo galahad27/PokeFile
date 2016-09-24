@@ -9,6 +9,9 @@
 			return Math.floor(Math.floor((((2*base+iv+(ev/4))*level)/100)+5)*nature);
 		}
 	}
+	utill.regex = function(input, regex){
+		return regex.test(input);
+	}
 
 	root.utill = utill;
 })(this);
