@@ -289,7 +289,10 @@
 		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"pp\">Submit</button>"+
 		"				</div>"+
 		"			</div>"+
-		"			<button class=\"clearButton col\" type=\"button\">Clear</button>"+
+		"			<div class=\"col\">"+
+		"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
+		"				<button class=\"removeButton\" type=\"button\">Remove</button>"+
+		"			</div>"+
 		"		</div>"+
 		"	</div>"+
 		"	<div class=\"movesTable\" type-insert=\"moves\">"+

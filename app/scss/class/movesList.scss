@@ -55,9 +55,16 @@
 			margin: 0px 0px 0px 10px
 		}
 		.clearButton{
-			margin: 35px 0px 0px 0px;
+			display: block;
+			margin: 35px 0px 10px 0px;
 			width: 95px;
-			height: 140px;
+			height: 65px;
+		}
+		.removeButton{
+			display: block;
+			margin: 10px 0px 10px 0px;
+			width: 95px;
+			height: 65px;
 		}
 	}
 	.movesTable{

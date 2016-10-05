@@ -650,7 +650,10 @@
 		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"pp\">Submit</button>"+
 		"				</div>"+
 		"			</div>"+
-		"			<button class=\"clearButton col\" type=\"button\">Clear</button>"+
+		"			<div class=\"col\">"+
+		"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
+		"				<button class=\"removeButton\" type=\"button\">Remove</button>"+
+		"			</div>"+
 		"		</div>"+
 		"	</div>"+
 		"	<div class=\"movesTable\" type-insert=\"moves\">"+
@@ -1152,7 +1155,11 @@
 		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
-	};
+	}
+	removeClick = function(movesList){
+		movesList.remove();
+		movesListNum--;
+	}
 	statsClick = function(){
 		removeRemovableEvevntListeners();
 		setBorderWidth();
@@ -1160,7 +1167,7 @@
 		$(statsPage).empty();
 		addBarGraph();
 		addTables();
-	};
+	}
 	stockImageClick = function(){
 		if(currImageIndex<primaryPokemon.img.url.length-1){
 			currImageIndex++;	
@@ -1191,7 +1198,7 @@
 		html.load(barGraph, input);
 		setBarLength();
 	}
-	addMovesFilterEventListener = function(movesFilter, movesTable, num){
+	addMovesFilterEventListener = function(movesList, movesFilter, movesTable, num){
 		var boxes = movesFilter.querySelectorAll(".box");
 		boxes.forEach(function(box){
 			var callback = function(){
@@ -1215,13 +1222,22 @@
 			$(button).on("click", callback);
 			removableEventListeners.push(button);
 		});
-		var clearButton = movesFilter.querySelector(".clearButton");
-		var callback = function(){
+
+		var clearCallback = function(){
 			clearClick(movesFilter, movesTable, num);
 		};
+		var clearButton = movesFilter.querySelector(".clearButton");
 		$(clearButton).off("click");
-		$(clearButton).on("click", callback);
+		$(clearButton).on("click", clearCallback);
 		removableEventListeners.push(clearButton);
+
+		var removeCallback = function(){
+			removeClick(movesList);
+		};
+		var removeButton = movesFilter.querySelector(".removeButton");
+		$(removeButton).off("click");
+		$(removeButton).on("click", removeCallback);
+		removableEventListeners.push(removeButton);
 	}
 	addMovesList = function(prevMovesList){
 		if(!!prevMovesList){
@@ -1234,13 +1250,16 @@
 		html.load(movesList, primaryPokemon);
 		var movesFilter = movesList.querySelector(".movesFilter");
 		var movesTable = movesList.querySelector(".movesTable");
+		if(movesListNum==0){
+			$(".removeButton").hide();
+		}
 		if(!movesLists[movesListNum]){
 			movesListInit(movesListNum);
 		}
 		fillCheckBoxes(movesFilter, movesListNum);
 		fillTextBoxes(movesFilter, movesListNum);
 		filterTable(movesTable, movesListNum);
-		addMovesFilterEventListener(movesFilter, movesTable, movesListNum);
+		addMovesFilterEventListener(movesList, movesFilter, movesTable, movesListNum);
 		movesListNum++;
 	}
 	addPokedexEntries = function(){
@@ -1277,7 +1296,6 @@
 		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPEED, "Speed", 50));
 		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.ATTACK, "Attack", 50));
 		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPATTACK, "Sp. Attack", 50));
-		
 
 		var tables = page.querySelectorAll(".statTable");
 	
@@ -1347,8 +1365,8 @@
 		}
 	}
 	filterCategories = function(num){
-		if(movesLists[num].type.length == 0){
-			return categoryFilterList = primaryPokemon.moves.all;
+		if(movesLists[num].category.length == 0){
+			return primaryPokemon.moves.all;
 		}else{
 			var list = [];
 			movesLists[num].isFiltered = true;
@@ -1387,7 +1405,7 @@
 			movesLists[num].battle.forEach(function(battle){
 				primaryPokemon.moves.all.forEach(function(move){
 					if(_.contains(dev.moves[move].effects.condition, battle)){
-						battleFilterList.push(move);
+						list.push(move);
 					}
 				});
 			});
@@ -1481,55 +1499,61 @@
 		if(movesLists[num].power.length == 0){
 			return primaryPokemon.moves.all;
 		}else{
+			var list = [];
 			movesLists[num].isFiltered = true;
 			primaryPokemon.moves.all.forEach(function(move){
 				var movePower = parseInt(dev.moves[move].power);
 				if(movePower>=movesLists[num].power[0] && movePower<=movesLists[num].power[1]){
-					powerFilterList.push(move);
+					list.push(move);
 				}
 			});
+			return list;
 		}
 	}
 	filterAccuracy = function(num){
 		if(movesLists[num].accuracy.length == 0){
 			return primaryPokemon.moves.all;
 		}else{
+			var list = [];
 			movesLists[num].isFiltered = true;
 			primaryPokemon.moves.all.forEach(function(move){
 				var moveAcc = parseInt(dev.moves[move].accuracy);
 				if(moveAcc>=movesLists[num].accuracy[0] && moveAcc<=movesLists[num].accuracy[1]){
-					accuracyFilterList.push(move);
+					list.push(move);
 				}
 			});
+			return list;
 		}
 	}
 	filterPP = function(num){
 		if(movesLists[num].pp.length == 0){
 			return primaryPokemon.moves.all;
 		}else{
+			var list = [];
 			movesLists[num].isFiltered = true;
 			primaryPokemon.moves.all.forEach(function(move){
 				var movePP = parseInt(dev.moves[move].pp);
 				if(movePP>=movesLists[num].pp[0] && movePP<=movesLists[num].pp[1]){
-					ppFilterList.push(move);
+					list.push(move);
 				}
 			});
+			return list;
 		}
 	}
 	filterTable = function(movesTable, num){
 		movesLists[num].isFiltered = false;
 		
-		var typeFilterList = filterTypes();
-		var categoryFilterList = filterCategories();
-		var statusFilterList = filterStatus();
-		var battleFilterList = filterBattle();
-		var statFilterList = filterStat();
-		var statDirFilterList = filterStatDir();
-		var statNumFilterList = filterStatNum();
-		var learnFilterList = filterLearn();
-		var powerFilterList = filterPower();
-		var accuracyFilterList = filterAccuracy();
-		var ppFilterList = filterPP();
+		var typeFilterList = filterTypes(num);
+		var categoryFilterList = filterCategories(num);
+		var statusFilterList = filterStatus(num);
+		var battleFilterList = filterBattle(num);
+		var statFilterList = filterStat(num);
+		var statDirFilterList = filterStatDir(num);
+		var statNumFilterList = filterStatNum(num);
+		var learnFilterList = filterLearn(num);
+		var powerFilterList = filterPower(num);
+		var accuracyFilterList = filterAccuracy(num);
+		var ppFilterList = filterPP(num);
 
 		var filteredList = primaryPokemon.moves.all;
 		if(movesLists[num].isFiltered){
