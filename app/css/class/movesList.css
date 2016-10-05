@@ -1,5 +1,12 @@
+.addButton {
+  padding: 0px 0px 0px 0px; }
+  .addButton img {
+    width: 100%;
+    height: 100%; }
+
 .movesList {
-  white-space: nowrap; }
+  white-space: nowrap;
+  vertical-align: top; }
   .movesList .col {
     display: inline-block;
     vertical-align: top; }
@@ -27,6 +34,10 @@
       width: 30px; }
   .movesList .movesFilter .submitButton {
     margin: 0px 0px 0px 10px; }
+  .movesList .movesFilter .clearButton {
+    margin: 35px 0px 0px 0px;
+    width: 95px;
+    height: 140px; }
   .movesList .movesTable {
     width: 706px;
     white-space: nowrap;

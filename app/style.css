@@ -258,8 +258,15 @@
       transition: 0.3s;
       font-size: 17px; }
 
+.addButton {
+  padding: 0px 0px 0px 0px; }
+  .addButton img {
+    width: 100%;
+    height: 100%; }
+
 .movesList {
-  white-space: nowrap; }
+  white-space: nowrap;
+  vertical-align: top; }
   .movesList .col {
     display: inline-block;
     vertical-align: top; }
@@ -287,6 +294,10 @@
       width: 30px; }
   .movesList .movesFilter .submitButton {
     margin: 0px 0px 0px 10px; }
+  .movesList .movesFilter .clearButton {
+    margin: 35px 0px 0px 0px;
+    width: 95px;
+    height: 140px; }
   .movesList .movesTable {
     width: 706px;
     white-space: nowrap;
@@ -542,7 +553,8 @@
   right: 10px;
   z-index: -1;
   overflow-y: scroll;
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  white-space: nowrap; }
   #statsPage .pokedexEntry {
     margin-left: 10px; }
   #statsPage .statBarGraph {
@@ -551,6 +563,13 @@
     margin: 0px 0px 0px 20px; }
     #statsPage .tableRow .statTable {
       display: inline-block; }
+  #statsPage .addButton {
+    margin: 10px 10px 10px 10px;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top; }
   #statsPage #row3 {
     margin-bottom: 20px; }
   #statsPage #level100 {

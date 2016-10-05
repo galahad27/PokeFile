@@ -256,11 +256,11 @@
 		"					<h3>Power</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol minBox\" type=\"text\">"+
+		"						<input class=\"box ccol minBox powerMin\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol maxBox\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox powerMax\" type=\"text\">"+
 		"					</div>"+
 		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"power\">Submit</button>"+
 		"				</div>"+
@@ -268,11 +268,11 @@
 		"					<h3>Accuracy</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol minBox\" type=\"text\">"+
+		"						<input class=\"box ccol minBox accuracyMin\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol maxBox\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox accuracyMax\" type=\"text\">"+
 		"					</div>"+
 		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"accuracy\">Submit</button>"+
 		"				</div>"+
@@ -280,15 +280,16 @@
 		"					<h3>PP</h3>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Min</div>"+
-		"						<input class=\"box ccol minBox\" type=\"text\">"+
+		"						<input class=\"box ccol minBox ppMin\" type=\"text\">"+
 		"					</div>"+
 		"					<div class=\"textBox ccol\">"+
 		"						<div class=\"text ccol\">Max</div>"+
-		"						<input class=\"box ccol maxBox\" type=\"text\">"+
+		"						<input class=\"box ccol maxBox ppMax\" type=\"text\">"+
 		"					</div>"+
 		"					<button class=\"submitButton ccol\" type=\"button\" filterType=\"pp\">Submit</button>"+
 		"				</div>"+
 		"			</div>"+
+		"			<button class=\"clearButton col\" type=\"button\">Clear</button>"+
 		"		</div>"+
 		"	</div>"+
 		"	<div class=\"movesTable\" type-insert=\"moves\">"+
@@ -328,5 +329,9 @@
 		"		<div class=\"effect cell\" border=\""+type+"\">Effect</div>"+
 		"		<div class=\"pp cell\" border=\""+type+"\">PP</div>"+
 		"	</div>";
+	}
+	html.addButton = function(){
+		return ""+
+		"	<button class=\"addButton\" type=\"button\"><img src=\"./res/img/stock/plus.png\"></button>";
 	}
 })(this);

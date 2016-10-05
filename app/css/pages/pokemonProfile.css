@@ -45,7 +45,8 @@
   right: 10px;
   z-index: -1;
   overflow-y: scroll;
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  white-space: nowrap; }
   #statsPage .pokedexEntry {
     margin-left: 10px; }
   #statsPage .statBarGraph {
@@ -54,6 +55,13 @@
     margin: 0px 0px 0px 20px; }
     #statsPage .tableRow .statTable {
       display: inline-block; }
+  #statsPage .addButton {
+    margin: 10px 10px 10px 10px;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top; }
   #statsPage #row3 {
     margin-bottom: 20px; }
   #statsPage #level100 {
