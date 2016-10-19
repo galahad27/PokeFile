@@ -14,6 +14,8 @@
 	var TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	var TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
 
+	var LISTNUM = 2;
+
 	var page = document.querySelector("#pokemonProfile");
 
 	var pokedex = page.querySelector("#pokedex");
@@ -279,9 +281,12 @@
 	}
 	/***************************Events***************************/
 	addButtonClick = function(){
-		if(movesListNum<4){
+		if(movesListNum<LISTNUM){
 			var lastMovesList = statsPage.querySelector("#movesList"+(movesListNum-1));
 			addMovesList(lastMovesList);
+		}
+		if(movesListNum=LISTNUM-1){
+			$(".addButton").hide();
 		}
 	}
 	buttonClick = function(button, movesTable, num){
@@ -358,6 +363,8 @@
 	removeClick = function(movesList){
 		movesList.remove();
 		movesListNum--;
+		console.log(movesListNum);
+		$(".addButton").show();
 	}
 	statsClick = function(){
 		removeRemovableEvevntListeners();
