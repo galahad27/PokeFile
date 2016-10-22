@@ -1,0 +1,30 @@
+.movesTable {
+  width: 766px; }
+  .movesTable .table .row {
+    display: flex; }
+    .movesTable .table .row .cell {
+      display: inline-block;
+      padding: 5px 0px 5px 0px;
+      text-align: center;
+      border-width: 1px;
+      margin-bottom: -1px;
+      margin-left: -1px; }
+    .movesTable .table .row [type="move"] {
+      width: 20%; }
+    .movesTable .table .row [type="type"] {
+      width: 10%; }
+      .movesTable .table .row [type="type"] .text {
+        margin: auto;
+        width: 70px;
+        border-radius: 7px; }
+    .movesTable .table .row [type="category"] {
+      width: 10%; }
+    .movesTable .table .row [type="power"] {
+      width: 5%; }
+    .movesTable .table .row [type="accuracy"] {
+      width: 5%; }
+    .movesTable .table .row [type="effect"] {
+      width: 44%;
+      overflow: hidden; }
+    .movesTable .table .row [type="pp"] {
+      width: 5%; }

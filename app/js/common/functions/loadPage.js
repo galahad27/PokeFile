@@ -19,9 +19,9 @@
 	};
 	var onBeforeShow = function(page){
 		pages.activePage = pages[page];
-		elements = pages.activePage.querySelectorAll("[type-insert]");
-		elements.forEach(function(element){
-			html.load(element);
+		pageUIs = pages.activePage.querySelectorAll("[pre-insert]");
+		pageUIs.forEach(function(UI){
+			html.load(UI, UI.getAttribute("pre-insert"));
 		});
 		!!pages.activePage.onBeforeShow && pages.activePage.onBeforeShow();
 		onShow();

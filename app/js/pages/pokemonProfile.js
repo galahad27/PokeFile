@@ -13,6 +13,7 @@
 	var TABLEROW1 = "<div id=\"row1\" class=\"tableRow\"></div>";
 	var TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	var TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
+	var SCROLLPANE = "<div class=\"scroll-pane\"></div>";
 
 	var LISTNUM = 2;
 
@@ -20,8 +21,9 @@
 
 	var pokedex = page.querySelector("#pokedex");
 	var stats = page.querySelector("#stats");
-	var typeStats = page.querySelector("#typeStats");
 	var moves = page.querySelector("#moves");
+
+	var statsPageWrapper = page.querySelector("#statsPageWrapper");
 	var statsPage = page.querySelector("#statsPage");
 
 	var pokemonImage = page.querySelector("#pokemonImage");
@@ -54,7 +56,6 @@
 
 	page.onBeforeShow = function(){
 		init();
-		primaryPokemon = getData();
 		setImage(stockImage, primaryPokemon, 0);
 		setBasicInfo(primaryPokemon);
 		setColorTheme(primaryPokemon);
@@ -72,39 +73,38 @@
 	};
 
 	init = function(){
+		primaryPokemon = getData();
 		currImageIndex = 0;
 		movesListNum = 0;
 		removableEventListeners = [];
 		movesLists = [];
 	}
-	movesListInit = function(num){
-		movesLists[num] = {
-			checkedBoxes : [],
-			filledTextBoxes : [],
-			type : [],
-			category : [],
-			status : [],
-			battle : [],
-			stat : [],
-			statDir : [],
-			statNum : [],
-			learn : [],
-			power : [],
-			accuracy : [],
-			pp : [],
-		};
-	}
+	// movesListInit = function(num){
+	// 	movesLists[num] = {
+	// 		checkedBoxes : [],
+	// 		filledTextBoxes : [],
+	// 		type : [],
+	// 		category : [],
+	// 		status : [],
+	// 		battle : [],
+	// 		stat : [],
+	// 		statDir : [],
+	// 		statNum : [],
+	// 		learn : [],
+	// 		power : [],
+	// 		accuracy : [],
+	// 		pp : [],
+	// 	};
+	// }
 	addEventListeners = function(){
 		$(pokedex).on("click", pokedexClick);
 		$(stats).on("click", statsClick);
-		$(typeStats).on("click", typeStatsClick);
 		$(moves).on("click", movesClick);
 		$(stockImage).on("click", stockImageClick);
 	};
 	removeEventListeners = function(){
 		$(pokedex).off("click", pokedexClick);
 		$(stats).off("click", statsClick);
-		$(typeStats).off("click", typeStatsClick);
 		$(moves).off("click", movesClick);
 		$(stockImage).on("click", nextImage);
 	};
@@ -114,29 +114,6 @@
 		return dev.pokemon.ninetales;
 	}
 	/***************************Setters***************************/
-	setBarLength = function(){
-		var barGraph = statsPage.querySelector(".statBarGraph");
-		var hpCover = barGraph.querySelector(".hpBarCover");
-		var attackCover = barGraph.querySelector(".attackBarCover");
-		var defenseCover = barGraph.querySelector(".defenseBarCover");
-		var spAttackCover = barGraph.querySelector(".spAttackBarCover");
-		var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
-		var speedCover = barGraph.querySelector(".speedBarCover");
-
-		hpCover.style.width = (R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.width = (R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.width = (R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.width = (R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.width = (R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.width = (R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
-
-		hpCover.style.marginLeft = -1*(R.maxStats.HP-primaryPokemon.base.HP)*R.STATMODIFIER+"px";
-		attackCover.style.marginLeft = -1*(R.maxStats.ATTACK-primaryPokemon.base.ATTACK)*R.STATMODIFIER+"px";
-		defenseCover.style.marginLeft = -1*(R.maxStats.DEFENSE-primaryPokemon.base.DEFENSE)*R.STATMODIFIER+"px";
-		spAttackCover.style.marginLeft = -1*(R.maxStats.SPATTACK-primaryPokemon.base.SPATTACK)*R.STATMODIFIER+"px";
-		spDefenseCover.style.marginLeft = -1*(R.maxStats.SPDEFENSE-primaryPokemon.base.SPDEFENSE)*R.STATMODIFIER+"px";
-		speedCover.style.marginLeft = -1*(R.maxStats.SPEED-primaryPokemon.base.SPEED)*R.STATMODIFIER+"px";
-	}
 	setBorderWidth = function(){
 		pokedex.style.borderWidth = "3px";
 		stats.style.borderWidth = "3px";
@@ -157,7 +134,7 @@
 		stats.setAttribute("border", pokemon.battle.primaryType);
 		typeStats.setAttribute("border", pokemon.battle.primaryType);
 		moves.setAttribute("border", pokemon.battle.primaryType);
-		statsPage.setAttribute("border", pokemon.battle.primaryType);
+		statsPageWrapper.setAttribute("border", pokemon.battle.primaryType);
 
 		if(!!pokemon.battle.secondaryType){
 			pokemonImage.style.background = "linear-gradient("+R.typeColors[pokemon.battle.primaryType]+","+R.typeColors[pokemon.battle.secondaryType]+")";
@@ -226,52 +203,52 @@
 		}
 		return tempHidden;
 	}
-	moveEffectsToString = function(effects){
-		var string = "";
-		effects.condition.forEach(function(effect, index){
-			if(!!effects.percentage[index]){
-				if(string == ""){
-					string = effects.percentage[index]+"%";
-				}else{
-					string = string+" | "+effects.percentage[index]+"%";
-				}	
-			}
-			if(!!effects.increase[index]){
-				if(string == ""){
-					string = effects.increase[index];
-				}else{
-					if(!!effects.percentage[index]){
-						string = string+" "+effects.increase[index];
-					}else{
-						string = string+" | "+effects.increase[index];
-					}
-				}	
-			}
-			if(!!effect.stat){
-				if(string == ""){
-					string = effect.dir + effect.num + " " +effect.stat;
-				}else{
-					if(!!effects.percentage[index]){
-						string = string + " " + effect.dir + effect.num + " " +effect.stat;
-					}else{
-						string = string + " | " + effect.dir + effect.num + " " +effect.stat;
-					}	
-				}
-			}else{
-				if(string == ""){
-					string = effect;
-				}else{
-					if(!!effects.percentage[index] || !!effects.increase[index]){
-						string = string + " " + effect;
-					}else{
-						string = string + " | " + effect;
-					}
+	// moveEffectsToString = function(effects){
+	// 	var string = "";
+	// 	effects.condition.forEach(function(effect, index){
+	// 		if(!!effects.percentage[index]){
+	// 			if(string == ""){
+	// 				string = effects.percentage[index]+"%";
+	// 			}else{
+	// 				string = string+" | "+effects.percentage[index]+"%";
+	// 			}	
+	// 		}
+	// 		if(!!effects.increase[index]){
+	// 			if(string == ""){
+	// 				string = effects.increase[index];
+	// 			}else{
+	// 				if(!!effects.percentage[index]){
+	// 					string = string+" "+effects.increase[index];
+	// 				}else{
+	// 					string = string+" | "+effects.increase[index];
+	// 				}
+	// 			}	
+	// 		}
+	// 		if(!!effect.stat){
+	// 			if(string == ""){
+	// 				string = effect.dir + effect.num + " " +effect.stat;
+	// 			}else{
+	// 				if(!!effects.percentage[index]){
+	// 					string = string + " " + effect.dir + effect.num + " " +effect.stat;
+	// 				}else{
+	// 					string = string + " | " + effect.dir + effect.num + " " +effect.stat;
+	// 				}	
+	// 			}
+	// 		}else{
+	// 			if(string == ""){
+	// 				string = effect;
+	// 			}else{
+	// 				if(!!effects.percentage[index] || !!effects.increase[index]){
+	// 					string = string + " " + effect;
+	// 				}else{
+	// 					string = string + " | " + effect;
+	// 				}
 					
-				}
-			}
-		});
-		return string;
-	}
+	// 			}
+	// 		}
+	// 	});
+	// 	return string;
+	// }
 	typesToString = function(pokemon){
 		tempTypes = pokemon.battle.primaryType;
 		if(!!pokemon.battle.secondaryType){
@@ -280,65 +257,64 @@
 		return tempTypes;
 	}
 	/***************************Events***************************/
-	addButtonClick = function(){
-		if(movesListNum<LISTNUM){
-			var lastMovesList = statsPage.querySelector("#movesList"+(movesListNum-1));
-			addMovesList(lastMovesList);
-		}
-		if(movesListNum=LISTNUM-1){
-			$(".addButton").hide();
-		}
-	}
-	buttonClick = function(button, movesTable, num){
-		var filterType = button.getAttribute("filterType")
-		var filter = button.getAttribute("filter");
-		if(button.checked){
-			movesLists[num].checkedBoxes.push(filter);
-			movesLists[num][filterType].push(filter);
-		}else{
-			movesLists[num].checkedBoxes = _.without(movesLists[num].checkedBoxes, filter);
-			movesLists[num][filterType] = _.without(movesLists[num][filterType], filter);
-		}
-		if(filterType == "power" || filterType == "accuracy" || filterType == "pp"){
-			var regex;
-			if(filterType == "power"){
-				regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
-			}else if(filterType == "accuracy"){
-				regex = /^([0-9]|[1-9][0-9]|100)$/;
-			}else if(filterType == "pp"){
-				regex = /^([0-9]|[1-3][0-9]|40)$/;
-			}
-			var parent = button.parentNode;
-			var minBox = parent.querySelector(".minBox");
-			var maxBox = parent.querySelector(".maxBox");
-			var minValue = utill.regex(minBox.value,regex);
-			var maxValue = utill.regex(maxBox.value,regex);
-			if(minValue || maxValue){
-				if(minValue){
-					minValue=parseInt(minBox.value);
-				}else{
-					minValue=0;
-				}
-				if(maxValue){
-					maxValue=parseInt(maxBox.value);
-				}else{
-					maxValue=250;
-				}
-				movesLists[num][filterType] = [minValue,maxValue];
-			}else{
-				movesLists[num][filterType] = [];
-			}
-		}
-		filterTable(movesTable, num);
-	}
-	clearClick = function(movesFilter, movesTable, num){
-		movesListInit(num);
-		fillCheckBoxes(movesFilter, num);
-		fillTextBoxes(movesFilter, num);
-		filterTable(movesTable, num);
-	}
+	// addButtonClick = function(){
+	// 	if(movesListNum<LISTNUM){
+	// 		var lastMovesList = statsPage.querySelector("#movesList"+(movesListNum-1));
+	// 		addMovesList(lastMovesList);
+	// 	}
+	// 	if(movesListNum=LISTNUM-1){
+	// 		$(".addButton").hide();
+	// 	}
+	// }
+	// buttonClick = function(button, movesTable, num){
+	// 	var filterType = button.getAttribute("filterType")
+	// 	var filter = button.getAttribute("filter");
+	// 	if(button.checked){
+	// 		movesLists[num].checkedBoxes.push(filter);
+	// 		movesLists[num][filterType].push(filter);
+	// 	}else{
+	// 		movesLists[num].checkedBoxes = _.without(movesLists[num].checkedBoxes, filter);
+	// 		movesLists[num][filterType] = _.without(movesLists[num][filterType], filter);
+	// 	}
+	// 	if(filterType == "power" || filterType == "accuracy" || filterType == "pp"){
+	// 		var regex;
+	// 		if(filterType == "power"){
+	// 			regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
+	// 		}else if(filterType == "accuracy"){
+	// 			regex = /^([0-9]|[1-9][0-9]|100)$/;
+	// 		}else if(filterType == "pp"){
+	// 			regex = /^([0-9]|[1-3][0-9]|40)$/;
+	// 		}
+	// 		var parent = button.parentNode;
+	// 		var minBox = parent.querySelector(".minBox");
+	// 		var maxBox = parent.querySelector(".maxBox");
+	// 		var minValue = utill.regex(minBox.value,regex);
+	// 		var maxValue = utill.regex(maxBox.value,regex);
+	// 		if(minValue || maxValue){
+	// 			if(minValue){
+	// 				minValue=parseInt(minBox.value);
+	// 			}else{
+	// 				minValue=0;
+	// 			}
+	// 			if(maxValue){
+	// 				maxValue=parseInt(maxBox.value);
+	// 			}else{
+	// 				maxValue=250;
+	// 			}
+	// 			movesLists[num][filterType] = [minValue,maxValue];
+	// 		}else{
+	// 			movesLists[num][filterType] = [];
+	// 		}
+	// 	}
+	// 	filterTable(movesTable, num);
+	// }
+	// clearClick = function(movesFilter, movesTable, num){
+	// 	movesListInit(num);
+	// 	fillCheckBoxes(movesFilter, num);
+	// 	fillTextBoxes(movesFilter, num);
+	// 	filterTable(movesTable, num);
+	// }
 	movesClick = function(){
-		removeRemovableEvevntListeners();
 		setBorderWidth();
 		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
@@ -354,20 +330,18 @@
 		addAddButton();
 	}
 	pokedexClick = function(){
-		removeRemovableEvevntListeners();
 		setBorderWidth();
 		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
 	}
-	removeClick = function(movesList){
-		movesList.remove();
-		movesListNum--;
-		console.log(movesListNum);
-		$(".addButton").show();
-	}
+	// removeClick = function(movesList){
+	// 	movesList.remove();
+	// 	movesListNum--;
+	// 	console.log(movesListNum);
+	// 	$(".addButton").show();
+	// }
 	statsClick = function(){
-		removeRemovableEvevntListeners();
 		setBorderWidth();
 		stats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
@@ -383,69 +357,61 @@
 		}
 		stockImage.setAttribute("src", primaryPokemon.img.url[currImageIndex]);
 	}
-	typeStatsClick = function(){
-		removeRemovableEvevntListeners();
-		setBorderWidth();
-		typeStats.style.borderTopWidth = "7px";
-		$(statsPage).empty();
-	};
 	/***************************Add***************************/
-	addAddButton = function(){
-		$(statsPage).append(html.addButton);
-		var addButton = page.querySelector(".addButton");
-		$(addButton).off("click");
-		$(addButton).on("click", addButtonClick);
-		removableEventListeners.push(addButton);
-	}
+	// addAddButton = function(){
+	// 	$(statsPage).append(html.addButton);
+	// 	var addButton = page.querySelector(".addButton");
+	// 	$(addButton).off("click");
+	// 	$(addButton).on("click", addButtonClick);
+	// 	removableEventListeners.push(addButton);
+	// }
 	addBarGraph = function(){
-		$(statsPage).append(html.containers.STATBARGRAPH(primaryPokemon.name.en+"BarGraph"));
-		var barGraph = page.querySelector(".statBarGraph");
 		var input = primaryPokemon.base;
-		html.load(barGraph, input);
-		setBarLength();
+		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
+		statsBarGraph.setBarLength(primaryPokemon.base);
 	}
-	addMovesFilterEventListener = function(movesList, movesFilter, movesTable, num){
-		var boxes = movesFilter.querySelectorAll(".box");
-		boxes.forEach(function(box){
-			var callback = function(){
-				buttonClick(box, movesTable, num);
-			}
-			$(box).off("click");
-			$(box).on("click", callback);
-			removableEventListeners.push(box);
-		});
-		var buttons = movesFilter.querySelectorAll(".submitButton");
-		buttons.forEach(function(button){
-			var callback = function(){
-				buttonClick(button, movesTable, num);
-			}
-			var parent = button.parentNode;
-			var minBox = parent.querySelector(".minBox");
-			var maxBox = parent.querySelector(".maxBox");
-			$(minBox).off("click");
-			$(maxBox).off("click");
-			$(button).off("click");
-			$(button).on("click", callback);
-			removableEventListeners.push(button);
-		});
+	// addMovesFilterEventListener = function(movesList, movesFilter, movesTable, num){
+	// 	var boxes = movesFilter.querySelectorAll(".box");
+	// 	boxes.forEach(function(box){
+	// 		var callback = function(){
+	// 			buttonClick(box, movesTable, num);
+	// 		}
+	// 		$(box).off("click");
+	// 		$(box).on("click", callback);
+	// 		removableEventListeners.push(box);
+	// 	});
+	// 	var buttons = movesFilter.querySelectorAll(".submitButton");
+	// 	buttons.forEach(function(button){
+	// 		var callback = function(){
+	// 			buttonClick(button, movesTable, num);
+	// 		}
+	// 		var parent = button.parentNode;
+	// 		var minBox = parent.querySelector(".minBox");
+	// 		var maxBox = parent.querySelector(".maxBox");
+	// 		$(minBox).off("click");
+	// 		$(maxBox).off("click");
+	// 		$(button).off("click");
+	// 		$(button).on("click", callback);
+	// 		removableEventListeners.push(button);
+	// 	});
 
-		var clearCallback = function(){
-			clearClick(movesFilter, movesTable, num);
-		};
-		var clearButton = movesFilter.querySelector(".clearButton");
-		$(clearButton).off("click");
-		$(clearButton).on("click", clearCallback);
-		removableEventListeners.push(clearButton);
+	// 	var clearCallback = function(){
+	// 		clearClick(movesFilter, movesTable, num);
+	// 	};
+	// 	var clearButton = movesFilter.querySelector(".clearButton");
+	// 	$(clearButton).off("click");
+	// 	$(clearButton).on("click", clearCallback);
+	// 	removableEventListeners.push(clearButton);
 
-		var removeCallback = function(){
-			removeClick(movesList);
-		};
-		var removeButton = movesFilter.querySelector(".removeButton");
-		$(removeButton).off("click");
-		$(removeButton).on("click", removeCallback);
-		removableEventListeners.push(removeButton);
-	}
-	addMovesList = function(prevMovesList){
+	// 	var removeCallback = function(){
+	// 		removeClick(movesList);
+	// 	};
+	// 	var removeButton = movesFilter.querySelector(".removeButton");
+	// 	$(removeButton).off("click");
+	// 	$(removeButton).on("click", removeCallback);
+	// 	removableEventListeners.push(removeButton);
+	// }
+	addMoves = function(prevMovesList){
 		if(!!prevMovesList){
 			$(prevMovesList).after(html.containers.MOVESLIST("movesList"+movesListNum));
 		}else{
@@ -469,14 +435,12 @@
 		movesListNum++;
 	}
 	addPokedexEntries = function(){
-		$(statsPage).append(html.containers.POKEDEX);
-		var entries = page.querySelector(".pokedexEntry");
 		var keys = _.keys(primaryPokemon.pokedex);
 		keys.forEach(function(key){
 			var input = [key, primaryPokemon.pokedex[key]];
-			html.load(entries, input);
+			html.load(statsPage, "pokedexEntry", input);
 		})
-	}	
+	}
 	addTables = function(){
 		$(statsPage).append(LEVEL100);
 		$(statsPage).append(TABLEROW0);
@@ -489,6 +453,8 @@
 		var row1 = statsPage.querySelector("#row1");
 		var row2 = statsPage.querySelector("#row2");
 		var row3 = statsPage.querySelector("#row3");
+
+		html.load(row0, "statTable");
 
 		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.HP, "HP", 100));
 		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.DEFENSE, "Defense", 100));
@@ -519,261 +485,261 @@
 		})
 	}
 	/***************************Remove***************************/
-	removeRemovableEvevntListeners = function(){
-		removableEventListeners.forEach(function(x){
-			$(x).off();
-		});
-		removableEventListeners = [];
-	}
+	// removeRemovableEvevntListeners = function(){
+	// 	removableEventListeners.forEach(function(x){
+	// 		$(x).off();
+	// 	});
+	// 	removableEventListeners = [];
+	// }
 	/***************************Misc***************************/
-	fillCheckBoxes = function(movesFilter, num){
-		var boxes = movesFilter.querySelectorAll(".box");
-		boxes.forEach(function(x){
-			contains = _.some(movesLists[num].checkedBoxes, function(y){
-				return x.getAttribute("filter") == y;
-			})
-			if(contains){
-				x.checked = true;
-			}else{
-				x.checked = false;
-			}
-		});
-	}
-	fillTextBoxes = function(movesFilter, num){
-		var ppMin = movesFilter.querySelector(".ppMin");
-		var ppMax = movesFilter.querySelector(".ppMax");
-		var accuracyMin = movesFilter.querySelector(".accuracyMin");
-		var accuracyMax = movesFilter.querySelector(".accuracyMax");
-		var powerMin = movesFilter.querySelector(".powerMin");
-		var powerMax = movesFilter.querySelector(".powerMax");
+	// fillCheckBoxes = function(movesFilter, num){
+	// 	var boxes = movesFilter.querySelectorAll(".box");
+	// 	boxes.forEach(function(x){
+	// 		contains = _.some(movesLists[num].checkedBoxes, function(y){
+	// 			return x.getAttribute("filter") == y;
+	// 		})
+	// 		if(contains){
+	// 			x.checked = true;
+	// 		}else{
+	// 			x.checked = false;
+	// 		}
+	// 	});
+	// }
+	// fillTextBoxes = function(movesFilter, num){
+	// 	var ppMin = movesFilter.querySelector(".ppMin");
+	// 	var ppMax = movesFilter.querySelector(".ppMax");
+	// 	var accuracyMin = movesFilter.querySelector(".accuracyMin");
+	// 	var accuracyMax = movesFilter.querySelector(".accuracyMax");
+	// 	var powerMin = movesFilter.querySelector(".powerMin");
+	// 	var powerMax = movesFilter.querySelector(".powerMax");
 
-		ppMin.value = movesLists[num].pp[0] || "";
-		ppMax.value = movesLists[num].pp[1] || "";
-		accuracyMin.value = movesLists[num].accuracy[0] || "";
-		accuracyMax.value = movesLists[num].accuracy[1] || "";
-		powerMin.value = movesLists[num].power[0] || "";
-		powerMax.value = movesLists[num].power[1] || "";
-	}
-	filterTypes = function(num){
-		if(movesLists[num].type.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].type.forEach(function(type){
-				primaryPokemon.moves.all.forEach(function(move){
-					if(dev.moves[move].type == type){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterCategories = function(num){
-		if(movesLists[num].category.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].category.forEach(function(category){
-				primaryPokemon.moves.all.forEach(function(move){
-					if(dev.moves[move].category == category){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterStatus = function(num){
-		if(movesLists[num].status.length == 0){
-			return  primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].status.forEach(function(status){
-				primaryPokemon.moves.all.forEach(function(move){
-					if(_.contains(dev.moves[move].effects.condition, status)){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterBattle = function(num){
-		if(movesLists[num].battle.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].battle.forEach(function(battle){
-				primaryPokemon.moves.all.forEach(function(move){
-					if(_.contains(dev.moves[move].effects.condition, battle)){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterStat = function(num){
-		if(movesLists[num].stat.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].stat.forEach(function(stat){
-				primaryPokemon.moves.all.forEach(function(move){
-					var contains = _.some(dev.moves[move].effects.condition, function(el){
-						if(!!el.stat){
-							return el.stat == stat;
-						}else{
-							return false;
-						}
-					});
-					if(contains){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterStatDir = function(num){
-		if(movesLists[num].statDir.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].statDir.forEach(function(dir){
-				primaryPokemon.moves.all.forEach(function(move){
-					var contains = _.some(dev.moves[move].effects.condition, function(el){
-						if(!!el.dir){
-							return el.dir == dir;
-						}else{
-							return false;
-						}
-					});
-					if(contains){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterStatNum = function(num){
-		if(movesLists[num].statNum.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].statNum.forEach(function(num){
-				primaryPokemon.moves.all.forEach(function(move){
-					var contains = _.some(dev.moves[move].effects.condition, function(el){
-						if(!!el.num){
-							return el.num == num;
-						}else{
-							return false;
-						}
-					});
-					if(contains){
-						list.push(move);
-					}
-				});
-			});
-			return list;
-		}
-	}
-	filterLearn = function(num){
-		if(movesLists[num].learn.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			movesLists[num].learn.forEach(function(learn){
-				primaryPokemon.moves[learn].forEach(function(move){
-					list.push(move);
-				});
-			});
-			return list;
-		}
-	}
-	filterPower = function(num){
-		if(movesLists[num].power.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			primaryPokemon.moves.all.forEach(function(move){
-				var movePower = parseInt(dev.moves[move].power);
-				if(movePower>=movesLists[num].power[0] && movePower<=movesLists[num].power[1]){
-					list.push(move);
-				}
-			});
-			return list;
-		}
-	}
-	filterAccuracy = function(num){
-		if(movesLists[num].accuracy.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			primaryPokemon.moves.all.forEach(function(move){
-				var moveAcc = parseInt(dev.moves[move].accuracy);
-				if(moveAcc>=movesLists[num].accuracy[0] && moveAcc<=movesLists[num].accuracy[1]){
-					list.push(move);
-				}
-			});
-			return list;
-		}
-	}
-	filterPP = function(num){
-		if(movesLists[num].pp.length == 0){
-			return primaryPokemon.moves.all;
-		}else{
-			var list = [];
-			movesLists[num].isFiltered = true;
-			primaryPokemon.moves.all.forEach(function(move){
-				var movePP = parseInt(dev.moves[move].pp);
-				if(movePP>=movesLists[num].pp[0] && movePP<=movesLists[num].pp[1]){
-					list.push(move);
-				}
-			});
-			return list;
-		}
-	}
-	filterTable = function(movesTable, num){
-		movesLists[num].isFiltered = false;
+	// 	ppMin.value = movesLists[num].pp[0] || "";
+	// 	ppMax.value = movesLists[num].pp[1] || "";
+	// 	accuracyMin.value = movesLists[num].accuracy[0] || "";
+	// 	accuracyMax.value = movesLists[num].accuracy[1] || "";
+	// 	powerMin.value = movesLists[num].power[0] || "";
+	// 	powerMax.value = movesLists[num].power[1] || "";
+	// }
+	// filterTypes = function(num){
+	// 	if(movesLists[num].type.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].type.forEach(function(type){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				if(dev.moves[move].type == type){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterCategories = function(num){
+	// 	if(movesLists[num].category.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].category.forEach(function(category){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				if(dev.moves[move].category == category){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterStatus = function(num){
+	// 	if(movesLists[num].status.length == 0){
+	// 		return  primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].status.forEach(function(status){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				if(_.contains(dev.moves[move].effects.condition, status)){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterBattle = function(num){
+	// 	if(movesLists[num].battle.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].battle.forEach(function(battle){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				if(_.contains(dev.moves[move].effects.condition, battle)){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterStat = function(num){
+	// 	if(movesLists[num].stat.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].stat.forEach(function(stat){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				var contains = _.some(dev.moves[move].effects.condition, function(el){
+	// 					if(!!el.stat){
+	// 						return el.stat == stat;
+	// 					}else{
+	// 						return false;
+	// 					}
+	// 				});
+	// 				if(contains){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterStatDir = function(num){
+	// 	if(movesLists[num].statDir.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].statDir.forEach(function(dir){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				var contains = _.some(dev.moves[move].effects.condition, function(el){
+	// 					if(!!el.dir){
+	// 						return el.dir == dir;
+	// 					}else{
+	// 						return false;
+	// 					}
+	// 				});
+	// 				if(contains){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterStatNum = function(num){
+	// 	if(movesLists[num].statNum.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].statNum.forEach(function(num){
+	// 			primaryPokemon.moves.all.forEach(function(move){
+	// 				var contains = _.some(dev.moves[move].effects.condition, function(el){
+	// 					if(!!el.num){
+	// 						return el.num == num;
+	// 					}else{
+	// 						return false;
+	// 					}
+	// 				});
+	// 				if(contains){
+	// 					list.push(move);
+	// 				}
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterLearn = function(num){
+	// 	if(movesLists[num].learn.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		movesLists[num].learn.forEach(function(learn){
+	// 			primaryPokemon.moves[learn].forEach(function(move){
+	// 				list.push(move);
+	// 			});
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterPower = function(num){
+	// 	if(movesLists[num].power.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		primaryPokemon.moves.all.forEach(function(move){
+	// 			var movePower = parseInt(dev.moves[move].power);
+	// 			if(movePower>=movesLists[num].power[0] && movePower<=movesLists[num].power[1]){
+	// 				list.push(move);
+	// 			}
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterAccuracy = function(num){
+	// 	if(movesLists[num].accuracy.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		primaryPokemon.moves.all.forEach(function(move){
+	// 			var moveAcc = parseInt(dev.moves[move].accuracy);
+	// 			if(moveAcc>=movesLists[num].accuracy[0] && moveAcc<=movesLists[num].accuracy[1]){
+	// 				list.push(move);
+	// 			}
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterPP = function(num){
+	// 	if(movesLists[num].pp.length == 0){
+	// 		return primaryPokemon.moves.all;
+	// 	}else{
+	// 		var list = [];
+	// 		movesLists[num].isFiltered = true;
+	// 		primaryPokemon.moves.all.forEach(function(move){
+	// 			var movePP = parseInt(dev.moves[move].pp);
+	// 			if(movePP>=movesLists[num].pp[0] && movePP<=movesLists[num].pp[1]){
+	// 				list.push(move);
+	// 			}
+	// 		});
+	// 		return list;
+	// 	}
+	// }
+	// filterTable = function(movesTable, num){
+	// 	movesLists[num].isFiltered = false;
 		
-		var typeFilterList = filterTypes(num);
-		var categoryFilterList = filterCategories(num);
-		var statusFilterList = filterStatus(num);
-		var battleFilterList = filterBattle(num);
-		var statFilterList = filterStat(num);
-		var statDirFilterList = filterStatDir(num);
-		var statNumFilterList = filterStatNum(num);
-		var learnFilterList = filterLearn(num);
-		var powerFilterList = filterPower(num);
-		var accuracyFilterList = filterAccuracy(num);
-		var ppFilterList = filterPP(num);
+	// 	var typeFilterList = filterTypes(num);
+	// 	var categoryFilterList = filterCategories(num);
+	// 	var statusFilterList = filterStatus(num);
+	// 	var battleFilterList = filterBattle(num);
+	// 	var statFilterList = filterStat(num);
+	// 	var statDirFilterList = filterStatDir(num);
+	// 	var statNumFilterList = filterStatNum(num);
+	// 	var learnFilterList = filterLearn(num);
+	// 	var powerFilterList = filterPower(num);
+	// 	var accuracyFilterList = filterAccuracy(num);
+	// 	var ppFilterList = filterPP(num);
 
-		var filteredList = primaryPokemon.moves.all;
-		if(movesLists[num].isFiltered){
-			filteredList = _.intersection(typeFilterList,categoryFilterList,statusFilterList,battleFilterList,statFilterList,statDirFilterList,statNumFilterList,learnFilterList,powerFilterList,accuracyFilterList,ppFilterList);
-		}
-		$(movesTable).empty();
-		$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
-		filteredList.forEach(function(move){
-			var input = {
-				type : primaryPokemon.battle.primaryType,
-				move : dev.moves[move],
-				effect : moveEffectsToString(dev.moves[move].effects),
-			};
-			html.load(movesTable, input);
-		});
-	}
+	// 	var filteredList = primaryPokemon.moves.all;
+	// 	if(movesLists[num].isFiltered){
+	// 		filteredList = _.intersection(typeFilterList,categoryFilterList,statusFilterList,battleFilterList,statFilterList,statDirFilterList,statNumFilterList,learnFilterList,powerFilterList,accuracyFilterList,ppFilterList);
+	// 	}
+	// 	$(movesTable).empty();
+	// 	$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
+	// 	filteredList.forEach(function(move){
+	// 		var input = {
+	// 			type : primaryPokemon.battle.primaryType,
+	// 			move : dev.moves[move],
+	// 			effect : moveEffectsToString(dev.moves[move].effects),
+	// 		};
+	// 		html.load(movesTable, input);
+	// 	});
+	// }
 })(this);

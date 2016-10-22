@@ -1,0 +1,20 @@
+.checkBoxObject .checkbox {
+  margin: 0px 0px 0px 0px; }
+
+.checkBoxObject .title {
+  display: inline-block; }
+
+.minMaxTextBoxObject .minText {
+  display: inline-block; }
+
+.minMaxTextBoxObject .minInput {
+  width: 30px; }
+
+.minMaxTextBoxObject .maxText {
+  display: inline-block; }
+
+.minMaxTextBoxObject .maxInput {
+  width: 30px; }
+
+.minMaxTextBoxObject .submitButton {
+  margin: 0px 0px 0px 10px; }

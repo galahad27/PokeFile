@@ -4,12 +4,14 @@
 	<link rel="shortcut icon" href="">
 	<!--build:css css/styles.min.css-->
 		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="./lib/jquery.jscrollpane.css">
+		<link rel="stylesheet" href="./lib/jquery.scrollbar.css">
 	<!--endbuild-->
 	<title>Paul</title>
 </head>
 <body>
 <div id="pokemonProfile" class="poke_page">
-	<div class="pageHeader" type-insert="pageHeader"></div>
+	<div class="pageHeader" pre-insert="pageHeader"></div>
 	<div id="pokemonImage" background="" border="">
 		<img id="stockImage" src="">
 	</div>
@@ -48,14 +50,21 @@
 		<li><a id="stats" background="" border="">Stats</a></li>
 		<li><a id="typeStats" background="" border="">Stats By Type</a></li>
 		<li><a id="moves" background="" border="">Moves</a></li>
+		<li><a id="test" background="" border="">TEST</a></li>
 	</ul>
-	<div id="statsPage" border=""></div>
+	<div id="statsPageWrapper" border="">
+		<div id="statsPage"></div>
+	</div>
 </div>
 
 <!-- include libraries -->
 	<script type="text/javascript" src="./lib/jquery.min.js"></script>
 	<script type="text/javascript" src="./lib/rx.all.min.js"></script>
 	<script type="text/javascript" src="./lib/underscore.min.js"></script>
+	<script type="text/javascript" src="./lib/jquery.jscrollpane.min.js"></script>
+	<script type="text/javascript" src="./lib/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="./lib/mwheelIntent.js"></script>
+	<script type="text/javascript" src="./lib/jquery.scrollbar.min.js"></script>
 <!-- end of libraries  -->
 
 <!--build:js js/main.min.js -->

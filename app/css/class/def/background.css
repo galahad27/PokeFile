@@ -1,0 +1,56 @@
+[background="Bug"] {
+  background: #A8B820; }
+
+[background="Dark"] {
+  background: #705848; }
+
+[background="Dragon"] {
+  background: #7038F8; }
+
+[background="Electric"] {
+  background: #F8D030; }
+
+[background="Fairy"] {
+  background: #EE99AC; }
+
+[background="Fighting"] {
+  background: #C03028; }
+
+[background="Fire"] {
+  background: #F08030; }
+
+[background="Flying"] {
+  background: #A890F0; }
+
+[background="Ghost"] {
+  background: #705898; }
+
+[background="Grass"] {
+  background: #78C850; }
+
+[background="Ground"] {
+  background: #E0C068; }
+
+[background="Ice"] {
+  background: #98D8D8; }
+
+[background="Normal"] {
+  background: #A8A878; }
+
+[background="Poison"] {
+  background: #A040A0; }
+
+[background="Psychic"] {
+  background: #F85888; }
+
+[background="Rock"] {
+  background: #B8A038; }
+
+[background="Steel"] {
+  background: #B8B8D0; }
+
+[background="Water"] {
+  background: #6890F0; }
+
+.webBackground {
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(25%, #F08030), color-stop(100%, #98D8D8)); }

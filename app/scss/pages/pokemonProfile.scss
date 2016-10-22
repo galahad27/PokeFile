@@ -44,52 +44,57 @@
 	left: 300px;
 	top: 110px;
 }
-#statsPage{
+#statsPageWrapper{
 	position: fixed;
 	top: 137px;
 	bottom: 10px;
 	left: 300px;
 	right: 10px;
-	z-index: -1;
 	overflow-y: scroll;
 	overflow-x: scroll;
 	white-space: nowrap;
 
-	.pokedexEntry{
-		margin-left: 10px;
-	}
-	.statBarGraph{
-		margin: 0px 0px 0px 20px;
-	}
-	.tableRow{
-		margin: 0px 0px 0px 20px;
-		.statTable{
+	#statsPage{
+		margin: 10px 0px 20px 10px;
+		.pokedexEntry{
+			margin-left: 10px;
+		}
+		.statBarGraph{
+			margin: 0px 0px 0px 20px;
+		}
+		.tableRow{
+			margin: 0px 0px 0px 20px;
+			.statTable{
+				display: inline-block;
+			}
+		}
+		.addButton{
+			margin: 10px 10px 10px 10px;
+			width: 60px;
+			height: 60px;
+			display: inline-block;
+			white-space: nowrap;
+			vertical-align: top;
+		}
+		#row3{
+			margin-bottom: 20px;
+		}
+		#level100{
+			margin: 20px 0px 0px 20px; 
+		}
+		#level50{
+			margin: 20px 0px 0px 20px;
+		}
+		.movesList{
+			border: 1px solid black;
+			margin: 10px 10px 10px 10px;
 			display: inline-block;
 		}
-	}
-	.addButton{
-		margin: 10px 10px 10px 10px;
-		width: 60px;
-		height: 60px;
-		display: inline-block;
-		white-space: nowrap;
-		vertical-align: top;
-	}
-	#row3{
-		margin-bottom: 20px;
-	}
-	#level100{
-		margin: 20px 0px 0px 20px; 
-	}
-	#level50{
-		margin: 20px 0px 0px 20px;
-	}
-	.movesList{
-		border: 1px solid black;
-		margin: 10px 10px 10px 10px;
-		display: inline-block;
+		.movesFilter{
+			border: 1px solid black;
+		}
 	}
 }
-#statsPage::-webkit-scrollbar{
+#statsPageWrapper::-webkit-scrollbar{
 	display: none;
 }
