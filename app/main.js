@@ -235,7 +235,7 @@
 
 	html.load = function(parent, type, input){
 		var UI = html[type]();
-		$(parent).append(UI.html(input));
+		$(parent).append(UI.el(input));
 		!!UI.hasLoaded && UI.hasLoaded(parent);
 		return UI;
 	};
@@ -370,167 +370,189 @@
 })(this);
 (function(root){
 	html.movesFilter = function(){
-		return ""+
-		"	<div class=\"movesFilter\">"+
-		"		<div class=\"row\">"+
-		"			<div class=\"cell\" filterCategory=\"types\">"+
-		"				<h3>Types</h3>"+
-		"				<div class=\"table\">"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-		"						<div class=\"cell\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
-		"						<div class=\"cell\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
-		"						<div class=\"cell\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
-		"						<div class=\"cell\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
-		"						<div class=\"cell\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-		"						<div class=\"cell\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
-		"						<div class=\"cell\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
-		"						<div class=\"cell\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
-		"						<div class=\"cell\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
-		"						<div class=\"cell\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
-		"						</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
-		"						<div class=\"cell\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
-		"						<div class=\"cell\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
-		"					</div>"+
-		"				</div>"+
-		"			</div>"+
-		"			<div class=\"cell\" filterCategory=\"category\">"+
-		"				<h3>Category</h3>"+
-		"				<div filterName=\"physical\">"+ html.checkBoxObject("Physical") +"</div>"+
-		"				<div filterName=\"special\">"+ html.checkBoxObject("Special") +"</div>"+
-		"				<div filterName=\"status\">"+ html.checkBoxObject("Status") +"</div>"+
-		"			</div>"+
-		"			<div class=\"cell\" filterCategory=\"statusEffects\">"+
-		"				<h3>Status Effects</h3>"+
-		"				<div filterName=\"burn\">"+ html.checkBoxObject("Burn") +"</div>"+
-		"				<div filterName=\"freeze\">"+ html.checkBoxObject("Freeze") +"</div>"+
-		"				<div filterName=\"paralysis\">"+ html.checkBoxObject("Paralysis") +"</div>"+
-		"				<div filterName=\"poison\">"+ html.checkBoxObject("Poison") +"</div>"+
-		"				<div filterName=\"sleep\">"+ html.checkBoxObject("Sleep") +"</div>"+
-		"			</div>"+
-		"			<div class=\"cell\" filterCategory=\"battleEffects\">"+
-		"				<h3>Battle Effects</h3>"+
-		"				<div filterName=\"confusion\">"+ html.checkBoxObject("Confusion") +"</div>"+
-		"				<div filterName=\"crit\">"+ html.checkBoxObject("Crit") +"</div>"+
-		"				<div filterName=\"flinch\">"+ html.checkBoxObject("Flinch") +"</div>"+
-		"				<div filterName=\"heal\">"+ html.checkBoxObject("Heal") +"</div>"+
-		"				<div filterName=\"priority\">"+ html.checkBoxObject("Priority") +"</div>"+
-		"				<div filterName=\"trap\">"+ html.checkBoxObject("Trap") +"</div>"+
-		"			</div>"+
-		"		</div>"+
-		"		<div class=\"row\">"+
-		"			<div class=\"cell\" filterCategory=\"statChanges\">"+
-		"				<h3>Stat Changes</h3>"+
-		"				<div class=\"table\">"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"attack\">"+ html.checkBoxObject("Attack") +"</div>"+
-		"						<div class=\"cell\" filterName=\"statIncrease\">"+ html.checkBoxObject("+") +"</div>"+
-		"						<div class=\"cell\" filterName=\"statOne\">"+ html.checkBoxObject("1") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"defense\">"+ html.checkBoxObject("Defense") +"</div>"+
-		"						<div class=\"cell\" filterName=\"statDecrease\">"+ html.checkBoxObject("-") +"</div>"+
-		"						<div class=\"cell\" filterName=\"statTwo\">"+ html.checkBoxObject("2") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"spAttack\">"+ html.checkBoxObject("Sp. Attack") +"</div>"+
-		"						<div class=\"cell\"></div>"+
-		"						<div class=\"cell\" filterName=\"statThree\">"+ html.checkBoxObject("3") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"spDefense\">"+ html.checkBoxObject("Sp. Defense") +"</div>"+
-		"						<div class=\"cell\"></div>"+
-		"						<div class=\"cell\" filterName=\"statFour\">"+ html.checkBoxObject("4") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"speed\">"+ html.checkBoxObject("Speed") +"</div>"+
-		"						<div class=\"cell\"></div>"+
-		"						<div class=\"cell\" filterName=\"statFive\">"+ html.checkBoxObject("5") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"accuracy\">"+ html.checkBoxObject("Accuracy") +"</div>"+
-		"						<div class=\"cell\"></div>"+
-		"						<div class=\"cell\" filterName=\"statSix\">"+ html.checkBoxObject("6") +"</div>"+
-		"					</div>"+
-		"					<div class=\"row\">"+
-		"						<div class=\"cell\" filterName=\"evasion\">"+ html.checkBoxObject("Evasion") +"</div>"+
-		"						<div class=\"cell\"></div>"+
-		"						<div class=\"cell\"></div>"+
-		"					</div>"+
-		"				</div>"+
-		"			</div>"+
-		"				<div class=\"cell\" filterCategory=\"learnedBy\">"+
-		"				<h3>Learned By</h3>"+
-		"				<div filterName=\"egg\">"+ html.checkBoxObject("Egg") +"</div>"+
-		"				<div filterName=\"hm\">"+ html.checkBoxObject("HM") +"</div>"+
-		"				<div filterName=\"level\">"+ html.checkBoxObject("Level") +"</div>"+
-		"				<div filterName=\"preEvolution\">"+ html.checkBoxObject("Pre-Evolution") +"</div>"+
-		"				<div filterName=\"tm\">"+ html.checkBoxObject("TM") +"</div>"+
-		"				<div filterName=\"transfer\">"+ html.checkBoxObject("Transfer") +"</div>"+
-		"				<div filterName=\"tutor\">"+ html.checkBoxObject("Tutor") +"</div>"+
-		"			</div>"+
-		"			<div class=\"cell\">"+
-		"				<div filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBoxObject()+"</div>"+
-		"				<div filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBoxObject()+"</div>"+
-		"				<div filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBoxObject()+"</div>"+
-		"			</div>"+
-		"			<div class=\"cell\">"+
-		"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
-		"				<button class=\"removeButton\" type=\"button\">Remove</button>"+
-		"			</div>"+
-		"		</div>"+
-		"	</div>";
+		var el = function(){
+			return ""+
+			"	<div class=\"movesFilter\">"+
+			"		<div class=\"row\">"+
+			"			<div class=\"cell\" filterCategory=\"types\">"+
+			"				<h3>Types</h3>"+
+			"				<div class=\"table\">"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
+			"						<div class=\"cell\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
+			"						<div class=\"cell\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
+			"						<div class=\"cell\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
+			"						<div class=\"cell\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
+			"						<div class=\"cell\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
+			"						<div class=\"cell\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
+			"						<div class=\"cell\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
+			"						<div class=\"cell\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
+			"						<div class=\"cell\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
+			"						<div class=\"cell\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
+			"						</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
+			"						<div class=\"cell\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
+			"						<div class=\"cell\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
+			"					</div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"cell\" filterCategory=\"category\">"+
+			"				<h3>Category</h3>"+
+			"				<div filterName=\"physical\">"+ html.checkBoxObject("Physical") +"</div>"+
+			"				<div filterName=\"special\">"+ html.checkBoxObject("Special") +"</div>"+
+			"				<div filterName=\"status\">"+ html.checkBoxObject("Status") +"</div>"+
+			"			</div>"+
+			"			<div class=\"cell\" filterCategory=\"statusEffects\">"+
+			"				<h3>Status Effects</h3>"+
+			"				<div filterName=\"burn\">"+ html.checkBoxObject("Burn") +"</div>"+
+			"				<div filterName=\"freeze\">"+ html.checkBoxObject("Freeze") +"</div>"+
+			"				<div filterName=\"paralysis\">"+ html.checkBoxObject("Paralysis") +"</div>"+
+			"				<div filterName=\"poison\">"+ html.checkBoxObject("Poison") +"</div>"+
+			"				<div filterName=\"sleep\">"+ html.checkBoxObject("Sleep") +"</div>"+
+			"			</div>"+
+			"			<div class=\"cell\" filterCategory=\"battleEffects\">"+
+			"				<h3>Battle Effects</h3>"+
+			"				<div filterName=\"confusion\">"+ html.checkBoxObject("Confusion") +"</div>"+
+			"				<div filterName=\"crit\">"+ html.checkBoxObject("Crit") +"</div>"+
+			"				<div filterName=\"flinch\">"+ html.checkBoxObject("Flinch") +"</div>"+
+			"				<div filterName=\"heal\">"+ html.checkBoxObject("Heal") +"</div>"+
+			"				<div filterName=\"priority\">"+ html.checkBoxObject("Priority") +"</div>"+
+			"				<div filterName=\"trap\">"+ html.checkBoxObject("Trap") +"</div>"+
+			"			</div>"+
+			"		</div>"+
+			"		<div class=\"row\">"+
+			"			<div class=\"cell\" filterCategory=\"statChanges\">"+
+			"				<h3>Stat Changes</h3>"+
+			"				<div class=\"table\">"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"attack\">"+ html.checkBoxObject("Attack") +"</div>"+
+			"						<div class=\"cell\" filterName=\"statIncrease\">"+ html.checkBoxObject("+") +"</div>"+
+			"						<div class=\"cell\" filterName=\"statOne\">"+ html.checkBoxObject("1") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"defense\">"+ html.checkBoxObject("Defense") +"</div>"+
+			"						<div class=\"cell\" filterName=\"statDecrease\">"+ html.checkBoxObject("-") +"</div>"+
+			"						<div class=\"cell\" filterName=\"statTwo\">"+ html.checkBoxObject("2") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"spAttack\">"+ html.checkBoxObject("Sp. Attack") +"</div>"+
+			"						<div class=\"cell\"></div>"+
+			"						<div class=\"cell\" filterName=\"statThree\">"+ html.checkBoxObject("3") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"spDefense\">"+ html.checkBoxObject("Sp. Defense") +"</div>"+
+			"						<div class=\"cell\"></div>"+
+			"						<div class=\"cell\" filterName=\"statFour\">"+ html.checkBoxObject("4") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"speed\">"+ html.checkBoxObject("Speed") +"</div>"+
+			"						<div class=\"cell\"></div>"+
+			"						<div class=\"cell\" filterName=\"statFive\">"+ html.checkBoxObject("5") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"accuracy\">"+ html.checkBoxObject("Accuracy") +"</div>"+
+			"						<div class=\"cell\"></div>"+
+			"						<div class=\"cell\" filterName=\"statSix\">"+ html.checkBoxObject("6") +"</div>"+
+			"					</div>"+
+			"					<div class=\"row\">"+
+			"						<div class=\"cell\" filterName=\"evasion\">"+ html.checkBoxObject("Evasion") +"</div>"+
+			"						<div class=\"cell\"></div>"+
+			"						<div class=\"cell\"></div>"+
+			"					</div>"+
+			"				</div>"+
+			"			</div>"+
+			"				<div class=\"cell\" filterCategory=\"learnedBy\">"+
+			"				<h3>Learned By</h3>"+
+			"				<div filterName=\"egg\">"+ html.checkBoxObject("Egg") +"</div>"+
+			"				<div filterName=\"hm\">"+ html.checkBoxObject("HM") +"</div>"+
+			"				<div filterName=\"level\">"+ html.checkBoxObject("Level") +"</div>"+
+			"				<div filterName=\"preEvolution\">"+ html.checkBoxObject("Pre-Evolution") +"</div>"+
+			"				<div filterName=\"tm\">"+ html.checkBoxObject("TM") +"</div>"+
+			"				<div filterName=\"transfer\">"+ html.checkBoxObject("Transfer") +"</div>"+
+			"				<div filterName=\"tutor\">"+ html.checkBoxObject("Tutor") +"</div>"+
+			"			</div>"+
+			"			<div class=\"cell\">"+
+			"				<div filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"			</div>"+
+			"			<div class=\"cell\">"+
+			"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
+			"				<button class=\"removeButton\" type=\"button\">Remove</button>"+
+			"			</div>"+
+			"		</div>"+
+			"	</div>";
+		}
+		var filterMoves = function(moves){
+
+		}
+
+		return {
+			el: el,
+			filterMoves: filterMoves,
+		}
 	}
 })(this);
 (function(root){
-	html.movesTable = function(type){
-		return ""+
-		"	<div class=\"movesTable\" type-insert=\"moves\">"+
-		"		<div class=\"table\">"+html.movesHeader(type)+"</div>"+
-		"	</div>";
-	}
-	html.movesHeader = function(type){
-		return ""+
-		"	<div class=\"row\" background=\""+type+"\">"+
-		"		<div class=\"cell\" type=\"move\" border=\""+type+"\">Move</div>"+
-		"		<div class=\"cell\" type=\"type\" border=\""+type+"\">Type</div>"+
-		"		<div class=\"cell\" type=\"category\" border=\""+type+"\">Category</div>"+
-		"		<div class=\"cell\" type=\"power\" border=\""+type+"\">Pwr</div>"+
-		"		<div class=\"cell\" type=\"accuracy\" border=\""+type+"\">Acc</div>"+
-		"		<div class=\"cell\" type=\"effect\" border=\""+type+"\">Effect</div>"+
-		"		<div class=\"cell\" type=\"pp\" border=\""+type+"\">PP</div>"+
-		"	</div>";
-	}
-	html.moves = function(move, type){
-		return ""+
-		"	<div class=\"row\">"+
-		"		<div class=\"cell\" type=\"move\" border=\""+type+"\">"+move.name+"</div>"+
-		"		<div class=\"cell\" type=\"type\" border=\""+type+"\"><div class=\"text\" background=\""+move.type+"\">"+move.type+"</div></div>"+
-		"		<div class=\"cell\" type=\"category\" border=\""+type+"\">"+move.category+"</div>"+
-		"		<div class=\"cell\" type=\"power\" border=\""+type+"\">"+move.power+"</div>"+
-		"		<div class=\"cell\" type=\"accuracy\" border=\""+type+"\">"+move.accuracy+"</div>"+
-		"		<div class=\"cell\" type=\"effect\" border=\""+type+"\">"+move.effects+"</div>"+
-		"		<div class=\"cell\" type=\"pp\" border=\""+type+"\">"+move.pp+"</div>"+
-		"	</div>";
+
+	html.movesTable = function(){
+
+
+		var el = function(type){
+			return ""+
+			"	<div class=\"movesTable\" type-insert=\"moves\">"+
+			"		<div class=\"table\">"+header(type)+"</div>"+
+			"	</div>";
+		}
+		var addMoves = function(moves){
+
+		}
+		header = function(type){
+			return ""+
+			"	<div class=\"row\" background=\""+type+"\">"+
+			"		<div class=\"cell\" type=\"move\" border=\""+type+"\">Move</div>"+
+			"		<div class=\"cell\" type=\"type\" border=\""+type+"\">Type</div>"+
+			"		<div class=\"cell\" type=\"category\" border=\""+type+"\">Category</div>"+
+			"		<div class=\"cell\" type=\"power\" border=\""+type+"\">Pwr</div>"+
+			"		<div class=\"cell\" type=\"accuracy\" border=\""+type+"\">Acc</div>"+
+			"		<div class=\"cell\" type=\"effect\" border=\""+type+"\">Effect</div>"+
+			"		<div class=\"cell\" type=\"pp\" border=\""+type+"\">PP</div>"+
+			"	</div>";
+		}
+		move = function(move, type){
+			return ""+
+			"	<div class=\"row\">"+
+			"		<div class=\"cell\" type=\"move\" border=\""+type+"\">"+move.name+"</div>"+
+			"		<div class=\"cell\" type=\"type\" border=\""+type+"\"><div class=\"text\" background=\""+move.type+"\">"+move.type+"</div></div>"+
+			"		<div class=\"cell\" type=\"category\" border=\""+type+"\">"+move.category+"</div>"+
+			"		<div class=\"cell\" type=\"power\" border=\""+type+"\">"+move.power+"</div>"+
+			"		<div class=\"cell\" type=\"accuracy\" border=\""+type+"\">"+move.accuracy+"</div>"+
+			"		<div class=\"cell\" type=\"effect\" border=\""+type+"\">"+move.effects+"</div>"+
+			"		<div class=\"cell\" type=\"pp\" border=\""+type+"\">"+move.pp+"</div>"+
+			"	</div>";
+		}
+		return {
+			el: el,
+			addMoves: addMoves,
+		}
 	}
 })(this);
 (function(root){
 	html.pageHeader = function(){
-		var html = function(){
+		var el = function(){
 			return ""+
 				"	<div class=\"header\">"+
 				"		<p>POKEDEX</p>"+
@@ -542,17 +564,17 @@
 				"	</ul>";
 		}
 		return{
-			html: html,
+			el: el,
 		}
 	}
 })(this);
 (function(root){
 	html.pokedexEntry = function(){
-		var html = function(input){
+		var el = function(input){
 			return "<p class=\"pokedexEntry\"><b>"+input[0]+"</b>: "+input[1]+"</p>";
 		}
 		return{
-			html : html,
+			el : el,
 		}
 	}
 })(this);
@@ -561,7 +583,7 @@
 	html.statBarGraph = function(){
 		var barGraph;
 
-		var html = function(input){
+		var el = function(input){
 			return ""+
 				"<div class=\"statBarGraph\">"+
 					"<h1 class=\"graphTitle\">Base Stats</h1>"+
@@ -643,7 +665,7 @@
 				speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
 			}
 			return{
-				html : html,
+				el : el,
 				hasLoaded : hasLoaded,
 				setBarLength : setBarLength,
 			}
@@ -654,34 +676,36 @@
 })(this);
 (function(root){
 	html.statTable = function(input){
-		var html = function(input){
+		var el = function(input){
 			var min = utill.statFormula(input.level, input.stat, 0, 0, 0.9, input.isHp);
 			var iv = utill.statFormula(input.level, input.stat, 31, 0, 1, input.isHp);
 			var ivEv = utill.statFormula(input.level, input.stat, 31, 252, 1, input.isHp);
 			var max = utill.statFormula(input.level, input.stat, 31, 252, 1.1, input.isHp);
 			return ""+
-				"<h2 class=\"tableTitle\">"+input.name+"</h2>"+
-				"<div class=\"tableData\">"+
-					"<div class=\"row\">"+
-					"	<div class=\"cell col0\">Min</div>"+
-					"	<div class=\"cell col1\">"+min+"</div>"+
-					"</div>"+
-					"<div class=\"row\">"+
-					"	<div class=\"cell col0\">Max IV/Min EV</div>"+
-					"	<div class=\"cell col1\">"+iv+"</div>"+
-					"</div>"+
-					"<div class=\"row\">"+
-					"	<div class=\"cell col0\">Max IV/Max EV</div>"+
-					"	<div class=\"cell col1\">"+ivEv+"</div>"+
-					"</div>"+
-					"<div class=\"row\">"+
-					"	<div class=\"cell col0\">Max</div>"+
-					"	<div class=\"cell col1\">"+max+"</div>"+
+				"<div class=\"statTable\">"+
+					"<h2 class=\"tableTitle\">"+input.name+"</h2>"+
+					"<div class=\"tableData\">"+
+						"<div class=\"row\">"+
+						"	<div class=\"cell col0\">Min</div>"+
+						"	<div class=\"cell col1\">"+min+"</div>"+
+						"</div>"+
+						"<div class=\"row\">"+
+						"	<div class=\"cell col0\">Max IV/Min EV</div>"+
+						"	<div class=\"cell col1\">"+iv+"</div>"+
+						"</div>"+
+						"<div class=\"row\">"+
+						"	<div class=\"cell col0\">Max IV/Max EV</div>"+
+						"	<div class=\"cell col1\">"+ivEv+"</div>"+
+						"</div>"+
+						"<div class=\"row\">"+
+						"	<div class=\"cell col0\">Max</div>"+
+						"	<div class=\"cell col1\">"+max+"</div>"+
+						"</div>"+
 					"</div>"+
 				"</div>";
 		}
 		return{
-			html : html,
+			el : el,
 		}
 	}
 })(this);
@@ -700,7 +724,7 @@
 	var TABLEROW1 = "<div id=\"row1\" class=\"tableRow\"></div>";
 	var TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	var TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
-	var SCROLLPANE = "<div class=\"scroll-pane\"></div>";
+	var MOVESSET = function(index){return "<div class=\"movesSet\" index=\""+index+"\"></div>"};
 
 	var LISTNUM = 2;
 
@@ -737,9 +761,7 @@
 
 	var primaryPokemon;
 	var currImageIndex;
-	var movesLists
-	var movesListNum;
-	var removableEventListeners;
+	var movesTableFilterList;
 
 	page.onBeforeShow = function(){
 		init();
@@ -762,9 +784,7 @@
 	init = function(){
 		primaryPokemon = getData();
 		currImageIndex = 0;
-		movesListNum = 0;
-		removableEventListeners = [];
-		movesLists = [];
+		movesTableFilterList = [];
 	}
 	// movesListInit = function(num){
 	// 	movesLists[num] = {
@@ -944,15 +964,6 @@
 		return tempTypes;
 	}
 	/***************************Events***************************/
-	// addButtonClick = function(){
-	// 	if(movesListNum<LISTNUM){
-	// 		var lastMovesList = statsPage.querySelector("#movesList"+(movesListNum-1));
-	// 		addMovesList(lastMovesList);
-	// 	}
-	// 	if(movesListNum=LISTNUM-1){
-	// 		$(".addButton").hide();
-	// 	}
-	// }
 	// buttonClick = function(button, movesTable, num){
 	// 	var filterType = button.getAttribute("filterType")
 	// 	var filter = button.getAttribute("filter");
@@ -1005,16 +1016,7 @@
 		setBorderWidth();
 		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
-		if(movesListNum==0){
-			addMovesList();
-		}else{
-			var num = movesListNum;
-			movesListNum = 0;
-			for(i=0;i<num;i++){
-				addMovesList();
-			}
-		}
-		addAddButton();
+		addMoves(0);
 	}
 	pokedexClick = function(){
 		setBorderWidth();
@@ -1045,13 +1047,6 @@
 		stockImage.setAttribute("src", primaryPokemon.img.url[currImageIndex]);
 	}
 	/***************************Add***************************/
-	// addAddButton = function(){
-	// 	$(statsPage).append(html.addButton);
-	// 	var addButton = page.querySelector(".addButton");
-	// 	$(addButton).off("click");
-	// 	$(addButton).on("click", addButtonClick);
-	// 	removableEventListeners.push(addButton);
-	// }
 	addBarGraph = function(){
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
@@ -1098,28 +1093,16 @@
 	// 	$(removeButton).on("click", removeCallback);
 	// 	removableEventListeners.push(removeButton);
 	// }
-	addMoves = function(prevMovesList){
-		if(!!prevMovesList){
-			$(prevMovesList).after(html.containers.MOVESLIST("movesList"+movesListNum));
-		}else{
-			$(statsPage).append(html.containers.MOVESLIST("movesList"+movesListNum));
-		}
-		var movesList = statsPage.querySelector("#movesList"+movesListNum);
-		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
-		html.load(movesList, primaryPokemon);
-		var movesFilter = movesList.querySelector(".movesFilter");
-		var movesTable = movesList.querySelector(".movesTable");
-		if(movesListNum==0){
-			$(".removeButton").hide();
-		}
-		if(!movesLists[movesListNum]){
-			movesListInit(movesListNum);
-		}
-		fillCheckBoxes(movesFilter, movesListNum);
-		fillTextBoxes(movesFilter, movesListNum);
-		filterTable(movesTable, movesListNum);
-		addMovesFilterEventListener(movesList, movesFilter, movesTable, movesListNum);
-		movesListNum++;
+	addMoves = function(index){
+		$(statsPage).append(MOVESSET(index))
+		var movesSet = statsPage.querySelector("#statsPage [index=\""+index+"\"]");
+		movesSet.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
+		var filterTable = {};
+		filterTable.filter = html.load(movesSet, "movesFilter");
+		filterTable.table = html.load(movesSet, "movesTable", primaryPokemon.battle.primaryType);
+		movesTableFilterList[0] = filterTable;
+		var filteredMoves = movesTableFilterList[0].filter.filterMoves(primaryPokemon.moves.all);
+		movesTableFilterList[0].table.addMoves(filteredMoves);
 	}
 	addPokedexEntries = function(){
 		var keys = _.keys(primaryPokemon.pokedex);
@@ -1141,35 +1124,26 @@
 		var row2 = statsPage.querySelector("#row2");
 		var row3 = statsPage.querySelector("#row3");
 
-		html.load(row0, "statTable");
-
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.HP, "HP", 100));
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.DEFENSE, "Defense", 100));
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.SPDEFENSE, "Sp. Defense", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.SPEED, "Speed", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.ATTACK, "Attack", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.SPATTACK, "Sp. Attack", 100));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.HP, "HP", 50));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.DEFENSE, "Defense", 50));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.SPDEFENSE, "Sp. Defense", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPEED, "Speed", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.ATTACK, "Attack", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPATTACK, "Sp. Attack", 50));
-
-		var tables = page.querySelectorAll(".statTable");
-	
-		tables.forEach(function(table){
-			var input = {};
-			input.stat = table.getAttribute("stat");
-			input.name = table.getAttribute("name");
-			input.level = parseInt(table.getAttribute("level"));
-			if(input.name == "HP"){
-				input.isHp = true;
-			}else{
-				input.isHp = false;
-			}
-			html.load(table, input);
-		})
+		var setInput = function(name, level, stat, isHp){
+			return {
+				name: name,
+				level: level,
+				stat: stat,
+				isHp: isHp,
+			};
+		}
+		html.load(row0, "statTable", setInput("HP", primaryPokemon.base.HP, 100, true));
+		html.load(row0, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 100, false));
+		html.load(row0, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 100, false));
+		html.load(row1, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 100, false));
+		html.load(row1, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 100, false));
+		html.load(row1, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 100, false));
+		html.load(row2, "statTable", setInput("HP", primaryPokemon.base.HP, 50, true));
+		html.load(row2, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 50, false));
+		html.load(row2, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 50, false));
+		html.load(row3, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 50, false));
+		html.load(row3, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 50, false));
+		html.load(row3, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 50, false));
 	}
 	/***************************Remove***************************/
 	// removeRemovableEvevntListeners = function(){

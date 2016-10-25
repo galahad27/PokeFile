@@ -56,6 +56,15 @@
       margin: 0px 0px 0px 20px; }
       #statsPageWrapper #statsPage .tableRow .statTable {
         display: inline-block; }
+    #statsPageWrapper #statsPage #row3 {
+      margin-bottom: 20px; }
+    #statsPageWrapper #statsPage #level100 {
+      margin: 20px 0px 0px 20px; }
+    #statsPageWrapper #statsPage #level50 {
+      margin: 20px 0px 0px 20px; }
+    #statsPageWrapper #statsPage .movesSet {
+      border: 1px solid;
+      display: inline-block; }
     #statsPageWrapper #statsPage .addButton {
       margin: 10px 10px 10px 10px;
       width: 60px;
@@ -63,18 +72,6 @@
       display: inline-block;
       white-space: nowrap;
       vertical-align: top; }
-    #statsPageWrapper #statsPage #row3 {
-      margin-bottom: 20px; }
-    #statsPageWrapper #statsPage #level100 {
-      margin: 20px 0px 0px 20px; }
-    #statsPageWrapper #statsPage #level50 {
-      margin: 20px 0px 0px 20px; }
-    #statsPageWrapper #statsPage .movesList {
-      border: 1px solid black;
-      margin: 10px 10px 10px 10px;
-      display: inline-block; }
-    #statsPageWrapper #statsPage .movesFilter {
-      border: 1px solid black; }
 
 #statsPageWrapper::-webkit-scrollbar {
   display: none; }

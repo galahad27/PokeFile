@@ -2,7 +2,7 @@
 	html.statBarGraph = function(){
 		var barGraph;
 
-		var html = function(input){
+		var el = function(input){
 			return ""+
 				"<div class=\"statBarGraph\">"+
 					"<h1 class=\"graphTitle\">Base Stats</h1>"+
@@ -84,7 +84,7 @@
 				speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
 			}
 			return{
-				html : html,
+				el : el,
 				hasLoaded : hasLoaded,
 				setBarLength : setBarLength,
 			}

@@ -13,7 +13,7 @@
 	var TABLEROW1 = "<div id=\"row1\" class=\"tableRow\"></div>";
 	var TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	var TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
-	var SCROLLPANE = "<div class=\"scroll-pane\"></div>";
+	var MOVESSET = function(index){return "<div class=\"movesSet\" index=\""+index+"\"></div>"};
 
 	var LISTNUM = 2;
 
@@ -50,9 +50,7 @@
 
 	var primaryPokemon;
 	var currImageIndex;
-	var movesLists
-	var movesListNum;
-	var removableEventListeners;
+	var movesTableFilterList;
 
 	page.onBeforeShow = function(){
 		init();
@@ -75,9 +73,7 @@
 	init = function(){
 		primaryPokemon = getData();
 		currImageIndex = 0;
-		movesListNum = 0;
-		removableEventListeners = [];
-		movesLists = [];
+		movesTableFilterList = [];
 	}
 	// movesListInit = function(num){
 	// 	movesLists[num] = {
@@ -257,15 +253,6 @@
 		return tempTypes;
 	}
 	/***************************Events***************************/
-	// addButtonClick = function(){
-	// 	if(movesListNum<LISTNUM){
-	// 		var lastMovesList = statsPage.querySelector("#movesList"+(movesListNum-1));
-	// 		addMovesList(lastMovesList);
-	// 	}
-	// 	if(movesListNum=LISTNUM-1){
-	// 		$(".addButton").hide();
-	// 	}
-	// }
 	// buttonClick = function(button, movesTable, num){
 	// 	var filterType = button.getAttribute("filterType")
 	// 	var filter = button.getAttribute("filter");
@@ -318,16 +305,7 @@
 		setBorderWidth();
 		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
-		if(movesListNum==0){
-			addMovesList();
-		}else{
-			var num = movesListNum;
-			movesListNum = 0;
-			for(i=0;i<num;i++){
-				addMovesList();
-			}
-		}
-		addAddButton();
+		addMoves(0);
 	}
 	pokedexClick = function(){
 		setBorderWidth();
@@ -358,13 +336,6 @@
 		stockImage.setAttribute("src", primaryPokemon.img.url[currImageIndex]);
 	}
 	/***************************Add***************************/
-	// addAddButton = function(){
-	// 	$(statsPage).append(html.addButton);
-	// 	var addButton = page.querySelector(".addButton");
-	// 	$(addButton).off("click");
-	// 	$(addButton).on("click", addButtonClick);
-	// 	removableEventListeners.push(addButton);
-	// }
 	addBarGraph = function(){
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
@@ -411,28 +382,16 @@
 	// 	$(removeButton).on("click", removeCallback);
 	// 	removableEventListeners.push(removeButton);
 	// }
-	addMoves = function(prevMovesList){
-		if(!!prevMovesList){
-			$(prevMovesList).after(html.containers.MOVESLIST("movesList"+movesListNum));
-		}else{
-			$(statsPage).append(html.containers.MOVESLIST("movesList"+movesListNum));
-		}
-		var movesList = statsPage.querySelector("#movesList"+movesListNum);
-		movesList.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
-		html.load(movesList, primaryPokemon);
-		var movesFilter = movesList.querySelector(".movesFilter");
-		var movesTable = movesList.querySelector(".movesTable");
-		if(movesListNum==0){
-			$(".removeButton").hide();
-		}
-		if(!movesLists[movesListNum]){
-			movesListInit(movesListNum);
-		}
-		fillCheckBoxes(movesFilter, movesListNum);
-		fillTextBoxes(movesFilter, movesListNum);
-		filterTable(movesTable, movesListNum);
-		addMovesFilterEventListener(movesList, movesFilter, movesTable, movesListNum);
-		movesListNum++;
+	addMoves = function(index){
+		$(statsPage).append(MOVESSET(index))
+		var movesSet = statsPage.querySelector("#statsPage [index=\""+index+"\"]");
+		movesSet.style.borderColor = R.typeColors[primaryPokemon.battle.primaryType];
+		var filterTable = {};
+		filterTable.filter = html.load(movesSet, "movesFilter");
+		filterTable.table = html.load(movesSet, "movesTable", primaryPokemon.battle.primaryType);
+		movesTableFilterList[0] = filterTable;
+		var filteredMoves = movesTableFilterList[0].filter.filterMoves(primaryPokemon.moves.all);
+		movesTableFilterList[0].table.addMoves(filteredMoves);
 	}
 	addPokedexEntries = function(){
 		var keys = _.keys(primaryPokemon.pokedex);
@@ -454,35 +413,26 @@
 		var row2 = statsPage.querySelector("#row2");
 		var row3 = statsPage.querySelector("#row3");
 
-		html.load(row0, "statTable");
-
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.HP, "HP", 100));
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.DEFENSE, "Defense", 100));
-		$(row0).append(html.containers.STATTABLE(primaryPokemon.base.SPDEFENSE, "Sp. Defense", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.SPEED, "Speed", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.ATTACK, "Attack", 100));
-		$(row1).append(html.containers.STATTABLE(primaryPokemon.base.SPATTACK, "Sp. Attack", 100));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.HP, "HP", 50));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.DEFENSE, "Defense", 50));
-		$(row2).append(html.containers.STATTABLE(primaryPokemon.base.SPDEFENSE, "Sp. Defense", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPEED, "Speed", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.ATTACK, "Attack", 50));
-		$(row3).append(html.containers.STATTABLE(primaryPokemon.base.SPATTACK, "Sp. Attack", 50));
-
-		var tables = page.querySelectorAll(".statTable");
-	
-		tables.forEach(function(table){
-			var input = {};
-			input.stat = table.getAttribute("stat");
-			input.name = table.getAttribute("name");
-			input.level = parseInt(table.getAttribute("level"));
-			if(input.name == "HP"){
-				input.isHp = true;
-			}else{
-				input.isHp = false;
-			}
-			html.load(table, input);
-		})
+		var setInput = function(name, level, stat, isHp){
+			return {
+				name: name,
+				level: level,
+				stat: stat,
+				isHp: isHp,
+			};
+		}
+		html.load(row0, "statTable", setInput("HP", primaryPokemon.base.HP, 100, true));
+		html.load(row0, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 100, false));
+		html.load(row0, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 100, false));
+		html.load(row1, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 100, false));
+		html.load(row1, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 100, false));
+		html.load(row1, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 100, false));
+		html.load(row2, "statTable", setInput("HP", primaryPokemon.base.HP, 50, true));
+		html.load(row2, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 50, false));
+		html.load(row2, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 50, false));
+		html.load(row3, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 50, false));
+		html.load(row3, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 50, false));
+		html.load(row3, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 50, false));
 	}
 	/***************************Remove***************************/
 	// removeRemovableEvevntListeners = function(){
