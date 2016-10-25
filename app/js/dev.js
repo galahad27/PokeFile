@@ -42,11 +42,13 @@
 			breeding : {
 				eggGroup : "Field",
 				eggCycle : "21",
-				male : "25",
-				female : "75",
+				genders : {
+					male : "25",
+					female : "75",
+				},
 			},
 			training : {
-				ev : {
+				evs : {
 					hp : null,
 					attack : null,
 					defense : null,
@@ -60,11 +62,15 @@
 				growthRate : "Medium Fast",
 			},
 			battle : {
-				primaryType : "Fire",
-				secondaryType : null,
-				firstAbility : "Flash Fire",
-				secondAbility : null,
-				hiddenAbility : "Drought",
+				types : {
+					primaryType : "Fire",
+					secondaryType : null,	
+				},
+				abilities : {
+					firstAbility : "Flash Fire",
+					secondAbility : null,
+					hiddenAbility : "Drought",
+				},
 			},
 			pokedex : {
 				Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",

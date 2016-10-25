@@ -1,5 +1,18 @@
 (function(root){
 	html.movesFilter = function(){
+		var filters = {
+			types: [],
+			category: [],
+			status: [],
+			battle: [],
+			stat: [],
+			statDir: [],
+			statChange: [],
+			learn: [],
+			power: [],
+			accuracy: [],
+			pp: [],
+		}
 		var el = function(){
 			return ""+
 			"	<div class=\"movesFilter\">"+
@@ -128,6 +141,212 @@
 		}
 		var filterMoves = function(moves){
 
+		}
+		filterCategories = function(num){
+			if(movesLists[num].category.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].category.forEach(function(category){
+					primaryPokemon.moves.all.forEach(function(move){
+						if(dev.moves[move].category == category){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterStatus = function(num){
+			if(movesLists[num].status.length == 0){
+				return  primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].status.forEach(function(status){
+					primaryPokemon.moves.all.forEach(function(move){
+						if(_.contains(dev.moves[move].effects.condition, status)){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterBattle = function(num){
+			if(movesLists[num].battle.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].battle.forEach(function(battle){
+					primaryPokemon.moves.all.forEach(function(move){
+						if(_.contains(dev.moves[move].effects.condition, battle)){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterStat = function(num){
+			if(movesLists[num].stat.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].stat.forEach(function(stat){
+					primaryPokemon.moves.all.forEach(function(move){
+						var contains = _.some(dev.moves[move].effects.condition, function(el){
+							if(!!el.stat){
+								return el.stat == stat;
+							}else{
+								return false;
+							}
+						});
+						if(contains){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterStatDir = function(num){
+			if(movesLists[num].statDir.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].statDir.forEach(function(dir){
+					primaryPokemon.moves.all.forEach(function(move){
+						var contains = _.some(dev.moves[move].effects.condition, function(el){
+							if(!!el.dir){
+								return el.dir == dir;
+							}else{
+								return false;
+							}
+						});
+						if(contains){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterStatNum = function(num){
+			if(movesLists[num].statNum.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].statNum.forEach(function(num){
+					primaryPokemon.moves.all.forEach(function(move){
+						var contains = _.some(dev.moves[move].effects.condition, function(el){
+							if(!!el.num){
+								return el.num == num;
+							}else{
+								return false;
+							}
+						});
+						if(contains){
+							list.push(move);
+						}
+					});
+				});
+				return list;
+			}
+		}
+		filterLearn = function(num){
+			if(movesLists[num].learn.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				movesLists[num].learn.forEach(function(learn){
+					primaryPokemon.moves[learn].forEach(function(move){
+						list.push(move);
+					});
+				});
+				return list;
+			}
+		}
+		filterPower = function(num){
+			if(movesLists[num].power.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				primaryPokemon.moves.all.forEach(function(move){
+					var movePower = parseInt(dev.moves[move].power);
+					if(movePower>=movesLists[num].power[0] && movePower<=movesLists[num].power[1]){
+						list.push(move);
+					}
+				});
+				return list;
+			}
+		}
+		filterAccuracy = function(num){
+			if(movesLists[num].accuracy.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				primaryPokemon.moves.all.forEach(function(move){
+					var moveAcc = parseInt(dev.moves[move].accuracy);
+					if(moveAcc>=movesLists[num].accuracy[0] && moveAcc<=movesLists[num].accuracy[1]){
+						list.push(move);
+					}
+				});
+				return list;
+			}
+		}
+		filterPP = function(num){
+			if(movesLists[num].pp.length == 0){
+				return primaryPokemon.moves.all;
+			}else{
+				var list = [];
+				movesLists[num].isFiltered = true;
+				primaryPokemon.moves.all.forEach(function(move){
+					var movePP = parseInt(dev.moves[move].pp);
+					if(movePP>=movesLists[num].pp[0] && movePP<=movesLists[num].pp[1]){
+						list.push(move);
+					}
+				});
+				return list;
+			}
+		}
+		filterTable = function(movesTable, num){
+			movesLists[num].isFiltered = false;
+			
+			var typeFilterList = filterTypes(num);
+			var categoryFilterList = filterCategories(num);
+			var statusFilterList = filterStatus(num);
+			var battleFilterList = filterBattle(num);
+			var statFilterList = filterStat(num);
+			var statDirFilterList = filterStatDir(num);
+			var statNumFilterList = filterStatNum(num);
+			var learnFilterList = filterLearn(num);
+			var powerFilterList = filterPower(num);
+			var accuracyFilterList = filterAccuracy(num);
+			var ppFilterList = filterPP(num);
+
+			var filteredList = primaryPokemon.moves.all;
+			if(movesLists[num].isFiltered){
+				filteredList = _.intersection(typeFilterList,categoryFilterList,statusFilterList,battleFilterList,statFilterList,statDirFilterList,statNumFilterList,learnFilterList,powerFilterList,accuracyFilterList,ppFilterList);
+			}
+			$(movesTable).empty();
+			$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
+			filteredList.forEach(function(move){
+				var input = {
+					type : primaryPokemon.battle.primaryType,
+					move : dev.moves[move],
+					effect : moveEffectsToString(dev.moves[move].effects),
+				};
+				html.load(movesTable, input);
+			});
 		}
 
 		return {

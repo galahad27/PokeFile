@@ -1,11 +1,11 @@
-#pokemonImage {
+#pokemonImageWrapper {
   position: absolute;
   top: 100px;
   left: 0px;
   width: 256px;
   height: 256px;
   margin-left: 10px; }
-  #pokemonImage img {
+  #pokemonImageWrapper img {
     width: 256px;
     height: 256px; }
 
