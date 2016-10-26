@@ -376,6 +376,10 @@
 })(this);
 (function(root){
 	html.movesFilter = function(){
+		var movesFilter;
+		var movesList;
+		var filteredList;
+
 		var filters = {
 			types: [],
 			category: [],
@@ -389,124 +393,109 @@
 			accuracy: [],
 			pp: [],
 		}
-		var el = function(){
+		var el = function(moves){
+			movesList = moves;
 			return ""+
 			"	<div class=\"movesFilter\">"+
 			"		<div class=\"row\">"+
-			"			<div class=\"cell\" filterCategory=\"types\">"+
+			"			<div class=\"cell category\" filterCategory=\"types\">"+
 			"				<h3>Types</h3>"+
 			"				<div class=\"table\">"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
-			"						<div class=\"cell\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
-			"						<div class=\"cell\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
-			"						<div class=\"cell\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
-			"						<div class=\"cell\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
-			"						<div class=\"cell\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
-			"						<div class=\"cell\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
-			"						<div class=\"cell\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
-			"						<div class=\"cell\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
 			"						</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
-			"						<div class=\"cell\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
-			"						<div class=\"cell\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
 			"					</div>"+
 			"				</div>"+
 			"			</div>"+
-			"			<div class=\"cell\" filterCategory=\"category\">"+
+			"			<div class=\"cell category\" filterCategory=\"category\">"+
 			"				<h3>Category</h3>"+
-			"				<div filterName=\"physical\">"+ html.checkBoxObject("Physical") +"</div>"+
-			"				<div filterName=\"special\">"+ html.checkBoxObject("Special") +"</div>"+
-			"				<div filterName=\"status\">"+ html.checkBoxObject("Status") +"</div>"+
+			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBoxObject("Physical") +"</div>"+
+			"				<div class=\"name\" filterName=\"special\">"+ html.checkBoxObject("Special") +"</div>"+
+			"				<div class=\"name\" filterName=\"status\">"+ html.checkBoxObject("Status") +"</div>"+
 			"			</div>"+
-			"			<div class=\"cell\" filterCategory=\"statusEffects\">"+
+			"			<div class=\"cell category\" filterCategory=\"status\">"+
 			"				<h3>Status Effects</h3>"+
-			"				<div filterName=\"burn\">"+ html.checkBoxObject("Burn") +"</div>"+
-			"				<div filterName=\"freeze\">"+ html.checkBoxObject("Freeze") +"</div>"+
-			"				<div filterName=\"paralysis\">"+ html.checkBoxObject("Paralysis") +"</div>"+
-			"				<div filterName=\"poison\">"+ html.checkBoxObject("Poison") +"</div>"+
-			"				<div filterName=\"sleep\">"+ html.checkBoxObject("Sleep") +"</div>"+
+			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBoxObject("Burn") +"</div>"+
+			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBoxObject("Freeze") +"</div>"+
+			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBoxObject("Paralysis") +"</div>"+
+			"				<div class=\"name\" filterName=\"poison\">"+ html.checkBoxObject("Poison") +"</div>"+
+			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBoxObject("Sleep") +"</div>"+
 			"			</div>"+
-			"			<div class=\"cell\" filterCategory=\"battleEffects\">"+
+			"			<div class=\"cell category\" filterCategory=\"battle\">"+
 			"				<h3>Battle Effects</h3>"+
-			"				<div filterName=\"confusion\">"+ html.checkBoxObject("Confusion") +"</div>"+
-			"				<div filterName=\"crit\">"+ html.checkBoxObject("Crit") +"</div>"+
-			"				<div filterName=\"flinch\">"+ html.checkBoxObject("Flinch") +"</div>"+
-			"				<div filterName=\"heal\">"+ html.checkBoxObject("Heal") +"</div>"+
-			"				<div filterName=\"priority\">"+ html.checkBoxObject("Priority") +"</div>"+
-			"				<div filterName=\"trap\">"+ html.checkBoxObject("Trap") +"</div>"+
+			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBoxObject("Confusion") +"</div>"+
+			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBoxObject("Crit") +"</div>"+
+			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBoxObject("Flinch") +"</div>"+
+			"				<div class=\"name\" filterName=\"heal\">"+ html.checkBoxObject("Heal") +"</div>"+
+			"				<div class=\"name\" filterName=\"priority\">"+ html.checkBoxObject("Priority") +"</div>"+
+			"				<div class=\"name\" filterName=\"trap\">"+ html.checkBoxObject("Trap") +"</div>"+
 			"			</div>"+
 			"		</div>"+
 			"		<div class=\"row\">"+
-			"			<div class=\"cell\" filterCategory=\"statChanges\">"+
+			"			<div class=\"cell\">"+
 			"				<h3>Stat Changes</h3>"+
-			"				<div class=\"table\">"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"attack\">"+ html.checkBoxObject("Attack") +"</div>"+
-			"						<div class=\"cell\" filterName=\"statIncrease\">"+ html.checkBoxObject("+") +"</div>"+
-			"						<div class=\"cell\" filterName=\"statOne\">"+ html.checkBoxObject("1") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"defense\">"+ html.checkBoxObject("Defense") +"</div>"+
-			"						<div class=\"cell\" filterName=\"statDecrease\">"+ html.checkBoxObject("-") +"</div>"+
-			"						<div class=\"cell\" filterName=\"statTwo\">"+ html.checkBoxObject("2") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"spAttack\">"+ html.checkBoxObject("Sp. Attack") +"</div>"+
-			"						<div class=\"cell\"></div>"+
-			"						<div class=\"cell\" filterName=\"statThree\">"+ html.checkBoxObject("3") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"spDefense\">"+ html.checkBoxObject("Sp. Defense") +"</div>"+
-			"						<div class=\"cell\"></div>"+
-			"						<div class=\"cell\" filterName=\"statFour\">"+ html.checkBoxObject("4") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"speed\">"+ html.checkBoxObject("Speed") +"</div>"+
-			"						<div class=\"cell\"></div>"+
-			"						<div class=\"cell\" filterName=\"statFive\">"+ html.checkBoxObject("5") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"accuracy\">"+ html.checkBoxObject("Accuracy") +"</div>"+
-			"						<div class=\"cell\"></div>"+
-			"						<div class=\"cell\" filterName=\"statSix\">"+ html.checkBoxObject("6") +"</div>"+
-			"					</div>"+
-			"					<div class=\"row\">"+
-			"						<div class=\"cell\" filterName=\"evasion\">"+ html.checkBoxObject("Evasion") +"</div>"+
-			"						<div class=\"cell\"></div>"+
-			"						<div class=\"cell\"></div>"+
-			"					</div>"+
+			"				<div class=\"cell category\" filterCategory=\"stat\">"+
+			"					<div class=\"name\" filterName=\"attack\">"+ html.checkBoxObject("Attack") +"</div>"+
+			"					<div class=\"name\" filterName=\"defense\">"+ html.checkBoxObject("Defense") +"</div>"+
+			"					<div class=\"name\" filterName=\"spAttack\">"+ html.checkBoxObject("Sp. Attack") +"</div>"+
+			"					<div class=\"name\" filterName=\"spDefense\">"+ html.checkBoxObject("Sp. Defense") +"</div>"+
+			"					<div class=\"name\" filterName=\"speed\">"+ html.checkBoxObject("Speed") +"</div>"+
+			"					<div class=\"name\" filterName=\"accuracy\">"+ html.checkBoxObject("Accuracy") +"</div>"+
+			"					<div class=\"name\" filterName=\"evasion\">"+ html.checkBoxObject("Evasion") +"</div>"+
+			"				</div>"+
+			"				<div class=\"cell category\" filterCategory=\"statDir\">"+
+			"					<div class=\"name\" filterName=\"statIncrease\">"+ html.checkBoxObject("+") +"</div>"+
+			"					<div class=\"name\" filterName=\"statDecrease\">"+ html.checkBoxObject("-") +"</div>"+
+			"				</div>"+
+			"				<div class=\"cell category\" filterCategory=\"statChange\">"+
+			"					<div class=\"name\" filterName=\"statOne\">"+ html.checkBoxObject("1") +"</div>"+
+			"					<div class=\"name\" filterName=\"statTwo\">"+ html.checkBoxObject("2") +"</div>"+
+			"					<div class=\"name\" filterName=\"statThree\">"+ html.checkBoxObject("3") +"</div>"+
+			"					<div class=\"name\" filterName=\"statFour\">"+ html.checkBoxObject("4") +"</div>"+
+			"					<div class=\"name\" filterName=\"statFive\">"+ html.checkBoxObject("5") +"</div>"+
+			"					<div class=\"name\" filterName=\"statSix\">"+ html.checkBoxObject("6") +"</div>"+
 			"				</div>"+
 			"			</div>"+
-			"				<div class=\"cell\" filterCategory=\"learnedBy\">"+
+			"			<div class=\"cell category\" filterCategory=\"learn\">"+
 			"				<h3>Learned By</h3>"+
-			"				<div filterName=\"egg\">"+ html.checkBoxObject("Egg") +"</div>"+
-			"				<div filterName=\"hm\">"+ html.checkBoxObject("HM") +"</div>"+
-			"				<div filterName=\"level\">"+ html.checkBoxObject("Level") +"</div>"+
-			"				<div filterName=\"preEvolution\">"+ html.checkBoxObject("Pre-Evolution") +"</div>"+
-			"				<div filterName=\"tm\">"+ html.checkBoxObject("TM") +"</div>"+
-			"				<div filterName=\"transfer\">"+ html.checkBoxObject("Transfer") +"</div>"+
-			"				<div filterName=\"tutor\">"+ html.checkBoxObject("Tutor") +"</div>"+
+			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBoxObject("Egg") +"</div>"+
+			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBoxObject("HM") +"</div>"+
+			"				<div class=\"name\" filterName=\"level\">"+ html.checkBoxObject("Level") +"</div>"+
+			"				<div class=\"name\" filterName=\"preEvolution\">"+ html.checkBoxObject("Pre-Evolution") +"</div>"+
+			"				<div class=\"name\" filterName=\"tm\">"+ html.checkBoxObject("TM") +"</div>"+
+			"				<div class=\"name\" filterName=\"transfer\">"+ html.checkBoxObject("Transfer") +"</div>"+
+			"				<div class=\"name\" filterName=\"tutor\">"+ html.checkBoxObject("Tutor") +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
-			"				<div filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBoxObject()+"</div>"+
-			"				<div filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBoxObject()+"</div>"+
-			"				<div filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBoxObject()+"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
 			"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
@@ -515,23 +504,77 @@
 			"		</div>"+
 			"	</div>";
 		}
-		var filterMoves = function(moves){
-
+		var hasLoaded = function(parent){
+			movesFilter = parent.querySelector(".movesFilter");
+			addEventListeners();
 		}
-		filterCategories = function(num){
-			if(movesLists[num].category.length == 0){
-				return primaryPokemon.moves.all;
+		var filterMoves = function(){
+			filteredList = [];
+			filterTypes();
+		}
+		addEventListeners = function(){
+			var checkboxs = movesFilter.querySelectorAll(".checkbox");
+			checkboxs.forEach(function(checkbox){
+				$(checkbox).on("click", checkboxClick);
+			});
+			var buttons = movesFilter.querySelectorAll(".submitButton");
+			buttons.forEach(function(button){
+				$(button).on("click", submitClick);
+			});
+		}
+		checkboxClick = function(e){
+			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
+			var name = $(e.target).parents(".name")[0].getAttribute("filterName");
+			if(e.target.checked){
+				filters[category].push(name);
 			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].category.forEach(function(category){
-					primaryPokemon.moves.all.forEach(function(move){
+				filters[category] = _.without(filters[category], name);
+			}
+			filterMoves();
+		}
+		submitClick = function(e){
+			var regex;
+			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
+			if(category == "power"){
+				regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
+			}else if(category == "accuracy"){
+				regex = /^([0-9]|[1-9][0-9]|100)$/;
+			}else if(category == "pp"){
+				regex = /^([0-9]|[1-3][0-9]|40)$/;
+			}
+			var parent = $(e.target).parent()[0];
+			var minInput = parent.querySelector(".minInput");
+			var maxInput = parent.querySelector(".maxInput");
+			var minValue = utill.regex(minInput.value,regex);
+			var maxValue = utill.regex(maxInput.value,regex);
+			if(minValue || maxValue){
+				if(minValue){
+					minValue=parseInt(minInput.value);
+				}else{
+					minValue=0;
+				}
+				if(maxValue){
+					maxValue=parseInt(maxInput.value);
+				}else{
+					maxValue=250;
+				}
+				filters[category] = {min: minValue, max: maxValue};
+			}else{
+				filters[category] = {};
+			}
+			filterMoves();
+		}
+		filterTypes = function(){
+			if(filters.types.length == 0){
+				return moves;
+			}else{
+				filters.types.forEach(function(category){
+					movesList.forEach(function(move){
 						if(dev.moves[move].category == category){
-							list.push(move);
+							filteredList.push(move);
 						}
 					});
 				});
-				return list;
 			}
 		}
 		filterStatus = function(num){
@@ -727,6 +770,7 @@
 
 		return {
 			el: el,
+			hasLoaded : hasLoaded,
 			filterMoves: filterMoves,
 		}
 	}
@@ -810,90 +854,90 @@
 
 		var el = function(input){
 			return ""+
-				"<div class=\"statBarGraph\">"+
-					"<h1 class=\"graphTitle\">Base Stats</h1>"+
-					"<div class=\"graphData\">"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">HP</div>"+
-					"		<div id = \"baseHPStat\" class=\"cell col1\">"+input.HP+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar hpBar\"></div>"+
-					"			<div class=\"statBar barCover hpBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">Attack</div>"+
-					"		<div id = \"baseAttackStat\" class=\"cell col1\">"+input.ATTACK+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar attackBar\"></div>"+
-					"			<div class=\"statBar barCover attackBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">Defense</div>"+
-					"		<div id = \"baseDefenseStat\" class=\"cell col1\">"+input.DEFENSE+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar defenseBar\"></div>"+
-					"			<div class=\"statBar barCover defenseBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">Sp. Attack</div>"+
-					"		<div id = \"baseSpAttackStat\" class=\"cell col1\">"+input.SPATTACK+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar spAttackBar\"></div>"+
-					"			<div class=\"statBar barCover spAttackBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">Sp. Defense</div>"+
-					"		<div id = \"baseSpDefenseStat\" class=\"cell col1\">"+input.SPDEFENSE+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar spDefenseBar\"></div>"+
-					"			<div class=\"statBar barCover spDefenseBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"	<div class=\"row\">"+
-					"		<div class=\"cell col0\">Speed</div>"+
-					"		<div id = \"baseSpeedStat\" class=\"cell col1\">"+input.SPEED+"</div>"+
-					"		<div class=\"cell col2\">"+
-					"			<div class=\"statBar speedBar\"></div>"+
-					"			<div class=\"statBar barCover speedBarCover\"></div>"+
-					"		</div>"+
-					"	</div>"+
-					"</div>"+
-				"</div>";
-			}
-			var hasLoaded = function(parent){
-				barGraph = parent.querySelector(".statBarGraph");
-			}
-			var setBarLength = function(stats){
-				var hpCover = barGraph.querySelector(".hpBarCover");
-				var attackCover = barGraph.querySelector(".attackBarCover");
-				var defenseCover = barGraph.querySelector(".defenseBarCover");
-				var spAttackCover = barGraph.querySelector(".spAttackBarCover");
-				var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
-				var speedCover = barGraph.querySelector(".speedBarCover");
+			"	<div class=\"statBarGraph\">"+
+			"		<h1 class=\"graphTitle\">Base Stats</h1>"+
+			"		<div class=\"graphData\">"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">HP</div>"+
+			"				<div id = \"baseHPStat\" class=\"cell col1\">"+input.HP+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar hpBar\"></div>"+
+			"					<div class=\"statBar barCover hpBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">Attack</div>"+
+			"				<div id = \"baseAttackStat\" class=\"cell col1\">"+input.ATTACK+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar attackBar\"></div>"+
+			"					<div class=\"statBar barCover attackBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">Defense</div>"+
+			"				<div id = \"baseDefenseStat\" class=\"cell col1\">"+input.DEFENSE+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar defenseBar\"></div>"+
+			"					<div class=\"statBar barCover defenseBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">Sp. Attack</div>"+
+			"				<div id = \"baseSpAttackStat\" class=\"cell col1\">"+input.SPATTACK+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar spAttackBar\"></div>"+
+			"					<div class=\"statBar barCover spAttackBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">Sp. Defense</div>"+
+			"				<div id = \"baseSpDefenseStat\" class=\"cell col1\">"+input.SPDEFENSE+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar spDefenseBar\"></div>"+
+			"					<div class=\"statBar barCover spDefenseBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"			<div class=\"row\">"+
+			"				<div class=\"cell col0\">Speed</div>"+
+			"				<div id = \"baseSpeedStat\" class=\"cell col1\">"+input.SPEED+"</div>"+
+			"				<div class=\"cell col2\">"+
+			"					<div class=\"statBar speedBar\"></div>"+
+			"					<div class=\"statBar barCover speedBarCover\"></div>"+
+			"				</div>"+
+			"			</div>"+
+			"		</div>"+
+			"	</div>";
+		}
+		var hasLoaded = function(parent){
+			barGraph = parent.querySelector(".statBarGraph");
+		}
+		var setBarLength = function(stats){
+			var hpCover = barGraph.querySelector(".hpBarCover");
+			var attackCover = barGraph.querySelector(".attackBarCover");
+			var defenseCover = barGraph.querySelector(".defenseBarCover");
+			var spAttackCover = barGraph.querySelector(".spAttackBarCover");
+			var spDefenseCover = barGraph.querySelector(".spDefenseBarCover");
+			var speedCover = barGraph.querySelector(".speedBarCover");
 
-				hpCover.style.width = (R.maxStats.HP-stats.HP)*R.STATMODIFIER+"px";
-				attackCover.style.width = (R.maxStats.ATTACK-stats.ATTACK)*R.STATMODIFIER+"px";
-				defenseCover.style.width = (R.maxStats.DEFENSE-stats.DEFENSE)*R.STATMODIFIER+"px";
-				spAttackCover.style.width = (R.maxStats.SPATTACK-stats.SPATTACK)*R.STATMODIFIER+"px";
-				spDefenseCover.style.width = (R.maxStats.SPDEFENSE-stats.SPDEFENSE)*R.STATMODIFIER+"px";
-				speedCover.style.width = (R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
+			hpCover.style.width = (R.maxStats.HP-stats.HP)*R.STATMODIFIER+"px";
+			attackCover.style.width = (R.maxStats.ATTACK-stats.ATTACK)*R.STATMODIFIER+"px";
+			defenseCover.style.width = (R.maxStats.DEFENSE-stats.DEFENSE)*R.STATMODIFIER+"px";
+			spAttackCover.style.width = (R.maxStats.SPATTACK-stats.SPATTACK)*R.STATMODIFIER+"px";
+			spDefenseCover.style.width = (R.maxStats.SPDEFENSE-stats.SPDEFENSE)*R.STATMODIFIER+"px";
+			speedCover.style.width = (R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
 
-				hpCover.style.marginLeft = -1*(R.maxStats.HP-stats.HP)*R.STATMODIFIER+"px";
-				attackCover.style.marginLeft = -1*(R.maxStats.ATTACK-stats.ATTACK)*R.STATMODIFIER+"px";
-				defenseCover.style.marginLeft = -1*(R.maxStats.DEFENSE-stats.DEFENSE)*R.STATMODIFIER+"px";
-				spAttackCover.style.marginLeft = -1*(R.maxStats.SPATTACK-stats.SPATTACK)*R.STATMODIFIER+"px";
-				spDefenseCover.style.marginLeft = -1*(R.maxStats.SPDEFENSE-stats.SPDEFENSE)*R.STATMODIFIER+"px";
-				speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
-			}
-			return{
-				el : el,
-				hasLoaded : hasLoaded,
-				setBarLength : setBarLength,
-			}
+			hpCover.style.marginLeft = -1*(R.maxStats.HP-stats.HP)*R.STATMODIFIER+"px";
+			attackCover.style.marginLeft = -1*(R.maxStats.ATTACK-stats.ATTACK)*R.STATMODIFIER+"px";
+			defenseCover.style.marginLeft = -1*(R.maxStats.DEFENSE-stats.DEFENSE)*R.STATMODIFIER+"px";
+			spAttackCover.style.marginLeft = -1*(R.maxStats.SPATTACK-stats.SPATTACK)*R.STATMODIFIER+"px";
+			spDefenseCover.style.marginLeft = -1*(R.maxStats.SPDEFENSE-stats.SPDEFENSE)*R.STATMODIFIER+"px";
+			speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
+		}
+		return{
+			el : el,
+			hasLoaded : hasLoaded,
+			setBarLength : setBarLength,
+		}
 		
 	}
 
@@ -1015,39 +1059,39 @@
 	};
 
 	//***************************INITIALIZE***************************//
-	init = function(){
+	function init(){
 		pokedexClick();
 	}
-	initEventListeners = function(){
+	function initEventListeners(){
 		$(pokedex).on("click", pokedexClick);
 		$(stats).on("click", statsClick);
 		$(moves).on("click", movesClick);
 		$(pokemonImage).on("click", pokemonImageClick);
 	}
-	initUI = function(){
+	function initUI(){
 		setImage(pokemonImage, primaryPokemon.img.url, 0);
 		setBasicInfo(primaryPokemon);
 		setColorTheme(primaryPokemon.battle.types);
 	}
-	initVariables = function(){
+	function initVariables(){
 		primaryPokemon = getData();
 		currImageIndex = 0;
 		movesTableNum = 0;
 		movesTableList = [];
 	}
 	//***************************DESTROY***************************//
-	destroyEventListeners = function(){
+	function destroyEventListeners(){
 		$(pokedex).off("click", pokedexClick);
 		$(stats).off("click", statsClick);
 		$(moves).off("click", movesClick);
 		$(pokemonImage).on("click", nextImage);
 	}
 	//***************************GETTERS***************************//
-	getData = function(){
+	function getData(){
 		return dev.pokemon.ninetales;
 	}
 	//***************************SETTERS***************************//
-	setBasicInfo = function(pokemon){
+	function setBasicInfo(pokemon){
 		name.innerHTML = pokemon.name.en;
 		altName.innerHTML = pokemon.name.jap;
 		nationalNum.innerHTML = "National Num: "+pokemon.basic.nationalNum;
@@ -1069,12 +1113,12 @@
 		abilities.innerHTML = "Abilities: " + abilitiesToString(pokemon.battle.abilities);
 		hiddenAbility.innerHTML = "Hidden Ability: " + hiddenAbilityToString(pokemon.battle.abilities.hiddenAbility);
 	}
-	setBorderWidth = function(){
+	function setBorderWidth(){
 		pokedex.style.borderWidth = "3px";
 		stats.style.borderWidth = "3px";
 		moves.style.borderWidth = "3px";
 	}
-	setColorTheme = function(types){
+	function setColorTheme(types){
 		pokemonImageWrapper.setAttribute("background", types.primaryType);
 		basicInfo.setAttribute("background", types.primaryType);
 		pokedex.setAttribute("background", types.primaryType);
@@ -1093,35 +1137,35 @@
 			basicInfo.style.background = "linear-gradient("+R.typeColors[types.primaryType]+","+R.typeColors[types.secondaryType]+")";
 		}
 	}
-	setImage = function(img, url, index){
+	function setImage(img, url, index){
 		img.setAttribute("src", url[index]);
 		currImageIndex = index;
 	}
 	//***************************ADD***************************//
-	addBarGraph = function(){
+	function addBarGraph(){
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
 		statsBarGraph.setBarLength(primaryPokemon.base);
 	}
-	addMoves = function(index){
+	function addMoves(index){
 		$(statsPage).append(MOVESSET(index))
 		var movesSet = statsPage.querySelector("#statsPage [index=\""+index+"\"]");
 		movesSet.style.borderColor = R.typeColors[primaryPokemon.battle.types.primaryType];
 		var filterTable = {};
-		filterTable.filter = html.load(movesSet, "movesFilter");
+		filterTable.filter = html.load(movesSet, "movesFilter", primaryPokemon.moves.all);
 		filterTable.table = html.load(movesSet, "movesTable", primaryPokemon.battle.types.primaryType);
 		movesTableList[0] = filterTable;
-		var filteredMoves = movesTableList[0].filter.filterMoves(primaryPokemon.moves.all);
+		var filteredMoves = movesTableList[0].filter.filterMoves();
 		movesTableList[0].table.addMoves(filteredMoves);
 	}
-	addPokedexEntries = function(){
+	function addPokedexEntries(){
 		var keys = _.keys(primaryPokemon.pokedex);
 		keys.forEach(function(key){
 			var input = [key, primaryPokemon.pokedex[key]];
 			html.load(statsPage, "pokedexEntry", input);
-		})
+		});
 	}
-	addTables = function(){
+	function addTables(){
 		$(statsPage).append(LEVEL100);
 		$(statsPage).append(TABLEROW0);
 		$(statsPage).append(TABLEROW1);
@@ -1157,26 +1201,26 @@
 	}
 	//***************************REMOVE***************************//
 	//***************************EVENTS***************************//
-	movesClick = function(){
+	function movesClick(){
 		setBorderWidth();
 		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addMoves(movesTableNum);
 	}
-	pokedexClick = function(){
+	function pokedexClick(){
 		setBorderWidth();
 		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
 	}
-	pokemonImageClick = function(){
+	function pokemonImageClick(){
 		var index = 0
 		if(currImageIndex<primaryPokemon.img.url.length-1){
 			index = currImageIndex+1;	
 		}
 		setImage(pokemonImage, primaryPokemon.img.url, index);
 	}
-	statsClick = function(){
+	function statsClick(){
 		setBorderWidth();
 		stats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
@@ -1184,14 +1228,14 @@
 		addTables();
 	}
 	//***************************TO STRING***************************//
-	abilitiesToString = function(abilities){
+	function abilitiesToString(abilities){
 		tempAbilities = abilities.firstAbility;
 		if(!!abilities.secondAbility){
 			tempAbilities = tempAbilities + " | " + abilities.secondAbility;
 		}
 		return tempAbilities;
 	}
-	evsToString = function(evs){
+	function evsToString(evs){
 		var tempEv="";
 		var types = {
 			hp : "HP",
@@ -1212,17 +1256,17 @@
 		});
 		return tempEv;
 	}
-	gendersToString = function(genders){
+	function gendersToString(genders){
 		return genders.male + "% Male | " + genders.female+"% Female";
 	}
-	hiddenAbilityToString = function(hiddenAbility){
+	function hiddenAbilityToString(hiddenAbility){
 		tempHidden = "";
 		if(!!hiddenAbility){
 			tempHidden = hiddenAbility;
 		}
 		return tempHidden;
 	}
-	typesToString = function(types){
+	function typesToString(types){
 		tempTypes = types.primaryType;
 		if(!!types.secondaryType){
 			tempTypes = tempTypes + " | " + types.secondaryType;
@@ -1287,48 +1331,6 @@
 
 
 
-	// buttonClick = function(button, movesTable, num){
-	// 	var filterType = button.getAttribute("filterType")
-	// 	var filter = button.getAttribute("filter");
-	// 	if(button.checked){
-	// 		movesLists[num].checkedBoxes.push(filter);
-	// 		movesLists[num][filterType].push(filter);
-	// 	}else{
-	// 		movesLists[num].checkedBoxes = _.without(movesLists[num].checkedBoxes, filter);
-	// 		movesLists[num][filterType] = _.without(movesLists[num][filterType], filter);
-	// 	}
-	// 	if(filterType == "power" || filterType == "accuracy" || filterType == "pp"){
-	// 		var regex;
-	// 		if(filterType == "power"){
-	// 			regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
-	// 		}else if(filterType == "accuracy"){
-	// 			regex = /^([0-9]|[1-9][0-9]|100)$/;
-	// 		}else if(filterType == "pp"){
-	// 			regex = /^([0-9]|[1-3][0-9]|40)$/;
-	// 		}
-	// 		var parent = button.parentNode;
-	// 		var minBox = parent.querySelector(".minBox");
-	// 		var maxBox = parent.querySelector(".maxBox");
-	// 		var minValue = utill.regex(minBox.value,regex);
-	// 		var maxValue = utill.regex(maxBox.value,regex);
-	// 		if(minValue || maxValue){
-	// 			if(minValue){
-	// 				minValue=parseInt(minBox.value);
-	// 			}else{
-	// 				minValue=0;
-	// 			}
-	// 			if(maxValue){
-	// 				maxValue=parseInt(maxBox.value);
-	// 			}else{
-	// 				maxValue=250;
-	// 			}
-	// 			movesLists[num][filterType] = [minValue,maxValue];
-	// 		}else{
-	// 			movesLists[num][filterType] = [];
-	// 		}
-	// 	}
-	// 	filterTable(movesTable, num);
-	// }
 	// clearClick = function(movesFilter, movesTable, num){
 	// 	movesListInit(num);
 	// 	fillCheckBoxes(movesFilter, num);
@@ -1338,31 +1340,6 @@
 	
 	
 
-	
-	// addMovesFilterEventListener = function(movesList, movesFilter, movesTable, num){
-	// 	var boxes = movesFilter.querySelectorAll(".box");
-	// 	boxes.forEach(function(box){
-	// 		var callback = function(){
-	// 			buttonClick(box, movesTable, num);
-	// 		}
-	// 		$(box).off("click");
-	// 		$(box).on("click", callback);
-	// 		removableEventListeners.push(box);
-	// 	});
-	// 	var buttons = movesFilter.querySelectorAll(".submitButton");
-	// 	buttons.forEach(function(button){
-	// 		var callback = function(){
-	// 			buttonClick(button, movesTable, num);
-	// 		}
-	// 		var parent = button.parentNode;
-	// 		var minBox = parent.querySelector(".minBox");
-	// 		var maxBox = parent.querySelector(".maxBox");
-	// 		$(minBox).off("click");
-	// 		$(maxBox).off("click");
-	// 		$(button).off("click");
-	// 		$(button).on("click", callback);
-	// 		removableEventListeners.push(button);
-	// 	});
 
 	// 	var clearCallback = function(){
 	// 		clearClick(movesFilter, movesTable, num);

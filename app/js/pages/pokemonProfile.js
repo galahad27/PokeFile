@@ -79,39 +79,39 @@
 	};
 
 	//***************************INITIALIZE***************************//
-	init = function(){
+	function init(){
 		pokedexClick();
 	}
-	initEventListeners = function(){
+	function initEventListeners(){
 		$(pokedex).on("click", pokedexClick);
 		$(stats).on("click", statsClick);
 		$(moves).on("click", movesClick);
 		$(pokemonImage).on("click", pokemonImageClick);
 	}
-	initUI = function(){
+	function initUI(){
 		setImage(pokemonImage, primaryPokemon.img.url, 0);
 		setBasicInfo(primaryPokemon);
 		setColorTheme(primaryPokemon.battle.types);
 	}
-	initVariables = function(){
+	function initVariables(){
 		primaryPokemon = getData();
 		currImageIndex = 0;
 		movesTableNum = 0;
 		movesTableList = [];
 	}
 	//***************************DESTROY***************************//
-	destroyEventListeners = function(){
+	function destroyEventListeners(){
 		$(pokedex).off("click", pokedexClick);
 		$(stats).off("click", statsClick);
 		$(moves).off("click", movesClick);
 		$(pokemonImage).on("click", nextImage);
 	}
 	//***************************GETTERS***************************//
-	getData = function(){
+	function getData(){
 		return dev.pokemon.ninetales;
 	}
 	//***************************SETTERS***************************//
-	setBasicInfo = function(pokemon){
+	function setBasicInfo(pokemon){
 		name.innerHTML = pokemon.name.en;
 		altName.innerHTML = pokemon.name.jap;
 		nationalNum.innerHTML = "National Num: "+pokemon.basic.nationalNum;
@@ -133,12 +133,12 @@
 		abilities.innerHTML = "Abilities: " + abilitiesToString(pokemon.battle.abilities);
 		hiddenAbility.innerHTML = "Hidden Ability: " + hiddenAbilityToString(pokemon.battle.abilities.hiddenAbility);
 	}
-	setBorderWidth = function(){
+	function setBorderWidth(){
 		pokedex.style.borderWidth = "3px";
 		stats.style.borderWidth = "3px";
 		moves.style.borderWidth = "3px";
 	}
-	setColorTheme = function(types){
+	function setColorTheme(types){
 		pokemonImageWrapper.setAttribute("background", types.primaryType);
 		basicInfo.setAttribute("background", types.primaryType);
 		pokedex.setAttribute("background", types.primaryType);
@@ -157,35 +157,35 @@
 			basicInfo.style.background = "linear-gradient("+R.typeColors[types.primaryType]+","+R.typeColors[types.secondaryType]+")";
 		}
 	}
-	setImage = function(img, url, index){
+	function setImage(img, url, index){
 		img.setAttribute("src", url[index]);
 		currImageIndex = index;
 	}
 	//***************************ADD***************************//
-	addBarGraph = function(){
+	function addBarGraph(){
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
 		statsBarGraph.setBarLength(primaryPokemon.base);
 	}
-	addMoves = function(index){
+	function addMoves(index){
 		$(statsPage).append(MOVESSET(index))
 		var movesSet = statsPage.querySelector("#statsPage [index=\""+index+"\"]");
 		movesSet.style.borderColor = R.typeColors[primaryPokemon.battle.types.primaryType];
 		var filterTable = {};
-		filterTable.filter = html.load(movesSet, "movesFilter");
+		filterTable.filter = html.load(movesSet, "movesFilter", primaryPokemon.moves.all);
 		filterTable.table = html.load(movesSet, "movesTable", primaryPokemon.battle.types.primaryType);
 		movesTableList[0] = filterTable;
-		var filteredMoves = movesTableList[0].filter.filterMoves(primaryPokemon.moves.all);
+		var filteredMoves = movesTableList[0].filter.filterMoves();
 		movesTableList[0].table.addMoves(filteredMoves);
 	}
-	addPokedexEntries = function(){
+	function addPokedexEntries(){
 		var keys = _.keys(primaryPokemon.pokedex);
 		keys.forEach(function(key){
 			var input = [key, primaryPokemon.pokedex[key]];
 			html.load(statsPage, "pokedexEntry", input);
-		})
+		});
 	}
-	addTables = function(){
+	function addTables(){
 		$(statsPage).append(LEVEL100);
 		$(statsPage).append(TABLEROW0);
 		$(statsPage).append(TABLEROW1);
@@ -221,26 +221,26 @@
 	}
 	//***************************REMOVE***************************//
 	//***************************EVENTS***************************//
-	movesClick = function(){
+	function movesClick(){
 		setBorderWidth();
 		moves.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addMoves(movesTableNum);
 	}
-	pokedexClick = function(){
+	function pokedexClick(){
 		setBorderWidth();
 		pokedex.style.borderTopWidth = "7px";
 		$(statsPage).empty();
 		addPokedexEntries();
 	}
-	pokemonImageClick = function(){
+	function pokemonImageClick(){
 		var index = 0
 		if(currImageIndex<primaryPokemon.img.url.length-1){
 			index = currImageIndex+1;	
 		}
 		setImage(pokemonImage, primaryPokemon.img.url, index);
 	}
-	statsClick = function(){
+	function statsClick(){
 		setBorderWidth();
 		stats.style.borderTopWidth = "7px";
 		$(statsPage).empty();
@@ -248,14 +248,14 @@
 		addTables();
 	}
 	//***************************TO STRING***************************//
-	abilitiesToString = function(abilities){
+	function abilitiesToString(abilities){
 		tempAbilities = abilities.firstAbility;
 		if(!!abilities.secondAbility){
 			tempAbilities = tempAbilities + " | " + abilities.secondAbility;
 		}
 		return tempAbilities;
 	}
-	evsToString = function(evs){
+	function evsToString(evs){
 		var tempEv="";
 		var types = {
 			hp : "HP",
@@ -276,17 +276,17 @@
 		});
 		return tempEv;
 	}
-	gendersToString = function(genders){
+	function gendersToString(genders){
 		return genders.male + "% Male | " + genders.female+"% Female";
 	}
-	hiddenAbilityToString = function(hiddenAbility){
+	function hiddenAbilityToString(hiddenAbility){
 		tempHidden = "";
 		if(!!hiddenAbility){
 			tempHidden = hiddenAbility;
 		}
 		return tempHidden;
 	}
-	typesToString = function(types){
+	function typesToString(types){
 		tempTypes = types.primaryType;
 		if(!!types.secondaryType){
 			tempTypes = tempTypes + " | " + types.secondaryType;
@@ -351,48 +351,6 @@
 
 
 
-	// buttonClick = function(button, movesTable, num){
-	// 	var filterType = button.getAttribute("filterType")
-	// 	var filter = button.getAttribute("filter");
-	// 	if(button.checked){
-	// 		movesLists[num].checkedBoxes.push(filter);
-	// 		movesLists[num][filterType].push(filter);
-	// 	}else{
-	// 		movesLists[num].checkedBoxes = _.without(movesLists[num].checkedBoxes, filter);
-	// 		movesLists[num][filterType] = _.without(movesLists[num][filterType], filter);
-	// 	}
-	// 	if(filterType == "power" || filterType == "accuracy" || filterType == "pp"){
-	// 		var regex;
-	// 		if(filterType == "power"){
-	// 			regex = /^([0-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0-4][0-9]|250)$/;
-	// 		}else if(filterType == "accuracy"){
-	// 			regex = /^([0-9]|[1-9][0-9]|100)$/;
-	// 		}else if(filterType == "pp"){
-	// 			regex = /^([0-9]|[1-3][0-9]|40)$/;
-	// 		}
-	// 		var parent = button.parentNode;
-	// 		var minBox = parent.querySelector(".minBox");
-	// 		var maxBox = parent.querySelector(".maxBox");
-	// 		var minValue = utill.regex(minBox.value,regex);
-	// 		var maxValue = utill.regex(maxBox.value,regex);
-	// 		if(minValue || maxValue){
-	// 			if(minValue){
-	// 				minValue=parseInt(minBox.value);
-	// 			}else{
-	// 				minValue=0;
-	// 			}
-	// 			if(maxValue){
-	// 				maxValue=parseInt(maxBox.value);
-	// 			}else{
-	// 				maxValue=250;
-	// 			}
-	// 			movesLists[num][filterType] = [minValue,maxValue];
-	// 		}else{
-	// 			movesLists[num][filterType] = [];
-	// 		}
-	// 	}
-	// 	filterTable(movesTable, num);
-	// }
 	// clearClick = function(movesFilter, movesTable, num){
 	// 	movesListInit(num);
 	// 	fillCheckBoxes(movesFilter, num);
@@ -402,31 +360,6 @@
 	
 	
 
-	
-	// addMovesFilterEventListener = function(movesList, movesFilter, movesTable, num){
-	// 	var boxes = movesFilter.querySelectorAll(".box");
-	// 	boxes.forEach(function(box){
-	// 		var callback = function(){
-	// 			buttonClick(box, movesTable, num);
-	// 		}
-	// 		$(box).off("click");
-	// 		$(box).on("click", callback);
-	// 		removableEventListeners.push(box);
-	// 	});
-	// 	var buttons = movesFilter.querySelectorAll(".submitButton");
-	// 	buttons.forEach(function(button){
-	// 		var callback = function(){
-	// 			buttonClick(button, movesTable, num);
-	// 		}
-	// 		var parent = button.parentNode;
-	// 		var minBox = parent.querySelector(".minBox");
-	// 		var maxBox = parent.querySelector(".maxBox");
-	// 		$(minBox).off("click");
-	// 		$(maxBox).off("click");
-	// 		$(button).off("click");
-	// 		$(button).on("click", callback);
-	// 		removableEventListeners.push(button);
-	// 	});
 
 	// 	var clearCallback = function(){
 	// 		clearClick(movesFilter, movesTable, num);
