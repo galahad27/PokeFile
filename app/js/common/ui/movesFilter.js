@@ -133,7 +133,7 @@
 			addEventListeners();
 		}
 		var filterMoves = function(){
-			filteredList = [];
+			filteredList = movesList;
 			filterTypes();
 		}
 		addEventListeners = function(){
@@ -189,17 +189,15 @@
 			filterMoves();
 		}
 		filterTypes = function(){
-			if(filters.types.length == 0){
-				return moves;
-			}else{
-				filters.types.forEach(function(category){
-					movesList.forEach(function(move){
-						if(dev.moves[move].category == category){
-							filteredList.push(move);
-						}
-					});
+			var temp = []
+			filters.types.forEach(function(category){
+				filteredList.forEach(function(move){
+					if(dev.moves[move].category == category){
+						temp.push(move);
+					}
 				});
-			}
+			});
+			filteredList = temp;
 		}
 		filterStatus = function(num){
 			if(movesLists[num].status.length == 0){
