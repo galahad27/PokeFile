@@ -1,0 +1,83 @@
+$bugBackground: #A8B820;
+$darkBackground: #705848;
+$dragonBackground: #7038F8;
+$electricBackground: #F8D030;
+$fairyBackground: #EE99AC;
+$fireBackground: #F08030;
+$fightingBackground: #C03028;
+$flyingBackground: #A890F0;
+$ghostBackground: #705898;
+$grassBackground: #78C850;
+$groundBackground: #E0C068;
+$iceBackground: #98D8D8;
+$normalBackground: #A8A878;
+$poisonBackground: #A040A0;
+$psychicBackground: #F85888;
+$rockBackground: #B8A038;
+$steelBackground: #B8B8D0;
+$waterBackground: #6890F0;
+
+$fireIceBackground: linear-gradient($fireBackground, $iceBackground);
+
+[background="Bug"]{
+	background: $bugBackground;
+}
+[background="Dark"]{
+	background: $darkBackground;
+}
+[background="Dragon"]{
+	background: $dragonBackground;
+}
+[background="Electric"]{
+	background: $electricBackground;
+}
+[background="Fairy"]{
+	background: $fairyBackground;
+}
+[background="Fighting"]{
+	background: $fightingBackground;
+}
+[background="Fire"]{
+	background: $fireBackground;
+}
+[background="Flying"]{
+	background: $flyingBackground;
+}
+[background="Ghost"]{
+	background: $ghostBackground;
+}
+[background="Grass"]{
+	background: $grassBackground;
+}
+[background="Ground"]{
+	background: $groundBackground;
+}
+[background="Ice"]{
+	background: $iceBackground;
+}
+[background="Normal"]{
+	background: $normalBackground;
+}
+[background="Poison"]{
+	background: $poisonBackground;
+}
+[background="Psychic"]{
+	background: $psychicBackground;
+}
+[background="Rock"]{
+	background: $rockBackground;
+}
+[background="Steel"]{
+	background: $steelBackground;
+}
+[background="Water"]{
+	background: $waterBackground;
+}
+
+$webColors: -webkit-gradient(linear, left top, right bottom,
+			color-stop(25%, $fireBackground),
+			color-stop(100%, $iceBackground));
+
+.webBackground{
+	background: $webColors;
+}
