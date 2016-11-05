@@ -211,20 +211,6 @@
       transition: 0.3s;
       font-size: 17px; }
 
-.header {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 40px;
-  background: black;
-  z-index: 100; }
-  .header p {
-    font-size: 27px;
-    text-align: center;
-    color: white;
-    margin: 0px; }
-
 .checkBoxObject .checkbox {
   margin: 0px 0px 0px 0px; }
 
@@ -245,6 +231,20 @@
 
 .minMaxTextBoxObject .submitButton {
   margin: 0px 0px 0px 10px; }
+
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 40px;
+  background: black;
+  z-index: 100; }
+  .header p {
+    font-size: 27px;
+    text-align: center;
+    color: white;
+    margin: 0px; }
 
 .tabMenu {
   white-space: nowrap;

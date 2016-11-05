@@ -237,9 +237,6 @@
 	root.dev = dev;
 })(this);
 (function(root){
-	loadPage(pages.pageIds.POKEMONPROFILE);
-})(this);
-(function(root){
 
 	var utill = {};
 
@@ -255,6 +252,8 @@
 	}
 
 	root.utill = utill;
+})(this);
+(function(root){
 })(this);
 (function(root){
 
@@ -295,23 +294,23 @@
 (function(root){
 	var activePage;
 
-	var loadPage = function(page){
+	function loadPage(page){
 		if(!!activePage){
 			onBeforeHide(page);
 		}else{
 			onBeforeShow(page);
 		}
 	}
-	var onBeforeHide = function(page){
+	function onBeforeHide(page){
 		!!pages.activePage.onBeforeHide && pages.activePage.onBeforeHide();
 		onHide(page);
 	};
-	var onHide = function(page){
+	function onHide(page){
 		pages.activePage.style.display = "none";
 		!!pages.activePage.onHide && pages.activePage.onHide();
 		onBeforeShow(page);
 	};
-	var onBeforeShow = function(page){
+	function onBeforeShow(page){
 		pages.activePage = pages[page];
 		pageUIs = pages.activePage.querySelectorAll("[pre-insert]");
 		pageUIs.forEach(function(UI){
@@ -320,7 +319,7 @@
 		!!pages.activePage.onBeforeShow && pages.activePage.onBeforeShow();
 		onShow();
 	};
-	var onShow = function(){
+	function onShow(){
 		pages.activePage.style.display = "block";
 		!!pages.activePage.onShow && pages.activePage.onShow();
 	};
@@ -342,23 +341,6 @@
 	}
 
 	root.pages = pages;
-})(this);
-(function(root){
-	var lang = {};
-
-	lang.translate
-})(this);
-(function(root){
-	var html = {};
-
-	html.load = function(parent, type, input){
-		var UI = html[type]();
-		$(parent).append(UI.el(input));
-		!!UI.hasLoaded && UI.hasLoaded(parent);
-		return UI;
-	};
-
-	root.html = html;
 })(this);
 (function(root){
 	//***************************VARIABLES***************************//
@@ -806,24 +788,21 @@
 	// }
 })(this);
 (function(root){
+	var lang = {};
+
+	lang.translate
 })(this);
 (function(root){
-	html.pageHeader = function(){
-		var el = function(){
-			return ""+
-				"	<div class=\"header\">"+
-				"		<p>POKEDEX</p>"+
-				"	</div>"+
-				"	<ul class=\"mainBarMenu webBackground fireBorder\">"+
-				"		<li><a href=\"#\">Home</a></li>"+
-				"		<li><a id=\"p38\" href=\"#\">Ninetails</a></li>"+
-				"		<li><a id=\"p282\" href=\"#\">Gardevoir</a></li>"+
-				"	</ul>";
-		}
-		return{
-			el: el,
-		}
-	}
+	var html = {};
+
+	html.load = function(parent, type, input){
+		var UI = html[type]();
+		$(parent).append(UI.el(input));
+		!!UI.hasLoaded && UI.hasLoaded(parent);
+		return UI;
+	};
+
+	root.html = html;
 })(this);
 (function(root){
 	html.checkBoxObject = function(title, background){
@@ -842,6 +821,24 @@
 		"	<input class=\"maxInput\" type=\"text\">"+
 		"	<button class=\"submitButton\" type=\"button\">Submit</button>"+
 		"</div>";
+	}
+})(this);
+(function(root){
+	html.pageHeader = function(){
+		var el = function(){
+			return ""+
+				"	<div class=\"header\">"+
+				"		<p>POKEDEX</p>"+
+				"	</div>"+
+				"	<ul class=\"mainBarMenu webBackground fireBorder\">"+
+				"		<li><a href=\"#\">Home</a></li>"+
+				"		<li><a id=\"p38\" href=\"#\">Ninetails</a></li>"+
+				"		<li><a id=\"p282\" href=\"#\">Gardevoir</a></li>"+
+				"	</ul>";
+		}
+		return{
+			el: el,
+		}
 	}
 })(this);
 (function(root){
@@ -1459,4 +1456,7 @@
 	}
 
 
+})(this);
+(function(root){
+	loadPage(pages.pageIds.POKEMONPROFILE);
 })(this);
