@@ -1,21 +1,17 @@
 (function(root){
 	var pages = {};
-	var elements = document.querySelectorAll(".poke_page");
 
-	elements.forEach(function(page){
+	pages.elements = document.querySelectorAll(".poke_page");
+	pages.elements.forEach(function(page){
 		pageId = page.getAttribute("id");
 		pages[pageId] = page;
-	})
-
-	pages.activePage = null;
-
+	});
 	pages.pageIds = {
 		POKEMONPROFILE : "pokemonProfile",
-	}
-	var activePage;
+	} 
 
-	function loadPage(page){
-		if(!!activePage){
+	pages.loadPage = function(page){
+		if(!!page.activePage){
 			onBeforeHide(page);
 		}else{
 			onBeforeShow(page);
@@ -43,7 +39,6 @@
 		pages.activePage.style.display = "block";
 		!!pages.activePage.onShow && pages.activePage.onShow();
 	};
-	root.loadPage = loadPage;
 
 	root.pages = pages;
 })(this);

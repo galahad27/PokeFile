@@ -3,7 +3,7 @@
 
 	html.load = function(parent, type, input){
 		var UI = html[type]();
-		$(parent).append(UI.el(input));
+		$(parent).append(UI.html(input));
 		!!UI.hasLoaded && UI.hasLoaded(parent);
 		return UI;
 	};

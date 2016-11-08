@@ -292,10 +292,19 @@
 	root.R = R;
 })(this);
 (function(root){
-	var activePage;
+	var pages = {};
 
-	function loadPage(page){
-		if(!!activePage){
+	pages.elements = document.querySelectorAll(".poke_page");
+	pages.elements.forEach(function(page){
+		pageId = page.getAttribute("id");
+		pages[pageId] = page;
+	});
+	pages.pageIds = {
+		POKEMONPROFILE : "pokemonProfile",
+	} 
+
+	pages.loadPage = function(page){
+		if(!!page.activePage){
 			onBeforeHide(page);
 		}else{
 			onBeforeShow(page);
@@ -323,22 +332,6 @@
 		pages.activePage.style.display = "block";
 		!!pages.activePage.onShow && pages.activePage.onShow();
 	};
-	root.loadPage = loadPage;
-})(this);
-(function(root){
-	var pages = {};
-	var elements = document.querySelectorAll(".poke_page");
-
-	elements.forEach(function(page){
-		pageId = page.getAttribute("id");
-		pages[pageId] = page;
-	})
-
-	pages.activePage = null;
-
-	pages.pageIds = {
-		POKEMONPROFILE : "pokemonProfile",
-	}
 
 	root.pages = pages;
 })(this);
@@ -797,7 +790,7 @@
 
 	html.load = function(parent, type, input){
 		var UI = html[type]();
-		$(parent).append(UI.el(input));
+		$(parent).append(UI.html(input));
 		!!UI.hasLoaded && UI.hasLoaded(parent);
 		return UI;
 	};
@@ -805,27 +798,8 @@
 	root.html = html;
 })(this);
 (function(root){
-	html.checkBoxObject = function(title, background){
-		return ""+
-		"<div class=\"checkBoxObject\">"+
-		"	<input class=\"checkbox\" type=\"checkbox\">"+
-		"	<div class=\"title\" background=\""+background+"\">"+title+"</div>"+
-		"</div>";
-	}
-	html.minMaxTextBoxObject = function(){
-		return""+
-		"<div class=\"minMaxTextBoxObject\">"+
-		"	<div class=\"minText\">Min</div>"+
-		"	<input class=\"minInput\" type=\"text\">"+
-		"	<div class=\"maxText\">Max</div>"+
-		"	<input class=\"maxInput\" type=\"text\">"+
-		"	<button class=\"submitButton\" type=\"button\">Submit</button>"+
-		"</div>";
-	}
-})(this);
-(function(root){
-	html.pageHeader = function(){
-		var el = function(){
+	html.siteHeader = function(){
+		var html = function(){
 			return ""+
 				"	<div class=\"header\">"+
 				"		<p>POKEDEX</p>"+
@@ -837,17 +811,26 @@
 				"	</ul>";
 		}
 		return{
-			el: el,
+			html: html,
 		}
 	}
 })(this);
 (function(root){
+	html.checkBox = function(title, background){
+		return ""+
+		"<div class=\"checkBox\">"+
+		"	<input class=\"checkbox\" type=\"checkbox\">"+
+		"	<div class=\"title\" background=\""+background+"\">"+title+"</div>"+
+		"</div>";
+	}
+})(this);
+(function(root){
 	html.pokedexEntry = function(){
-		var el = function(input){
+		var html = function(input){
 			return "<p class=\"pokedexEntry\"><b>"+input[0]+"</b>: "+input[1]+"</p>";
 		}
 		return{
-			el : el,
+			html : html,
 		}
 	}
 })(this);
@@ -871,7 +854,7 @@
 			accuracy: [],
 			pp: [],
 		}
-		var el = function(moves){
+		var html = function(moves){
 			movesList = moves;
 			return ""+
 			"	<div class=\"movesFilter\">"+
@@ -1276,7 +1259,7 @@
 		}
 
 		return {
-			el: el,
+			html: html,
 			hasLoaded : hasLoaded,
 			filterMoves: filterMoves,
 		}
@@ -1287,7 +1270,7 @@
 	html.movesTable = function(){
 
 
-		var el = function(type){
+		var html = function(type){
 			return ""+
 			"	<div class=\"movesTable\" type-insert=\"moves\">"+
 			"		<div class=\"table\">"+header(type)+"</div>"+
@@ -1321,20 +1304,20 @@
 			"	</div>";
 		}
 		return {
-			el: el,
+			html: html,
 			addMoves: addMoves,
 		}
 	}
 })(this);
 (function(root){
-	html.statTable = function(input){
-		var el = function(input){
+	html.pokemonStatsTable = function(input){
+		var html = function(input){
 			var min = utill.statFormula(input.level, input.stat, 0, 0, 0.9, input.isHp);
 			var iv = utill.statFormula(input.level, input.stat, 31, 0, 1, input.isHp);
 			var ivEv = utill.statFormula(input.level, input.stat, 31, 252, 1, input.isHp);
 			var max = utill.statFormula(input.level, input.stat, 31, 252, 1.1, input.isHp);
 			return ""+
-				"<div class=\"statTable\">"+
+				"<div class=\"pokemonStatsTable\">"+
 					"<h2 class=\"tableTitle\">"+input.name+"</h2>"+
 					"<div class=\"tableData\">"+
 						"<div class=\"row\">"+
@@ -1357,18 +1340,17 @@
 				"</div>";
 		}
 		return{
-			el : el,
+			html : html,
 		}
 	}
 })(this);
-
 (function(root){
-	html.statBarGraph = function(){
+	html.pokemonStatsBarGraph = function(){
 		var barGraph;
 
-		var el = function(input){
+		var html = function(input){
 			return ""+
-			"	<div class=\"statBarGraph\">"+
+			"	<div class=\"pokemonStatsBarGraph\">"+
 			"		<h1 class=\"graphTitle\">Base Stats</h1>"+
 			"		<div class=\"graphData\">"+
 			"			<div class=\"row\">"+
@@ -1423,7 +1405,7 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
-			barGraph = parent.querySelector(".statBarGraph");
+			barGraph = parent.querySelector(".pokemonStatsBarGraph");
 		}
 		var setBarLength = function(stats){
 			var hpCover = barGraph.querySelector(".hpBarCover");
@@ -1448,7 +1430,7 @@
 			speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
 		}
 		return{
-			el : el,
+			html : html,
 			hasLoaded : hasLoaded,
 			setBarLength : setBarLength,
 		}
@@ -1458,5 +1440,17 @@
 
 })(this);
 (function(root){
-	loadPage(pages.pageIds.POKEMONPROFILE);
+	html.minMaxTextBox = function(){
+		return""+
+		"<div class=\"minMaxTextBox\">"+
+		"	<div class=\"minText\">Min</div>"+
+		"	<input class=\"minInput\" type=\"text\">"+
+		"	<div class=\"maxText\">Max</div>"+
+		"	<input class=\"maxInput\" type=\"text\">"+
+		"	<button class=\"submitButton\" type=\"button\">Submit</button>"+
+		"</div>";
+	}
+})(this);
+(function(root){
+	pages.loadPage(pages.pageIds.POKEMONPROFILE);
 })(this);

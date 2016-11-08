@@ -211,27 +211,6 @@
       transition: 0.3s;
       font-size: 17px; }
 
-.checkBoxObject .checkbox {
-  margin: 0px 0px 0px 0px; }
-
-.checkBoxObject .title {
-  display: inline-block; }
-
-.minMaxTextBoxObject .minText {
-  display: inline-block; }
-
-.minMaxTextBoxObject .minInput {
-  width: 30px; }
-
-.minMaxTextBoxObject .maxText {
-  display: inline-block; }
-
-.minMaxTextBoxObject .maxInput {
-  width: 30px; }
-
-.minMaxTextBoxObject .submitButton {
-  margin: 0px 0px 0px 10px; }
-
 .header {
   position: fixed;
   top: 0px;
@@ -245,6 +224,12 @@
     text-align: center;
     color: white;
     margin: 0px; }
+
+.checkBox .checkbox {
+  margin: 0px 0px 0px 0px; }
+
+.checkBox .title {
+  display: inline-block; }
 
 .tabMenu {
   white-space: nowrap;
@@ -330,61 +315,76 @@
     .movesTable .table .row [type="pp"] {
       width: 5%; }
 
-.statTable .tableData .row {
+.pokemonStatsTable .tableData .row {
   margin: 10px 0px 0px 0px;
   white-space: nowrap; }
 
-.statTable .tableData .cell {
+.pokemonStatsTable .tableData .cell {
   display: inline-block;
   vertical-align: middle; }
 
-.statTable .tableData .col0 {
+.pokemonStatsTable .tableData .col0 {
   width: 150px; }
 
-.statTable .tableData .col1 {
+.pokemonStatsTable .tableData .col1 {
   width: 50px; }
 
-.statBarGraph .graphData .row {
+.pokemonStatsBarGraph .graphData .row {
   margin: 10px 0px 0px 0px;
   white-space: nowrap; }
 
-.statBarGraph .graphData .cell {
+.pokemonStatsBarGraph .graphData .cell {
   display: inline-block;
   vertical-align: middle; }
 
-.statBarGraph .graphData .col0 {
+.pokemonStatsBarGraph .graphData .col0 {
   width: 100px; }
 
-.statBarGraph .graphData .col1 {
+.pokemonStatsBarGraph .graphData .col1 {
   width: 50px; }
 
-.statBarGraph .graphData .col2 .statBar {
+.pokemonStatsBarGraph .graphData .col2 .statBar {
   height: 25px;
   display: inline-block; }
 
-.statBarGraph .graphData .col2 .barCover {
+.pokemonStatsBarGraph .graphData .col2 .barCover {
   background: white; }
 
-.statBarGraph .graphData .col2 .hpBar {
+.pokemonStatsBarGraph .graphData .col2 .hpBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(31%, yellow), color-stop(100%, lime));
   width: 765px; }
 
-.statBarGraph .graphData .col2 .attackBar {
+.pokemonStatsBarGraph .graphData .col2 .attackBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(47%, yellow), color-stop(100%, lime));
   width: 570px; }
 
-.statBarGraph .graphData .col2 .defenseBar {
+.pokemonStatsBarGraph .graphData .col2 .defenseBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
   width: 690px; }
 
-.statBarGraph .graphData .col2 .spAttackBar {
+.pokemonStatsBarGraph .graphData .col2 .spAttackBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(44%, yellow), color-stop(100%, lime));
   width: 582px; }
 
-.statBarGraph .graphData .col2 .spDefenseBar {
+.pokemonStatsBarGraph .graphData .col2 .spDefenseBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(36%, yellow), color-stop(100%, lime));
   width: 690px; }
 
-.statBarGraph .graphData .col2 .speedBar {
+.pokemonStatsBarGraph .graphData .col2 .speedBar {
   background: -webkit-gradient(linear, left top, right top, color-stop(0%, red), color-stop(43%, yellow), color-stop(100%, lime));
   width: 540px; }
+
+.minMaxTextBox .minText {
+  display: inline-block; }
+
+.minMaxTextBox .minInput {
+  width: 30px; }
+
+.minMaxTextBox .maxText {
+  display: inline-block; }
+
+.minMaxTextBox .maxInput {
+  width: 30px; }
+
+.minMaxTextBox .submitButton {
+  margin: 0px 0px 0px 10px; }

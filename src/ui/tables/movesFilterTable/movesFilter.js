@@ -17,7 +17,7 @@
 			accuracy: [],
 			pp: [],
 		}
-		var el = function(moves){
+		var html = function(moves){
 			movesList = moves;
 			return ""+
 			"	<div class=\"movesFilter\">"+
@@ -422,7 +422,7 @@
 		}
 
 		return {
-			el: el,
+			html: html,
 			hasLoaded : hasLoaded,
 			filterMoves: filterMoves,
 		}

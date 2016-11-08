@@ -1,6 +1,6 @@
 (function(root){
-	html.pageHeader = function(){
-		var el = function(){
+	html.siteHeader = function(){
+		var html = function(){
 			return ""+
 				"	<div class=\"header\">"+
 				"		<p>POKEDEX</p>"+
@@ -12,7 +12,7 @@
 				"	</ul>";
 		}
 		return{
-			el: el,
+			html: html,
 		}
 	}
 })(this);

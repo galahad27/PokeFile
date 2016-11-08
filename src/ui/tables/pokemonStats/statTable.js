@@ -1,12 +1,12 @@
 (function(root){
-	html.statTable = function(input){
-		var el = function(input){
+	html.pokemonStatsTable = function(input){
+		var html = function(input){
 			var min = utill.statFormula(input.level, input.stat, 0, 0, 0.9, input.isHp);
 			var iv = utill.statFormula(input.level, input.stat, 31, 0, 1, input.isHp);
 			var ivEv = utill.statFormula(input.level, input.stat, 31, 252, 1, input.isHp);
 			var max = utill.statFormula(input.level, input.stat, 31, 252, 1.1, input.isHp);
 			return ""+
-				"<div class=\"statTable\">"+
+				"<div class=\"pokemonStatsTable\">"+
 					"<h2 class=\"tableTitle\">"+input.name+"</h2>"+
 					"<div class=\"tableData\">"+
 						"<div class=\"row\">"+
@@ -29,7 +29,7 @@
 				"</div>";
 		}
 		return{
-			el : el,
+			html : html,
 		}
 	}
 })(this);

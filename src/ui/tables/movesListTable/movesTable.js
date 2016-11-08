@@ -3,7 +3,7 @@
 	html.movesTable = function(){
 
 
-		var el = function(type){
+		var html = function(type){
 			return ""+
 			"	<div class=\"movesTable\" type-insert=\"moves\">"+
 			"		<div class=\"table\">"+header(type)+"</div>"+
@@ -37,7 +37,7 @@
 			"	</div>";
 		}
 		return {
-			el: el,
+			html: html,
 			addMoves: addMoves,
 		}
 	}

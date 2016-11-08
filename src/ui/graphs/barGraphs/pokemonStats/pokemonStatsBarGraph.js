@@ -1,10 +1,10 @@
 (function(root){
-	html.statBarGraph = function(){
+	html.pokemonStatsBarGraph = function(){
 		var barGraph;
 
-		var el = function(input){
+		var html = function(input){
 			return ""+
-			"	<div class=\"statBarGraph\">"+
+			"	<div class=\"pokemonStatsBarGraph\">"+
 			"		<h1 class=\"graphTitle\">Base Stats</h1>"+
 			"		<div class=\"graphData\">"+
 			"			<div class=\"row\">"+
@@ -59,7 +59,7 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
-			barGraph = parent.querySelector(".statBarGraph");
+			barGraph = parent.querySelector(".pokemonStatsBarGraph");
 		}
 		var setBarLength = function(stats){
 			var hpCover = barGraph.querySelector(".hpBarCover");
@@ -84,7 +84,7 @@
 			speedCover.style.marginLeft = -1*(R.maxStats.SPEED-stats.SPEED)*R.STATMODIFIER+"px";
 		}
 		return{
-			el : el,
+			html : html,
 			hasLoaded : hasLoaded,
 			setBarLength : setBarLength,
 		}

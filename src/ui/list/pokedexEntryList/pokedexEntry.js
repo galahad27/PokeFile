@@ -1,10 +1,10 @@
 (function(root){
 	html.pokedexEntry = function(){
-		var el = function(input){
+		var html = function(input){
 			return "<p class=\"pokedexEntry\"><b>"+input[0]+"</b>: "+input[1]+"</p>";
 		}
 		return{
-			el : el,
+			html : html,
 		}
 	}
 })(this);

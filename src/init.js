@@ -1,3 +1,3 @@
 (function(root){
-	loadPage(pages.pageIds.POKEMONPROFILE);
+	pages.loadPage(pages.pageIds.POKEMONPROFILE);
 })(this);
