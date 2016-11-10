@@ -26,34 +26,34 @@
 			"				<h3>Types</h3>"+
 			"				<div class=\"table\">"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject(lang.pokemon.types.bug, R.colors.types.bug) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject(lang.pokemon.types.fighting, R.colors.types.fighting) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject(lang.pokemon.types.normal, R.colors.types.normal) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject(lang.pokemon.types.dark, R.colors.types.dark) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject(lang.pokemon.types.flying, R.colors.types.flying) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject(lang.pokemon.types.poison, R.colors.types.poison) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject(lang.pokemon.types.dragon, R.colors.types.dragon) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject(lang.pokemon.types.ghost, R.colors.types.ghost) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject(lang.pokemon.types.psychic, R.colors.types.psychic) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject(lang.pokemon.types.electric, R.colors.types.electric) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject(lang.pokemon.types.grass, R.colors.types.grass) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject(lang.pokemon.types.rock, R.colors.types.rock) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject(lang.pokemon.types.fairy, R.colors.types.fairy) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject(lang.pokemon.types.ground, R.colors.types.ground) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject(lang.pokemon.types.steel, R.colors.types.steel) +"</div>"+
 			"						</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject(lang.pokemon.types.fire, R.colors.types.fire) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject(lang.pokemon.types.ice, R.colors.types.ice) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject(lang.pokemon.types.water, R.colors.types.water) +"</div>"+
 			"					</div>"+
 			"				</div>"+
 			"			</div>"+
@@ -191,7 +191,7 @@
 			console.log(filteredList);
 		}
 		filterByCategory = function(category){
-			var temp = []
+			var temp = [];
 			filterCategories[category].forEach(function(filterItem){
 				filteredList.forEach(function(move){
 					console.log(dev.moves[move][category]+" : "+filterItem);
@@ -205,7 +205,7 @@
 			}
 		}
 		filterTypes = function(){
-			var temp = []
+			var temp = [];
 			filters.types.forEach(function(type){
 				filteredList.forEach(function(move){
 					if(dev.moves[move].type == category){

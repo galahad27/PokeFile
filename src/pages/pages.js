@@ -11,6 +11,11 @@
 	} 
 
 	pages.loadPage = function(page){
+		var pageElement = pages[page];
+		var langElements = pageElement.querySelectorAll("[lang]")
+		langElements.forEach(function(langElement){
+			langElement.innerHTML = lang[page][lang.userLanguage][langElement.getAttribute("lang")];
+		})
 		if(!!page.activePage){
 			onBeforeHide(page);
 		}else{

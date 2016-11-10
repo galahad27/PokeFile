@@ -1,5 +1,6 @@
 (function(root){
 	html.pokemonStatsBarGraph = function(){
+		var STATMODIFIER = 3;
 		var barGraph;
 
 		var html = function(input){

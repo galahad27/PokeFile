@@ -8,30 +8,30 @@
 				jap: "Kyukon",
 			},
 			localNum : {
-				Red : "38",
-				Blue : "38",
-				Yellow : "38",
-				Gold : "126",
-				Silver : "126",
-				Crystal : "126",
-				Ruby : "154",
-				Sapphire : "154",
-				FireRed : "38",
-				LeafGreen : "38",
-				Emerald : "154",
-				Dimond : null,
-				Pearl : null,
-				Platinum : null,
-				HeartGold : "128",
-				SoulSilver : "128",
-				Black : null,
-				White : null,
-				Black2 : "249",
-				White2 : "249",
-				X : null,
-				Y : null,
-				OmegaRuby : "161",
-				AlphaSapphire : "161",
+				red : "38",
+				blue : "38",
+				yellow : "38",
+				gold : "126",
+				silver : "126",
+				crystal : "126",
+				ruby : "154",
+				sapphire : "154",
+				fireRed : "38",
+				leafGreen : "38",
+				emerald : "154",
+				dimond : null,
+				pearl : null,
+				platinum : null,
+				heartGold : "128",
+				soulSilver : "128",
+				black : null,
+				white : null,
+				black2 : "249",
+				white2 : "249",
+				x : null,
+				y : null,
+				omegaRuby : "161",
+				alphaSapphire : "161",
 			},
 			basic : {
 				nationalNum : "38",
@@ -63,46 +63,46 @@
 			},
 			battle : {
 				types : {
-					primaryType : "Fire",
+					primaryType : "fire",
 					secondaryType : null,	
 				},
 				abilities : {
-					firstAbility : "Flash Fire",
+					firstAbility : "flashFire",
 					secondAbility : null,
-					hiddenAbility : "Drought",
+					hiddenAbility : "drought",
 				},
 			},
 			pokedex : {
-				Red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
-				Blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
-				Yellow : "According to an enduring legend, 9 noble saints were united and reincarnated as this POKéMON.",
-				Gold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
-				Silver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
-				Crystal : "It is said to live a thousand years, and each of its tails is loaded with supernatural powers.",
-				Ruby : "NINETALES casts a sinister light from its bright red eyes to gain total control over its foe’s mind. This POKéMON is said to live for a thousand years.",
-				Sapphire : "Legend has it that NINETALES came into being when nine wizards possessing sacred powers merged into one. This POKéMON is highly intelligent - it can understand human speech.",
-				FireRed : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
-				LeafGreen : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
-				Emerald : "It has long been said that each of the nine tails embody an enchanted power. A long-lived NINETALES will have fur that shines like gold.",
-				Dimond : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-				Pearl : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-				Platinum : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-				HeartGold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
-				SoulSilver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
-				Black : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-				White : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
-				Black2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
-				White2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
-				X : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
-				Y : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
+				red : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
+				blue : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1000-year curse.",
+				yellow : "According to an enduring legend, 9 noble saints were united and reincarnated as this POKéMON.",
+				gold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
+				silver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
+				crystal : "It is said to live a thousand years, and each of its tails is loaded with supernatural powers.",
+				ruby : "NINETALES casts a sinister light from its bright red eyes to gain total control over its foe’s mind. This POKéMON is said to live for a thousand years.",
+				sapphire : "Legend has it that NINETALES came into being when nine wizards possessing sacred powers merged into one. This POKéMON is highly intelligent - it can understand human speech.",
+				fireRed : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
+				leafGreen : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
+				emerald : "It has long been said that each of the nine tails embody an enchanted power. A long-lived NINETALES will have fur that shines like gold.",
+				dimond : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				pearl : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				platinum : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				heartGold : "Some legends claim that each of its nine tails has its own unique type of special mystical power.",
+				soulSilver : "Its nine beautiful tails are filled with a wondrous energy that could keep it alive for 1,000 years.",
+				black : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				white : "Its nine tails are said to be imbued with a mystic power. It can live for a thousand years.",
+				black2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
+				white2 : "Each of its nine tails is imbued with supernatural power, and it can live for a thousand years.",
+				x : "It has nine long tails and fur that gleams gold. It is said to live for 1,000 years.",
+				y : "Very smart and very vengeful. Grabbing one of its many tails could result in a 1,000-year curse.",
 			},
 			base : {
-				HP : 73,
-				ATTACK : 76,
-				DEFENSE : 75,
-				SPATTACK : 81,
-				SPDEFENSE : 100,
-				SPEED : 100,
+				hp : 73,
+				attack : 76,
+				defense : 75,
+				spAttack : 81,
+				spDefense : 100,
+				speed : 100,
 			},
 			img : {
 				url: ["./res/img/ninetales/Ninetales.png", "./res/img/ninetales/Ninetales.gif"],
@@ -256,40 +256,42 @@
 (function(root){
 })(this);
 (function(root){
-
-	var R = {
-		STATMODIFIER : 3,
-		maxStats : {
-			HP : 255,
-			ATTACK : 190,
-			DEFENSE : 230,
-			SPATTACK : 194,
-			SPDEFENSE : 230,
-			SPEED : 180,
-		},
-		typeColors : {
-			Bug : "#A8B820",
-			Dark : "#705848",
-			Dragon : "#7038F8",
-			Electric : "#F8D030",
-			Fairy : "#EE99AC",
-			Fire : "#F08030",
-			Fighting : "#C03028",
-			Flying : "#A890F0",
-			Ghost : "#705898",
-			Grass : "#78C850",
-			Ground : "#E0C068",
-			Ice : "#98D8D8",
-			Normal : "#A8A878",
-			Poison : "#A040A0",
-			Psychic : "#F85888",
-			Rock : "#B8A038",
-			Steel : "#B8B8D0",
-			Water : "#6890F0",
-		},
-	}
-
+	var R = {};
 	root.R = R;
+})(this);
+(function(root){
+	R.colors = {};
+	R.colors.types = {
+		bug : "#A8B820",
+		dark : "#705848",
+		dragon : "#7038F8",
+		electric : "#F8D030",
+		fairy : "#EE99AC",
+		fire : "#F08030",
+		fighting : "#C03028",
+		flying : "#A890F0",
+		ghost : "#705898",
+		grass : "#78C850",
+		ground : "#E0C068",
+		ice : "#98D8D8",
+		normal : "#A8A878",
+		poison : "#A040A0",
+		psychic : "#F85888",
+		rock : "#B8A038",
+		steel : "#B8B8D0",
+		water : "#6890F0",
+	};
+})(this);
+(function(root){
+	R.stats = {};
+	R.stats.max = {
+		HP : 255,
+		ATTACK : 190,
+		DEFENSE : 230,
+		SPATTACK : 194,
+		SPDEFENSE : 230,
+		SPEED : 180,
+	}
 })(this);
 (function(root){
 	var pages = {};
@@ -304,6 +306,11 @@
 	} 
 
 	pages.loadPage = function(page){
+		var pageElement = pages[page];
+		var langElements = pageElement.querySelectorAll("[lang]")
+		langElements.forEach(function(langElement){
+			langElement.innerHTML = lang[page][lang.userLanguage][langElement.getAttribute("lang")];
+		})
 		if(!!page.activePage){
 			onBeforeHide(page);
 		}else{
@@ -783,7 +790,50 @@
 (function(root){
 	var lang = {};
 
-	lang.translate
+	lang.getUserLanguage = function(){
+		lang.userLanguage = lang.types[window.navigator.userLanguage || window.navigator.language];
+	}
+	lang.pokemon ={};
+	lang.types = {};
+	lang.types["en-US"] = "en";
+
+	
+	root.lang = lang;
+})(this);
+(function(root){
+	lang.pokemonProfile = {};
+	lang.pokemonProfile.en = {
+		breeder: "For Breeders",
+		trainer: "For Trainers",
+		battler: "For Battlers",
+		pokedex: "Pokedex Entries",
+		stats: "Stats",
+		moves: "Moves",
+	}
+})(this);
+
+(function(root){
+	lang.pokemon.types = {}
+	lang.pokemon.types.en = {
+		bug: "Bug",
+		dark: "Dark",
+		dragon: "Dragon",
+		electric: "Electric",
+		fairy: "Fairy",
+		fire: "Fire",
+		fighting: "Fighting",
+		flying: "Flying",
+		ghost: "Ghost",
+		grass: "Grass",
+		ground: "Ground",
+		ice: "Ice",
+		normal: "Normal",
+		poison: "Poison",
+		psychic: "Psychic",
+		rock: "Rock",
+		steel: "Steel",
+		water: "Water",
+	}
 })(this);
 (function(root){
 	var html = {};
@@ -863,34 +913,34 @@
 			"				<h3>Types</h3>"+
 			"				<div class=\"table\">"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject("Fighting", "Fighting") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject("Normal", "Normal") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject(lang.pokemon.types.bug, R.colors.types.bug) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject(lang.pokemon.types.fighting, R.colors.types.fighting) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject(lang.pokemon.types.normal, R.colors.types.normal) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject("Dark", "Dark") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject("Flying", "Flying") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject("Poison", "Poison") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject(lang.pokemon.types.dark, R.colors.types.dark) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject(lang.pokemon.types.flying, R.colors.types.flying) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject(lang.pokemon.types.poison, R.colors.types.poison) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject("Dragon", "Dragon") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject("Bug", "Bug") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject("Psychic", "Psychic") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject(lang.pokemon.types.dragon, R.colors.types.dragon) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject(lang.pokemon.types.ghost, R.colors.types.ghost) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject(lang.pokemon.types.psychic, R.colors.types.psychic) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject("Electric", "Electric") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject("Grass", "Grass") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject("Rock", "Rock") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject(lang.pokemon.types.electric, R.colors.types.electric) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject(lang.pokemon.types.grass, R.colors.types.grass) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject(lang.pokemon.types.rock, R.colors.types.rock) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject("Fairy", "Fairy") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject("Ground", "Ground") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject("Steel", "Steel") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject(lang.pokemon.types.fairy, R.colors.types.fairy) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject(lang.pokemon.types.ground, R.colors.types.ground) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject(lang.pokemon.types.steel, R.colors.types.steel) +"</div>"+
 			"						</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject("Fire", "Fire") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject("Ice", "Ice") +"</div>"+
-			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject("Water", "Water") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject(lang.pokemon.types.fire, R.colors.types.fire) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject(lang.pokemon.types.ice, R.colors.types.ice) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject(lang.pokemon.types.water, R.colors.types.water) +"</div>"+
 			"					</div>"+
 			"				</div>"+
 			"			</div>"+
@@ -1028,7 +1078,7 @@
 			console.log(filteredList);
 		}
 		filterByCategory = function(category){
-			var temp = []
+			var temp = [];
 			filterCategories[category].forEach(function(filterItem){
 				filteredList.forEach(function(move){
 					console.log(dev.moves[move][category]+" : "+filterItem);
@@ -1042,7 +1092,7 @@
 			}
 		}
 		filterTypes = function(){
-			var temp = []
+			var temp = [];
 			filters.types.forEach(function(type){
 				filteredList.forEach(function(move){
 					if(dev.moves[move].type == category){
@@ -1346,6 +1396,7 @@
 })(this);
 (function(root){
 	html.pokemonStatsBarGraph = function(){
+		var STATMODIFIER = 3;
 		var barGraph;
 
 		var html = function(input){
@@ -1452,5 +1503,6 @@
 	}
 })(this);
 (function(root){
+	lang.getUserLanguage();
 	pages.loadPage(pages.pageIds.POKEMONPROFILE);
 })(this);
