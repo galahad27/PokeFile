@@ -4,7 +4,11 @@
 	lang.getUserLanguage = function(){
 		lang.userLanguage = lang.types[window.navigator.userLanguage || window.navigator.language];
 	}
-	lang.pokemon ={};
+	lang.items = {};
+	lang.moves = {};
+	lang.pokemon = {};
+	lang.site = {};
+
 	lang.types = {};
 	lang.types["en-US"] = "en";
 

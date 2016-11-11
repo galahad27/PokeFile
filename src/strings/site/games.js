@@ -1,0 +1,31 @@
+(function(root){
+	lang.site.games = {};
+	lang.site.games.en = {
+		red : "Red",
+		blue : "Blue",
+		yellow : "Yellow",
+		gold : "Gold",
+		silver : "Silver",
+		crystal : "Crystal",
+		ruby : "Ruby",
+		sapphire : "Sapphire",
+		fireRed : "Fire Red",
+		leafGreen : "Leaf Greed",
+		emerald : "Emerald",
+		dimond : "Dimond",
+		pearl : "Pearl",
+		platinum : "Platinum",
+		heartGold : "Heart Gold",
+		soulSilver : "Soul Silver",
+		black : "Black",
+		white : "White",
+		black2 : "Black 2",
+		white2 : "White 2",
+		x : "X",
+		y : "Y",
+		omegaRuby : "Omega Ruby",
+		alphaSapphire : "Alpha Sapphire",
+		sun : "Sun",
+		moon : "Moon",
+	}
+})(this);

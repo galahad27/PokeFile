@@ -18,34 +18,34 @@
 	//***************************ELEMENTS***************************//
 	var page = document.querySelector("#pokemonProfile");
 
-	var pokedex = page.querySelector("#pokedex");
-	var stats = page.querySelector("#stats");
-	var moves = page.querySelector("#moves");
+	var pokedexElement = page.querySelector("#pokedex");
+	var statsElement = page.querySelector("#stats");
+	var movesElement = page.querySelector("#moves");
 
-	var statsPageWrapper = page.querySelector("#statsPageWrapper");
-	var statsPage = page.querySelector("#statsPage");
+	var statsPageWrapperElement = page.querySelector("#statsPageWrapper");
+	var statsPageElement = page.querySelector("#statsPage");
 
-	var pokemonImageWrapper = page.querySelector("#pokemonImageWrapper");
-	var pokemonImage = page.querySelector("#pokemonImage");
+	var pokemonImageWrapperElement = page.querySelector("#pokemonImageWrapper");
+	var pokemonImageElement = page.querySelector("#pokemonImage");
 
-	var basicInfo = page.querySelector("#basicInfo");
-	var name = basicInfo.querySelector("#name");
-	var altName = basicInfo.querySelector("#altName");
-	var nationalNum = basicInfo.querySelector("#nationalNum");
-	var species = basicInfo.querySelector("#species");
-	var height = basicInfo.querySelector("#height");
-	var weight = basicInfo.querySelector("#weight");
-	var eggGroup = basicInfo.querySelector("#eggGroup");
-	var gender = basicInfo.querySelector("#gender");
-	var eggCycle = basicInfo.querySelector("#eggCycle");
-	var evYields = basicInfo.querySelector("#evYields");
-	var catchRate = basicInfo.querySelector("#catchRate");
-	var happiness = basicInfo.querySelector("#happiness");
-	var exp = basicInfo.querySelector("#exp");
-	var growthRate = basicInfo.querySelector("#growthRate");
-	var types = basicInfo.querySelector("#types");
-	var abilities = basicInfo.querySelector("#abilities");
-	var hiddenAbility = basicInfo.querySelector("#hiddenAbility");
+	var basicInfoElement = page.querySelector("#basicInfo");
+	var nameElement = basicInfoElement.querySelector("#name");
+	var altNameElement = basicInfoElement.querySelector("#altName");
+	var nationalNumElement = basicInfoElement.querySelector("#nationalNum");
+	var speciesElement = basicInfoElement.querySelector("#species");
+	var heightElement = basicInfoElement.querySelector("#height");
+	var weightElement = basicInfoElement.querySelector("#weight");
+	var eggGroupElement = basicInfoElement.querySelector("#eggGroup");
+	var genderElement = basicInfoElement.querySelector("#gender");
+	var eggCycleElement = basicInfoElement.querySelector("#eggCycle");
+	var evYieldsElement = basicInfoElement.querySelector("#evYields");
+	var catchRateElement = basicInfoElement.querySelector("#catchRate");
+	var happinessElement = basicInfoElement.querySelector("#happiness");
+	var expElement = basicInfoElement.querySelector("#exp");
+	var growthRateElement = basicInfoElement.querySelector("#growthRate");
+	var typesElement = basicInfoElement.querySelector("#types");
+	var abilitiesElement = basicInfoElement.querySelector("#abilities");
+	var hiddenAbilityElement = basicInfoElement.querySelector("#hiddenAbility");
 	//***************************FINAL***************************//
 	const LEVEL100 = "<h1 id=\"level100\">Level 100</h1>";
 	const LEVEL50 = "<h1 id=\"level50\">Level 50</h1>";
@@ -54,13 +54,15 @@
 	const TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	const TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
 	const MOVESSET = function(index){return "<div class=\"movesSet\" index=\""+index+"\"></div>"};
-	const STATPAGETABS = {pokedex: pokedex, stats: stats, moves: moves};
+	const STATPAGETABS = {pokedex: pokedexElement, stats: statsElement, moves: movesElement};
 	//***************************LOCAL***************************//
 	var primaryPokemon;
+	var primaryTypes;
+	var primaryAbilities;
+
 	var currImageIndex;
 	var movesTableNum;
 	var movesTableList;
-	var tabCatagories;
 
 	//***************************PAGE***************************//
 	page.onBeforeShow = function(){
@@ -84,56 +86,66 @@
 		
 	}
 	function initEventListeners(){
-		$(pokedex).on("click", pokedexClick);
-		$(stats).on("click", statsClick);
-		$(moves).on("click", movesClick);
-		$(pokemonImage).on("click", pokemonImageClick);
+		$(pokedexElement).on("click", pokedexClick);
+		$(statsElement).on("click", statsClick);
+		$(movesElement).on("click", movesClick);
+		$(pokemonImageElement).on("click", pokemonImageClick);
 	}
 	function initUI(){
-		setImage(pokemonImage, primaryPokemon.img.url, 0);
+		setImage(pokemonImageElement, primaryPokemon.img.url, 0);
 		setBasicInfo(primaryPokemon);
-		setColorTheme(primaryPokemon.battle.types);
+		setColorTheme(primaryTypes);
 		pokedexClick();
 	}
 	function initVariables(){
-		primaryPokemon = getData();
+		getPokemonData();
 		currImageIndex = 0;
 		movesTableNum = 0;
 		movesTableList = [];
 	}
 	//***************************DESTROY***************************//
 	function destroyEventListeners(){
-		$(pokedex).off("click", pokedexClick);
-		$(stats).off("click", statsClick);
-		$(moves).off("click", movesClick);
-		$(pokemonImage).on("click", nextImage);
+		$(pokedexElement).off("click", pokedexClick);
+		$(statsElement).off("click", statsClick);
+		$(movesElement).off("click", movesClick);
+		$(pokemonImageElement).on("click", nextImage);
 	}
 	//***************************GETTERS***************************//
-	function getData(){
-		return dev.pokemon.ninetales;
+	function getPokemonData(){
+		primaryPokemon = R.pokemon.ninetales;
+		primaryTypes = {
+			primaryType: R.types[primaryPokemon.battle.types.primaryType],
+			secondaryType: R.types[primaryPokemon.battle.types.secondaryType], 
+		};
+		primaryAbilities = {
+			firstAbility: R.abilities[primaryPokemon.battle.abilities.firstAbility],
+			secondAbility: R.abilities[primaryPokemon.battle.abilities.secondAbility],
+			hiddenAbility: R.abilities[primaryPokemon.battle.abilities.hiddenAbility],
+		};
 	}
 	//***************************SETTERS***************************//
 	function setBasicInfo(pokemon){
-		name.innerHTML = pokemon.name.en;
-		altName.innerHTML = pokemon.name.jap;
-		nationalNum.innerHTML = "National Num: "+pokemon.basic.nationalNum;
-		species.innerHTML =  "Species: " + pokemon.basic.species;
-		height.innerHTML = "Height: " + pokemon.basic.height;
-		weight.innerHTML = "Weight: " + pokemon.basic.weight;
+		nameElement.innerHTML = pokemon.name.en;
+		altNameElement.innerHTML = pokemon.name.jap;
+		nationalNumElement.innerHTML = lang.pokemonProfile[lang.userLanguage].nationalNum + pokemon.basic.nationalNum;
+		speciesElement.innerHTML =  lang.pokemonProfile[lang.userLanguage].species + pokemon.basic.species;
+		heightElement.innerHTML = lang.pokemonProfile[lang.userLanguage].height + pokemon.basic.height;
+		weightElement.innerHTML = lang.pokemonProfile[lang.userLanguage].weight + pokemon.basic.weight;
 
-		eggGroup.innerHTML =  "Egg Groups: " + pokemon.breeding.eggGroup;
-		eggCycle.innerHTML = "Egg Cycle: " + pokemon.breeding.eggCycle;
-		gender.innerHTML = "Gender: " + gendersToString(pokemon.breeding.genders);
+		eggGroupElement.innerHTML =  lang.pokemonProfile[lang.userLanguage].eggGroup + pokemon.breeding.eggGroup;
+		eggCycleElement.innerHTML = lang.pokemonProfile[lang.userLanguage].eggCycle + pokemon.breeding.eggCycle;
+		genderElement.innerHTML = lang.pokemonProfile[lang.userLanguage].gender+
+							pokemon.breeding.genders.male+lang.pokemonProfile[lang.userLanguage].male+" | "+
+							pokemon.breeding.genders.female+lang.pokemonProfile[lang.userLanguage].female;
 
-		evYields.innerHTML =  " EV Yeilds: " + evsToString(pokemon.training.evs);
-		catchRate.innerHTML = "Catch Rate: " + pokemon.training.catchRate;
-		happiness.innerHTML = "Happiness: " + pokemon.training.happiness;
-		exp.innerHTML =  "EXP: " + pokemon.training.exp;
-		growthRate.innerHTML = "Growth Rate: " + pokemon.training.growthRate;
-
-		types.innerHTML =  "Types: " + typesToString(pokemon.battle.types);
-		abilities.innerHTML = "Abilities: " + abilitiesToString(pokemon.battle.abilities);
-		hiddenAbility.innerHTML = "Hidden Ability: " + hiddenAbilityToString(pokemon.battle.abilities.hiddenAbility);
+		evYieldsElement.innerHTML =  lang.pokemonProfile[lang.userLanguage].ev + evsToString(pokemon.training.evs);
+		catchRateElement.innerHTML = lang.pokemonProfile[lang.userLanguage].catchRate + pokemon.training.catchRate;
+		happinessElement.innerHTML = lang.pokemonProfile[lang.userLanguage].happiness + pokemon.training.happiness;
+		expElement.innerHTML =  lang.pokemonProfile[lang.userLanguage].exp + pokemon.training.exp;
+		growthRateElement.innerHTML = lang.pokemonProfile[lang.userLanguage].growthRate + pokemon.training.growthRate;
+		typesElement.innerHTML =  lang.pokemonProfile[lang.userLanguage].types + typesToString(primaryTypes);
+		abilitiesElement.innerHTML = lang.pokemonProfile[lang.userLanguage].abilities + abilitiesToString(primaryAbilities);
+		hiddenAbilityElement.innerHTML = lang.pokemonProfile[lang.userLanguage].hiddenAbility + hiddenAbilityToString(primaryAbilities);
 	}
 	function setBorderWidth(current){
 		var STANDARD_WIDTH = "3px";
@@ -148,22 +160,22 @@
 		}
 	}
 	function setColorTheme(types){
-		pokemonImageWrapper.setAttribute("background", types.primaryType);
-		basicInfo.setAttribute("background", types.primaryType);
-		pokedex.setAttribute("background", types.primaryType);
-		stats.setAttribute("background", types.primaryType);
-		moves.setAttribute("background", types.primaryType);
+		pokemonImageWrapperElement.style.background = types.primaryType.colors.main;
+		basicInfoElement.style.background = types.primaryType.colors.main;
+		pokedexElement.style.background = types.primaryType.colors.main;
+		statsElement.style.background = types.primaryType.colors.main;
+		movesElement.style.background = types.primaryType.colors.main;
 
-		pokemonImageWrapper.setAttribute("border", types.primaryType);
-		basicInfo.setAttribute("border", types.primaryType);
-		pokedex.setAttribute("border", types.primaryType);
-		stats.setAttribute("border", types.primaryType);
-		moves.setAttribute("border", types.primaryType);
-		statsPageWrapper.setAttribute("border", types.primaryType);
+		pokemonImageWrapperElement.style.borderColor = types.primaryType.colors.border;
+		basicInfoElement.style.borderColor = types.primaryType.colors.border;
+		pokedexElement.style.borderColor = types.primaryType.colors.border;
+		statsElement.style.borderColor = types.primaryType.colors.border;
+		movesElement.style.borderColor = types.primaryType.colors.border;
+		statsPageWrapperElement.style.borderColor = types.primaryType.colors.border;
 
 		if(!!types.secondaryType){
-			pokemonImageWrapper.style.background = "linear-gradient("+R.typeColors[types.primaryType]+","+R.typeColors[types.secondaryType]+")";
-			basicInfo.style.background = "linear-gradient("+R.typeColors[types.primaryType]+","+R.typeColors[types.secondaryType]+")";
+			pokemonImageWrapperElement.style.background = "linear-gradient("+types.primaryType.colors.main+","+types.secondaryType.colors.main+")";
+			basicInfoElement.style.background = "linear-gradient("+types.primaryType.colors.main+","+types.secondaryType.colors.main+")";
 		}
 	}
 	function setImage(img, url, index){
@@ -173,41 +185,40 @@
 	//***************************ADD***************************//
 	function addBarGraph(){
 		var input = primaryPokemon.base;
-		var statsBarGraph = html.load(statsPage, "statBarGraph", input);
-		statsBarGraph.setBarLength(primaryPokemon.base);
+		var statsBarGraph = html.load(statsPage, "pokemonStatsBarGraph", input);
 	}
 	function addMoves(index){
-		$(statsPage).append(MOVESSET(index))
-		var movesSet = statsPage.querySelector("#statsPage [index=\""+index+"\"]");
-		movesSet.style.borderColor = R.typeColors[primaryPokemon.battle.types.primaryType];
-		var filterTable = {};
-		filterTable.filter = html.load(movesSet, "movesFilter", primaryPokemon.moves.all);
-		filterTable.table = html.load(movesSet, "movesTable", primaryPokemon.battle.types.primaryType);
-		movesTableList[0] = filterTable;
+		$(statsPageElement).append(MOVESSET(index))
+		var movesSetElement = statsPageElement.querySelector("#statsPage [index=\""+index+"\"]");
+		movesSetElement.style.borderColor = primaryTypes.primaryType.colors.main;
+		var movesList = {};
+		movesList.filter = html.load(movesSetElement, "movesFilterTable", primaryPokemon.moves.all);
+		movesList.list = html.load(movesSetElement, "movesListTable", primaryPokemon.battle.types.primaryType);
+		movesTableList[0] = movesList;
 		var filteredMoves = movesTableList[0].filter.filterMoves();
-		movesTableList[0].table.addMoves(filteredMoves);
+		movesTableList[0].list.addMoves(filteredMoves);
 	}
 	function addPokedexEntries(){
 		var keys = _.keys(primaryPokemon.pokedex);
 		keys.forEach(function(key){
-			var input = [key, primaryPokemon.pokedex[key]];
+			var input = [lang.site.games[lang.userLanguage][key], primaryPokemon.pokedex[key]];
 			html.load(statsPage, "pokedexEntry", input);
 		});
 	}
 	function addTables(){
-		$(statsPage).append(LEVEL100);
-		$(statsPage).append(TABLEROW0);
-		$(statsPage).append(TABLEROW1);
-		$(statsPage).append(LEVEL50);
-		$(statsPage).append(TABLEROW2);
-		$(statsPage).append(TABLEROW3);
+		$(statsPageElement).append(LEVEL100);
+		$(statsPageElement).append(TABLEROW0);
+		$(statsPageElement).append(TABLEROW1);
+		$(statsPageElement).append(LEVEL50);
+		$(statsPageElement).append(TABLEROW2);
+		$(statsPageElement).append(TABLEROW3);
 
-		var row0 = statsPage.querySelector("#row0");
-		var row1 = statsPage.querySelector("#row1");
-		var row2 = statsPage.querySelector("#row2");
-		var row3 = statsPage.querySelector("#row3");
+		var row0Element = statsPage.querySelector("#row0");
+		var row1Element = statsPage.querySelector("#row1");
+		var row2Element = statsPage.querySelector("#row2");
+		var row3Element = statsPage.querySelector("#row3");
 
-		var setInput = function(name, level, stat, isHp){
+		var setInput = function(name, stat, level, isHp){
 			return {
 				name: name,
 				level: level,
@@ -215,29 +226,29 @@
 				isHp: isHp,
 			};
 		}
-		html.load(row0, "statTable", setInput("HP", primaryPokemon.base.HP, 100, true));
-		html.load(row0, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 100, false));
-		html.load(row0, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 100, false));
-		html.load(row1, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 100, false));
-		html.load(row1, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 100, false));
-		html.load(row1, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 100, false));
-		html.load(row2, "statTable", setInput("HP", primaryPokemon.base.HP, 50, true));
-		html.load(row2, "statTable", setInput("Defense", primaryPokemon.base.DEFENSE, 50, false));
-		html.load(row2, "statTable", setInput("Sp. Defense", primaryPokemon.base.SPDEFENSE, 50, false));
-		html.load(row3, "statTable", setInput("Speed", primaryPokemon.base.SPEED, 50, false));
-		html.load(row3, "statTable", setInput("Attack", primaryPokemon.base.ATTACK, 50, false));
-		html.load(row3, "statTable", setInput("Sp. Attack", primaryPokemon.base.SPATTACK, 50, false));
+		html.load(row0Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].hp, primaryPokemon.base.hp, 100, true));
+		html.load(row0Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].defense, primaryPokemon.base.defense, 100, false));
+		html.load(row0Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].spDefense, primaryPokemon.base.spDefense, 100, false));
+		html.load(row1Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].speed, primaryPokemon.base.speed, 100, false));
+		html.load(row1Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].attack, primaryPokemon.base.attack, 100, false));
+		html.load(row1Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].spAttack, primaryPokemon.base.spAttack, 100, false));
+		html.load(row2Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].hp, primaryPokemon.base.hp, 50, true));
+		html.load(row2Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].defense, primaryPokemon.base.defense, 50, false));
+		html.load(row2Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].spDefense, primaryPokemon.base.spDefense, 50, false));
+		html.load(row3Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].speed, primaryPokemon.base.speed, 50, false));
+		html.load(row3Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].attack, primaryPokemon.base.attack, 50, false));
+		html.load(row3Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].spAttack, primaryPokemon.base.spAttack, 50, false));
 	}
 	//***************************REMOVE***************************//
 	//***************************EVENTS***************************//
 	function movesClick(){
 		setBorderWidth("moves");
-		$(statsPage).empty();
+		$(statsPageElement).empty();
 		addMoves(movesTableNum);
 	}
 	function pokedexClick(){
 		setBorderWidth("pokedex");
-		$(statsPage).empty();
+		$(statsPageElement).empty();
 		addPokedexEntries();
 	}
 	function pokemonImageClick(){
@@ -245,57 +256,46 @@
 		if(currImageIndex<primaryPokemon.img.url.length-1){
 			index = currImageIndex+1;	
 		}
-		setImage(pokemonImage, primaryPokemon.img.url, index);
+		setImage(pokemonImageElement, primaryPokemon.img.url, index);
 	}
 	function statsClick(){
 		setBorderWidth("stats");
-		$(statsPage).empty();
+		$(statsPageElement).empty();
 		addBarGraph();
 		addTables();
 	}
 	//***************************TO STRING***************************//
 	function abilitiesToString(abilities){
-		tempAbilities = abilities.firstAbility;
+		tempAbilities = abilities.firstAbility.name;
 		if(!!abilities.secondAbility){
-			tempAbilities = tempAbilities + " | " + abilities.secondAbility;
+			tempAbilities = tempAbilities + " | " + abilities.secondAbility.name;
 		}
 		return tempAbilities;
 	}
 	function evsToString(evs){
 		var tempEv="";
-		var types = {
-			hp : "HP",
-			attack : "Attack",
-			defense : "Defense",
-			spAttack : "Sp. Attack",
-			spDefense : "Sp. Defense",
-			speed : "Speed",
-		}
 		var keys = _.keys(evs);
 		keys.forEach(function(key, index){
 			if(!!evs[key]){
 				if(tempEv != ""){
 					tempEv = tempEv + " | ";
 				}
-				tempEv = tempEv+evs[key]+" "+types[key]
+				tempEv = tempEv+evs[key]+" "+lang.pokemon.stats[lang.userLanguage][key];
 			}
 		});
 		return tempEv;
 	}
-	function gendersToString(genders){
-		return genders.male + "% Male | " + genders.female+"% Female";
-	}
-	function hiddenAbilityToString(hiddenAbility){
+	function hiddenAbilityToString(abilities){
 		tempHidden = "";
-		if(!!hiddenAbility){
-			tempHidden = hiddenAbility;
+		if(!!abilities.hiddenAbility){
+			tempHidden = abilities.hiddenAbility.name;
 		}
 		return tempHidden;
 	}
 	function typesToString(types){
-		tempTypes = types.primaryType;
+		tempTypes = types.primaryType.name;
 		if(!!types.secondaryType){
-			tempTypes = tempTypes + " | " + types.secondaryType;
+			tempTypes = tempTypes + " | " + types.secondaryType.name;
 		}
 		return tempTypes;
 	}

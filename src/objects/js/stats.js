@@ -1,11 +1,11 @@
 (function(root){
 	R.stats = {};
 	R.stats.max = {
-		HP : 255,
-		ATTACK : 190,
-		DEFENSE : 230,
-		SPATTACK : 194,
-		SPDEFENSE : 230,
-		SPEED : 180,
+		hp : 255,
+		attack : 190,
+		defense : 230,
+		spAttack : 194,
+		spDefense : 230,
+		speed : 180,
 	}
 })(this);

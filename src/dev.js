@@ -122,7 +122,7 @@
 	dev.moves = {
 		flamethrower : {
 			name : "Flamethrower",
-			type : "Fire",
+			type : "fire",
 			category : "Special",
 			power : "90",
 			accuracy : "100",
@@ -136,7 +136,7 @@
 		},
 		extrasensory : {
 			name : "Extrasensory",
-			type : "Psychic",
+			type : "psychic",
 			category : "Special",
 			power : "80",
 			accuracy : "100",
@@ -150,7 +150,7 @@
 		},
 		heatWave : {
 			name : "Heat Wave",
-			type : "Fire",
+			type : "fire",
 			category : "Special",
 			power : "95",
 			accuracy : "90",
@@ -164,7 +164,7 @@
 		},
 		confuseRay : {
 			name : "Confuse Ray",
-			type : "Ghost",
+			type : "ghost",
 			category : "Status",
 			power : "",
 			accuracy : "100",
@@ -178,7 +178,7 @@
 		},
 		imprison : {
 			name : "Imprison",
-			type : "Psychic",
+			type : "psychic",
 			category : "Status",
 			power : "",
 			accuracy : "",
@@ -192,7 +192,7 @@
 		},
 		nastyPlot : {
 			name : "Nasty Plot",
-			type : "Dark",
+			type : "dark",
 			category : "Status",
 			power : "",
 			accuracy : "",
@@ -206,7 +206,7 @@
 		},
 		quickAttack : {
 			name : "Quick Attack",
-			type : "Normal",
+			type : "normal",
 			category : "Physical",
 			power : "40",
 			accuracy : "100",
@@ -220,7 +220,7 @@
 		},
 		safeguard : {
 			name : "Safeguard",
-			type : "Normal",
+			type : "normal",
 			category : "Status",
 			power : "",
 			accuracy : "",
@@ -231,6 +231,142 @@
 				increase : [],
 			},
 			pokemon : ["ninetales"],
+		},
+	}
+	dev.abilities = {
+		flashFire : {
+			name : "Flash Fire",
+		},
+		drought : {
+			name : "Drought",
+		},
+	}
+	dev.types = {
+		bug: {
+			name : "Bug",
+			colors :{
+				main : "#A8B820",
+				border : "#A88820",
+			},
+		},
+		dark: {
+			name : "Dark",
+			colors :{
+				main : "#705848",
+				border : "#702848",
+			},
+		},
+		dragon: {
+			name : "Dragon",
+			colors :{
+				main : "#7038F8",
+				border : "#7008F8",
+			},
+		},
+		electric: {
+			name : "Electric",
+			colors :{
+				main : "#F8D030",
+				border : "#F8A030",
+			},
+		},
+		fairy: {
+			name : "Fairy",
+			colors :{
+				main : "#EE99AC",
+				border : "#EE69AC",
+			},
+		},
+		fire: {
+			name : "Fire",
+			colors :{
+				main : "#F08030",
+				border : "#F05030",
+			},
+		},
+		fighting: {
+			name : "Fighting",
+			colors :{
+				main : "#C03028",
+				border : "#C00028",
+			},
+		},
+		flying: {
+			name : "Flying",
+			colors :{
+				main : "#A890F0",
+				border : "#A860F0",
+			},
+		},
+		ghost: {
+			name : "Ghost",
+			colors :{
+				main : "#705898",
+				border : "#702898",
+			},
+		},
+		grass: {
+			name : "Grass",
+			colors :{
+				main : "#78C850",
+				border : "#789850",
+			},
+		},
+		ground: {
+			name : "Ground",
+			colors :{
+				main : "#E0C068",
+				border : "#E09068",
+			},
+		},
+		ice: {
+			name : "Ice",
+			colors :{
+				main : "#98D8D8",
+				border : "#98A8D8",
+			},
+		},
+		normal: {
+			name : "Normal",
+			colors :{
+				main : "#A8A878",
+				border : "#A87878",
+			},
+		},
+		poison: {
+			name : "Poison",
+			colors :{
+				main : "#A040A0",
+				border : "#A010A0",
+			},
+		},
+		psychic: {
+			name : "Psychic",
+			colors :{
+				main : "#F85888",
+				border : "#F82888",
+			},
+		},
+		rock: {
+			name : "Rock",
+			colors :{
+				main : "#B8A038",
+				border : "#B87038",
+			},
+		},
+		steel: {
+			name : "Steel",
+			colors :{
+				main : "#B8B8D0",
+				border : "#B888D0",
+			},
+		},
+		water: {
+			name : "Water",
+			colors :{
+				main : "#6890F0",
+				border : "#6860F0",
+			},
 		},
 	}
 

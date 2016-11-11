@@ -1,11 +1,10 @@
 (function(root){
 
-	html.movesTable = function(){
+	html.movesListTable = function(){
 
-
-		var html = function(type){
+		var HTML = function(type){
 			return ""+
-			"	<div class=\"movesTable\" type-insert=\"moves\">"+
+			"	<div class=\"movesListTable\" type-insert=\"moves\">"+
 			"		<div class=\"table\">"+header(type)+"</div>"+
 			"	</div>";
 		}
@@ -37,7 +36,7 @@
 			"	</div>";
 		}
 		return {
-			html: html,
+			HTML: HTML,
 			addMoves: addMoves,
 		}
 	}

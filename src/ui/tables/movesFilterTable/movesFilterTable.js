@@ -1,5 +1,5 @@
 (function(root){
-	html.movesFilter = function(){
+	html.movesFilterTable = function(){
 		var movesFilter;
 		var movesList;
 		var filteredList;
@@ -17,109 +17,109 @@
 			accuracy: [],
 			pp: [],
 		}
-		var html = function(moves){
+		var HTML = function(moves){
 			movesList = moves;
 			return ""+
-			"	<div class=\"movesFilter\">"+
+			"	<div class=\"movesFilterTable\">"+
 			"		<div class=\"row\">"+
 			"			<div class=\"cell category\" filterCategory=\"type\">"+
 			"				<h3>Types</h3>"+
 			"				<div class=\"table\">"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBoxObject(lang.pokemon.types.bug, R.colors.types.bug) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBoxObject(lang.pokemon.types.fighting, R.colors.types.fighting) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBoxObject(lang.pokemon.types.normal, R.colors.types.normal) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBox(R.types.bug.name, R.types.bug.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBox(R.types.fighting.name, R.types.fighting.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBox(R.types.normal.name, R.types.normal.colors.main) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBoxObject(lang.pokemon.types.dark, R.colors.types.dark) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBoxObject(lang.pokemon.types.flying, R.colors.types.flying) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBoxObject(lang.pokemon.types.poison, R.colors.types.poison) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBox(R.types.dark.name, R.types.dark.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBox(R.types.flying.name, R.types.flying.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBox(R.types.poison.name, R.types.poison.colors.main) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBoxObject(lang.pokemon.types.dragon, R.colors.types.dragon) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBoxObject(lang.pokemon.types.ghost, R.colors.types.ghost) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBoxObject(lang.pokemon.types.psychic, R.colors.types.psychic) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBox(R.types.dragon.name, R.types.dragon.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBox(R.types.ghost.name, R.types.ghost.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBox(R.types.psychic.name, R.types.psychic.colors.main) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBoxObject(lang.pokemon.types.electric, R.colors.types.electric) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBoxObject(lang.pokemon.types.grass, R.colors.types.grass) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBoxObject(lang.pokemon.types.rock, R.colors.types.rock) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBox(R.types.electric.name, R.types.electric.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBox(R.types.grass.name, R.types.grass.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBox(R.types.rock.name, R.types.rock.colors.main) +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBoxObject(lang.pokemon.types.fairy, R.colors.types.fairy) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBoxObject(lang.pokemon.types.ground, R.colors.types.ground) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBoxObject(lang.pokemon.types.steel, R.colors.types.steel) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBox(R.types.fairy.name, R.types.fairy.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBox(R.types.ground.name, R.types.ground.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBox(R.types.steel.name, R.types.steel.colors.main) +"</div>"+
 			"						</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBoxObject(lang.pokemon.types.fire, R.colors.types.fire) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBoxObject(lang.pokemon.types.ice, R.colors.types.ice) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBoxObject(lang.pokemon.types.water, R.colors.types.water) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBox(R.types.fire.name, R.types.fire.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBox(R.types.ice.name, R.types.ice.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBox(R.types.water.name, R.types.water.colors.main) +"</div>"+
 			"					</div>"+
 			"				</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"category\">"+
 			"				<h3>Category</h3>"+
-			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBoxObject("Physical") +"</div>"+
-			"				<div class=\"name\" filterName=\"special\">"+ html.checkBoxObject("Special") +"</div>"+
-			"				<div class=\"name\" filterName=\"status\">"+ html.checkBoxObject("Status") +"</div>"+
+			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBox("Physical") +"</div>"+
+			"				<div class=\"name\" filterName=\"special\">"+ html.checkBox("Special") +"</div>"+
+			"				<div class=\"name\" filterName=\"status\">"+ html.checkBox("Status") +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"status\">"+
 			"				<h3>Status Effects</h3>"+
-			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBoxObject("Burn") +"</div>"+
-			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBoxObject("Freeze") +"</div>"+
-			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBoxObject("Paralysis") +"</div>"+
-			"				<div class=\"name\" filterName=\"poison\">"+ html.checkBoxObject("Poison") +"</div>"+
-			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBoxObject("Sleep") +"</div>"+
+			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBox("Burn") +"</div>"+
+			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBox("Freeze") +"</div>"+
+			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBox("Paralysis") +"</div>"+
+			"				<div class=\"name\" filterName=\"poison\">"+ html.checkBox("Poison") +"</div>"+
+			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBox("Sleep") +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"battle\">"+
 			"				<h3>Battle Effects</h3>"+
-			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBoxObject("Confusion") +"</div>"+
-			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBoxObject("Crit") +"</div>"+
-			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBoxObject("Flinch") +"</div>"+
-			"				<div class=\"name\" filterName=\"heal\">"+ html.checkBoxObject("Heal") +"</div>"+
-			"				<div class=\"name\" filterName=\"priority\">"+ html.checkBoxObject("Priority") +"</div>"+
-			"				<div class=\"name\" filterName=\"trap\">"+ html.checkBoxObject("Trap") +"</div>"+
+			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBox("Confusion") +"</div>"+
+			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBox("Crit") +"</div>"+
+			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBox("Flinch") +"</div>"+
+			"				<div class=\"name\" filterName=\"heal\">"+ html.checkBox("Heal") +"</div>"+
+			"				<div class=\"name\" filterName=\"priority\">"+ html.checkBox("Priority") +"</div>"+
+			"				<div class=\"name\" filterName=\"trap\">"+ html.checkBox("Trap") +"</div>"+
 			"			</div>"+
 			"		</div>"+
 			"		<div class=\"row\">"+
 			"			<div class=\"cell\">"+
 			"				<h3>Stat Changes</h3>"+
 			"				<div class=\"cell category\" filterCategory=\"stat\">"+
-			"					<div class=\"name\" filterName=\"attack\">"+ html.checkBoxObject("Attack") +"</div>"+
-			"					<div class=\"name\" filterName=\"defense\">"+ html.checkBoxObject("Defense") +"</div>"+
-			"					<div class=\"name\" filterName=\"spAttack\">"+ html.checkBoxObject("Sp. Attack") +"</div>"+
-			"					<div class=\"name\" filterName=\"spDefense\">"+ html.checkBoxObject("Sp. Defense") +"</div>"+
-			"					<div class=\"name\" filterName=\"speed\">"+ html.checkBoxObject("Speed") +"</div>"+
-			"					<div class=\"name\" filterName=\"accuracy\">"+ html.checkBoxObject("Accuracy") +"</div>"+
-			"					<div class=\"name\" filterName=\"evasion\">"+ html.checkBoxObject("Evasion") +"</div>"+
+			"					<div class=\"name\" filterName=\"attack\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].attack) +"</div>"+
+			"					<div class=\"name\" filterName=\"defense\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].defense) +"</div>"+
+			"					<div class=\"name\" filterName=\"spAttack\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].spAttack) +"</div>"+
+			"					<div class=\"name\" filterName=\"spDefense\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].spDefense) +"</div>"+
+			"					<div class=\"name\" filterName=\"speed\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].speed) +"</div>"+
+			"					<div class=\"name\" filterName=\"accuracy\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].accuracy) +"</div>"+
+			"					<div class=\"name\" filterName=\"evasion\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].evasion) +"</div>"+
 			"				</div>"+
 			"				<div class=\"cell category\" filterCategory=\"statDir\">"+
-			"					<div class=\"name\" filterName=\"statIncrease\">"+ html.checkBoxObject("+") +"</div>"+
-			"					<div class=\"name\" filterName=\"statDecrease\">"+ html.checkBoxObject("-") +"</div>"+
+			"					<div class=\"name\" filterName=\"statIncrease\">"+ html.checkBox("+") +"</div>"+
+			"					<div class=\"name\" filterName=\"statDecrease\">"+ html.checkBox("-") +"</div>"+
 			"				</div>"+
 			"				<div class=\"cell category\" filterCategory=\"statChange\">"+
-			"					<div class=\"name\" filterName=\"statOne\">"+ html.checkBoxObject("1") +"</div>"+
-			"					<div class=\"name\" filterName=\"statTwo\">"+ html.checkBoxObject("2") +"</div>"+
-			"					<div class=\"name\" filterName=\"statThree\">"+ html.checkBoxObject("3") +"</div>"+
-			"					<div class=\"name\" filterName=\"statFour\">"+ html.checkBoxObject("4") +"</div>"+
-			"					<div class=\"name\" filterName=\"statFive\">"+ html.checkBoxObject("5") +"</div>"+
-			"					<div class=\"name\" filterName=\"statSix\">"+ html.checkBoxObject("6") +"</div>"+
+			"					<div class=\"name\" filterName=\"statOne\">"+ html.checkBox("1") +"</div>"+
+			"					<div class=\"name\" filterName=\"statTwo\">"+ html.checkBox("2") +"</div>"+
+			"					<div class=\"name\" filterName=\"statThree\">"+ html.checkBox("3") +"</div>"+
+			"					<div class=\"name\" filterName=\"statFour\">"+ html.checkBox("4") +"</div>"+
+			"					<div class=\"name\" filterName=\"statFive\">"+ html.checkBox("5") +"</div>"+
+			"					<div class=\"name\" filterName=\"statSix\">"+ html.checkBox("6") +"</div>"+
 			"				</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"learn\">"+
 			"				<h3>Learned By</h3>"+
-			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBoxObject("Egg") +"</div>"+
-			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBoxObject("HM") +"</div>"+
-			"				<div class=\"name\" filterName=\"level\">"+ html.checkBoxObject("Level") +"</div>"+
-			"				<div class=\"name\" filterName=\"preEvolution\">"+ html.checkBoxObject("Pre-Evolution") +"</div>"+
-			"				<div class=\"name\" filterName=\"tm\">"+ html.checkBoxObject("TM") +"</div>"+
-			"				<div class=\"name\" filterName=\"transfer\">"+ html.checkBoxObject("Transfer") +"</div>"+
-			"				<div class=\"name\" filterName=\"tutor\">"+ html.checkBoxObject("Tutor") +"</div>"+
+			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBox("Egg") +"</div>"+
+			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBox("HM") +"</div>"+
+			"				<div class=\"name\" filterName=\"level\">"+ html.checkBox("Level") +"</div>"+
+			"				<div class=\"name\" filterName=\"preEvolution\">"+ html.checkBox("Pre-Evolution") +"</div>"+
+			"				<div class=\"name\" filterName=\"tm\">"+ html.checkBox("TM") +"</div>"+
+			"				<div class=\"name\" filterName=\"transfer\">"+ html.checkBox("Transfer") +"</div>"+
+			"				<div class=\"name\" filterName=\"tutor\">"+ html.checkBox("Tutor") +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
-			"				<div class=\"category\" filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBoxObject()+"</div>"+
-			"				<div class=\"category\" filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBoxObject()+"</div>"+
-			"				<div class=\"category\" filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBoxObject()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBox()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBox()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBox()+"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
 			"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
@@ -129,11 +129,11 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
-			movesFilter = parent.querySelector(".movesFilter");
+			movesFilter = parent.querySelector(".movesFilterTable");
 			addEventListeners();
 		}
 		addEventListeners = function(){
-			var checkboxs = movesFilter.querySelectorAll(".checkbox");
+			var checkboxs = movesFilter.querySelectorAll(".checkBox");
 			checkboxs.forEach(function(checkbox){
 				$(checkbox).on("click", checkboxClick);
 			});
@@ -185,8 +185,17 @@
 			filterMoves();
 		}
 		var filterMoves = function(){
-			console.log(filterCategories.type);
 			filteredList = movesList;
+			filterByCategory("type");
+			filterByCategory("category");
+			filterByCategory("");
+			filterByCategory("type");
+			filterByCategory("type");
+			filterByCategory("type");
+			filterByCategory("type");
+			filterByCategory("type");
+			filterByCategory("type");
+			filterByCategory("type");
 			filterByCategory("type");
 			console.log(filteredList);
 		}
@@ -194,8 +203,7 @@
 			var temp = [];
 			filterCategories[category].forEach(function(filterItem){
 				filteredList.forEach(function(move){
-					console.log(dev.moves[move][category]+" : "+filterItem);
-					if(dev.moves[move][category] === filterItem){
+					if(R.moves[move][category] === filterItem){
 						temp.push(move);
 					}
 				});
@@ -422,7 +430,7 @@
 		}
 
 		return {
-			html: html,
+			HTML: HTML,
 			hasLoaded : hasLoaded,
 			filterMoves: filterMoves,
 		}

@@ -1,9 +1,9 @@
 (function(root){
 	html.siteHeader = function(){
-		var html = function(){
+		var HTML = function(){
 			return ""+
 				"	<div class=\"header\">"+
-				"		<p>POKEDEX</p>"+
+				"		<p>Paul</p>"+
 				"	</div>"+
 				"	<ul class=\"mainBarMenu webBackground fireBorder\">"+
 				"		<li><a href=\"#\">Home</a></li>"+
@@ -12,7 +12,7 @@
 				"	</ul>";
 		}
 		return{
-			html: html,
+			HTML: HTML,
 		}
 	}
 })(this);
