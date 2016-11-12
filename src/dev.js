@@ -123,116 +123,124 @@
 		flamethrower : {
 			name : "Flamethrower",
 			type : "fire",
-			category : "Special",
+			category : "special",
 			power : "90",
 			accuracy : "100",
 			pp : "15",
-			effects : {
-				condition : ["Burn"],
-				percentage : ["10"],
-				increase : [null],
-			},
+			effects : [
+				{
+					type : "status",
+					condition : "burn",
+					chance : "10",
+				},
+			],
 			pokemon : ["ninetales"],
 		},
 		extrasensory : {
 			name : "Extrasensory",
 			type : "psychic",
-			category : "Special",
+			category : "special",
 			power : "80",
 			accuracy : "100",
 			pp : "20",
-			effects : {
-				condition : ["Flinch"],
-				percentage : ["10"],
-				increase : [null],
-			},
+			effects : [
+				{
+					type : "battle",
+					condition : "flinch",
+					chance : "10",
+				},
+			],
 			pokemon : ["ninetales"],	
 		},
 		heatWave : {
 			name : "Heat Wave",
 			type : "fire",
-			category : "Special",
+			category : "special",
 			power : "95",
 			accuracy : "90",
 			pp : "10",
-			effects : {
-				condition : ["Burn"],
-				percentage : ["10"],
-				increase : [null],
-			},
+			effects : [
+				{
+					type : "status",
+					condition : "burn",
+					chance : "10",
+				},
+			],
 			pokemon : ["ninetales"],
 		},
 		confuseRay : {
 			name : "Confuse Ray",
 			type : "ghost",
-			category : "Status",
+			category : "status",
 			power : "",
 			accuracy : "100",
 			pp : "10",
-			effects : {
-				condition : ["Confusion"],
-				percentage : ["100"],
-				increase : [null],
-			},
+			effects : [
+				{
+					type : "battle",
+					condition : "confusion",
+					chance : "100",
+				},
+			],
 			pokemon : ["ninetales"],
 		},
 		imprison : {
 			name : "Imprison",
 			type : "psychic",
-			category : "Status",
+			category : "status",
 			power : "",
 			accuracy : "",
 			pp : "10",
-			effects : {
-				condition : [],
-				percentage : [],
-				increase : [],
-			},
+			effects : [],
 			pokemon : ["ninetales"],
 		},
 		nastyPlot : {
 			name : "Nasty Plot",
 			type : "dark",
-			category : "Status",
+			category : "status",
 			power : "",
 			accuracy : "",
 			pp : "20",
-			effects : {
-				condition : [{stat:"Special Attack",dir:"+",num:"2"}],
-				percentage : [null],
-				increase : [null],
-			},
+			effects : [
+				{
+					type : "stat",
+					stat : "spAttack",
+					dir : "+",
+					disp : "2",
+				},
+			],
 			pokemon : ["ninetales"],
 		},
 		quickAttack : {
 			name : "Quick Attack",
 			type : "normal",
-			category : "Physical",
+			category : "physical",
 			power : "40",
 			accuracy : "100",
 			pp : "30",
-			effects : {
-				condition : ["Priority"],
-				percentage : [null],
-				increase : ["+1"],
-			},
+			effects : [
+				{
+					type : "battle",
+					condition : "priority",
+					chance : null,
+					dir : "+",
+					displacment : "1",
+				},
+			],
 			pokemon : ["ninetales"],
 		},
 		safeguard : {
 			name : "Safeguard",
 			type : "normal",
-			category : "Status",
+			category : "status",
 			power : "",
 			accuracy : "",
 			pp : "25",
-			effects : {
-				condition : [],
-				percentage : [],
-				increase : [],
-			},
+			effects : [],
 			pokemon : ["ninetales"],
 		},
 	}
+
 	dev.abilities = {
 		flashFire : {
 			name : "Flash Fire",
@@ -241,6 +249,7 @@
 			name : "Drought",
 		},
 	}
+
 	dev.types = {
 		bug: {
 			name : "Bug",

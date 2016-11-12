@@ -192,7 +192,7 @@
 		var movesSetElement = statsPageElement.querySelector("#statsPage [index=\""+index+"\"]");
 		movesSetElement.style.borderColor = primaryTypes.primaryType.colors.main;
 		var movesList = {};
-		movesList.filter = html.load(movesSetElement, "movesFilterTable", primaryPokemon.moves.all);
+		movesList.filter = html.load(movesSetElement, "movesFilterTable", {moves: primaryPokemon.moves.all, pokemonMoves: primaryPokemon.moves});
 		movesList.list = html.load(movesSetElement, "movesListTable", primaryPokemon.battle.types.primaryType);
 		movesTableList[0] = movesList;
 		var filteredMoves = movesTableList[0].filter.filterMoves();

@@ -3,6 +3,7 @@
 		var movesFilter;
 		var movesList;
 		var filteredList;
+		var pokemonMovesList;
 
 		var filterCategories = {
 			type: [],
@@ -10,15 +11,16 @@
 			status: [],
 			battle: [],
 			stat: [],
-			statDir: [],
-			statChange: [],
+			dir: [],
+			disp: [],
 			learn: [],
 			power: [],
 			accuracy: [],
 			pp: [],
 		}
 		var HTML = function(moves){
-			movesList = moves;
+			movesList = moves.moves;
+			pokemonMovesList = moves.pokemonMoves;
 			return ""+
 			"	<div class=\"movesFilterTable\">"+
 			"		<div class=\"row\">"+
@@ -59,26 +61,26 @@
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"category\">"+
 			"				<h3>Category</h3>"+
-			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBox("Physical") +"</div>"+
-			"				<div class=\"name\" filterName=\"special\">"+ html.checkBox("Special") +"</div>"+
-			"				<div class=\"name\" filterName=\"status\">"+ html.checkBox("Status") +"</div>"+
+			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBox(lang.moves.category[lang.userLanguage].physical) +"</div>"+
+			"				<div class=\"name\" filterName=\"special\">"+ html.checkBox(lang.moves.category[lang.userLanguage].special) +"</div>"+
+			"				<div class=\"name\" filterName=\"status\">"+ html.checkBox(lang.moves.category[lang.userLanguage].status) +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"status\">"+
 			"				<h3>Status Effects</h3>"+
-			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBox("Burn") +"</div>"+
-			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBox("Freeze") +"</div>"+
-			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBox("Paralysis") +"</div>"+
-			"				<div class=\"name\" filterName=\"poison\">"+ html.checkBox("Poison") +"</div>"+
-			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBox("Sleep") +"</div>"+
+			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].burn) +"</div>"+
+			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].freeze) +"</div>"+
+			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].paralysis) +"</div>"+
+			"				<div class=\"name\" filterName=\"poison\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].poison) +"</div>"+
+			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].sleep) +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"battle\">"+
 			"				<h3>Battle Effects</h3>"+
-			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBox("Confusion") +"</div>"+
-			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBox("Crit") +"</div>"+
-			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBox("Flinch") +"</div>"+
-			"				<div class=\"name\" filterName=\"heal\">"+ html.checkBox("Heal") +"</div>"+
-			"				<div class=\"name\" filterName=\"priority\">"+ html.checkBox("Priority") +"</div>"+
-			"				<div class=\"name\" filterName=\"trap\">"+ html.checkBox("Trap") +"</div>"+
+			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].confusion) +"</div>"+
+			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].crit) +"</div>"+
+			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].flinch) +"</div>"+
+			"				<div class=\"name\" filterName=\"heal\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].heal) +"</div>"+
+			"				<div class=\"name\" filterName=\"priority\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].priority) +"</div>"+
+			"				<div class=\"name\" filterName=\"trap\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].trap) +"</div>"+
 			"			</div>"+
 			"		</div>"+
 			"		<div class=\"row\">"+
@@ -93,33 +95,33 @@
 			"					<div class=\"name\" filterName=\"accuracy\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].accuracy) +"</div>"+
 			"					<div class=\"name\" filterName=\"evasion\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].evasion) +"</div>"+
 			"				</div>"+
-			"				<div class=\"cell category\" filterCategory=\"statDir\">"+
-			"					<div class=\"name\" filterName=\"statIncrease\">"+ html.checkBox("+") +"</div>"+
-			"					<div class=\"name\" filterName=\"statDecrease\">"+ html.checkBox("-") +"</div>"+
+			"				<div class=\"cell category\" filterCategory=\"dir\">"+
+			"					<div class=\"name\" filterName=\"+\">"+ html.checkBox("+") +"</div>"+
+			"					<div class=\"name\" filterName=\"-\">"+ html.checkBox("-") +"</div>"+
 			"				</div>"+
-			"				<div class=\"cell category\" filterCategory=\"statChange\">"+
-			"					<div class=\"name\" filterName=\"statOne\">"+ html.checkBox("1") +"</div>"+
-			"					<div class=\"name\" filterName=\"statTwo\">"+ html.checkBox("2") +"</div>"+
-			"					<div class=\"name\" filterName=\"statThree\">"+ html.checkBox("3") +"</div>"+
-			"					<div class=\"name\" filterName=\"statFour\">"+ html.checkBox("4") +"</div>"+
-			"					<div class=\"name\" filterName=\"statFive\">"+ html.checkBox("5") +"</div>"+
-			"					<div class=\"name\" filterName=\"statSix\">"+ html.checkBox("6") +"</div>"+
+			"				<div class=\"cell category\" filterCategory=\"disp\">"+
+			"					<div class=\"name\" filterName=\"1\">"+ html.checkBox("1") +"</div>"+
+			"					<div class=\"name\" filterName=\"2\">"+ html.checkBox("2") +"</div>"+
+			"					<div class=\"name\" filterName=\"3\">"+ html.checkBox("3") +"</div>"+
+			"					<div class=\"name\" filterName=\"4\">"+ html.checkBox("4") +"</div>"+
+			"					<div class=\"name\" filterName=\"5\">"+ html.checkBox("5") +"</div>"+
+			"					<div class=\"name\" filterName=\"6\">"+ html.checkBox("6") +"</div>"+
 			"				</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"learn\">"+
 			"				<h3>Learned By</h3>"+
-			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBox("Egg") +"</div>"+
-			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBox("HM") +"</div>"+
-			"				<div class=\"name\" filterName=\"level\">"+ html.checkBox("Level") +"</div>"+
-			"				<div class=\"name\" filterName=\"preEvolution\">"+ html.checkBox("Pre-Evolution") +"</div>"+
-			"				<div class=\"name\" filterName=\"tm\">"+ html.checkBox("TM") +"</div>"+
-			"				<div class=\"name\" filterName=\"transfer\">"+ html.checkBox("Transfer") +"</div>"+
-			"				<div class=\"name\" filterName=\"tutor\">"+ html.checkBox("Tutor") +"</div>"+
+			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].egg) +"</div>"+
+			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].hm) +"</div>"+
+			"				<div class=\"name\" filterName=\"level\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].level) +"</div>"+
+			"				<div class=\"name\" filterName=\"preEvolution\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].preEvolution) +"</div>"+
+			"				<div class=\"name\" filterName=\"tm\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].tm) +"</div>"+
+			"				<div class=\"name\" filterName=\"transfer\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].transfer) +"</div>"+
+			"				<div class=\"name\" filterName=\"tutor\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].tutor) +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
-			"				<div class=\"category\" filterCategory=\"power\"><h3>Power</h3>"+html.minMaxTextBox()+"</div>"+
-			"				<div class=\"category\" filterCategory=\"accuracy\"><h3>Accuracy</h3>"+html.minMaxTextBox()+"</div>"+
-			"				<div class=\"category\" filterCategory=\"pp\"><h3>PP</h3>"+html.minMaxTextBox()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"power\"><h3>"+lang.moves.stats[lang.userLanguage].power+"</h3>"+html.minMaxTextBox()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"accuracy\"><h3>"+lang.moves.stats[lang.userLanguage].accuracy+"</h3>"+html.minMaxTextBox()+"</div>"+
+			"				<div class=\"category\" filterCategory=\"pp\"><h3>"+lang.moves.stats[lang.userLanguage].pp+"</h3>"+html.minMaxTextBox()+"</div>"+
 			"			</div>"+
 			"			<div class=\"cell\">"+
 			"				<button class=\"clearButton\" type=\"button\">Clear</button>"+
@@ -186,173 +188,81 @@
 		}
 		var filterMoves = function(){
 			filteredList = movesList;
-			filterByCategory("type");
-			filterByCategory("category");
-			filterByCategory("");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
-			filterByCategory("type");
+			filterByProperties("type");
+			filterByProperties("category");
+			filterByEffects("status");
+			filterByEffects("battle");
+			filterByStatChanges("stat");
+			filterByStatChanges("dir");
+			filterByStatChanges("disp");
+			filterByLearn();
 			console.log(filteredList);
 		}
-		filterByCategory = function(category){
+		filterByProperties = function(property){
 			var temp = [];
-			filterCategories[category].forEach(function(filterItem){
+			filterCategories[property].forEach(function(filterItem){
 				filteredList.forEach(function(move){
-					if(R.moves[move][category] === filterItem){
+					if(R.moves[move][property] === filterItem){
 						temp.push(move);
 					}
 				});
 			});
-			if(temp.length>0){
+			if(filterCategories[property].length>0){
 				filteredList = temp;
 			}
 		}
-		filterTypes = function(){
+		filterByEffects = function(effect){
 			var temp = [];
-			filters.types.forEach(function(type){
+			filterCategories[effect].forEach(function(filterItem){
 				filteredList.forEach(function(move){
-					if(dev.moves[move].type == category){
-						temp.push(move);
+					R.moves[move].effects.forEach(function(moveEffect){
+						if(moveEffect.type === effect){
+							if(moveEffect.condition === filterItem){
+								temp.push(move);
+							}
+						}
+					});
+				});
+			});
+			if(filterCategories[effect].length>0){
+				filteredList = temp;
+			}
+		}
+		filterByStatChanges = function(statChange){
+			var temp = [];
+			filterCategories[statChange].forEach(function(filterItem){
+				filteredList.forEach(function(move){
+					R.moves[move].effects.forEach(function(moveEffect){
+						if(moveEffect.type === "stat"){
+							console.log(filterItem);
+							if(moveEffect[statChange] === filterItem){
+								temp.push(move);
+							}
+						}
+					})
+				});
+			});
+			if(filterCategories[statChange].length>0){
+				filteredList = temp;
+			}
+		}
+		filterByLearn = function(){
+			var temp = [];
+			filterCategories.learn.forEach(function(filterItem){
+				filteredList.forEach(function(move){
+					var contains = _.some(pokemonMovesList[filterItem], function(pokemonMove){
+						return R.moves[move].name === R.moves[pokemonMove].name
+					})
+					if(contains){
+						temp.push(move)
 					}
 				});
 			});
-			if(temp.length>0){
+			if(filterCategories.learn.length>0){
 				filteredList = temp;
 			}
 		}
-		// filterCategories = function(){
-		// 	var temp = []
-		// 	filters.category.forEach(function(category){
-		// 		filteredList.forEach(function(move){
-		// 			if(dev.moves[move].category == category){
-		// 				temp.push(move);
-		// 			}
-		// 		});
-		// 	});
-		// 	if(temp.length>0){
-		// 		filteredList = temp;
-		// 	}
-		// }
-		filterStatus = function(num){
-			if(movesLists[num].status.length == 0){
-				return  primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].status.forEach(function(status){
-					primaryPokemon.moves.all.forEach(function(move){
-						if(_.contains(dev.moves[move].effects.condition, status)){
-							list.push(move);
-						}
-					});
-				});
-				return list;
-			}
-		}
-		filterBattle = function(num){
-			if(movesLists[num].battle.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].battle.forEach(function(battle){
-					primaryPokemon.moves.all.forEach(function(move){
-						if(_.contains(dev.moves[move].effects.condition, battle)){
-							list.push(move);
-						}
-					});
-				});
-				return list;
-			}
-		}
-		filterStat = function(num){
-			if(movesLists[num].stat.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].stat.forEach(function(stat){
-					primaryPokemon.moves.all.forEach(function(move){
-						var contains = _.some(dev.moves[move].effects.condition, function(el){
-							if(!!el.stat){
-								return el.stat == stat;
-							}else{
-								return false;
-							}
-						});
-						if(contains){
-							list.push(move);
-						}
-					});
-				});
-				return list;
-			}
-		}
-		filterStatDir = function(num){
-			if(movesLists[num].statDir.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].statDir.forEach(function(dir){
-					primaryPokemon.moves.all.forEach(function(move){
-						var contains = _.some(dev.moves[move].effects.condition, function(el){
-							if(!!el.dir){
-								return el.dir == dir;
-							}else{
-								return false;
-							}
-						});
-						if(contains){
-							list.push(move);
-						}
-					});
-				});
-				return list;
-			}
-		}
-		filterStatNum = function(num){
-			if(movesLists[num].statNum.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].statNum.forEach(function(num){
-					primaryPokemon.moves.all.forEach(function(move){
-						var contains = _.some(dev.moves[move].effects.condition, function(el){
-							if(!!el.num){
-								return el.num == num;
-							}else{
-								return false;
-							}
-						});
-						if(contains){
-							list.push(move);
-						}
-					});
-				});
-				return list;
-			}
-		}
-		filterLearn = function(num){
-			if(movesLists[num].learn.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				movesLists[num].learn.forEach(function(learn){
-					primaryPokemon.moves[learn].forEach(function(move){
-						list.push(move);
-					});
-				});
-				return list;
-			}
-		}
+		
 		filterPower = function(num){
 			if(movesLists[num].power.length == 0){
 				return primaryPokemon.moves.all;
