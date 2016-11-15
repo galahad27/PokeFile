@@ -1,5 +1,5 @@
 .movesListTable{
-	width: 766px;
+	width: 779.02px;
 	.table{
 		.row{
 			display: flex;
@@ -7,9 +7,10 @@
 		    	display: inline-block;
 		    	padding: 5px 0px 5px 0px;
 		    	text-align:center;
-		    	border-width: 1px;
-				margin-bottom: -1px;
-				margin-left: -1px;
+		    	border-width: 1px 1px 0px 0px;
+			}
+			.right{
+				border-right-width: 0px;
 			}
 			[type="move"]{
 	    		width: 20%;
@@ -32,7 +33,7 @@
 		    	width: 5%;
 		    }
 		    [type="effect"]{
-		    	width: 44%;
+		    	width: 45%;
 		    	overflow: hidden;
 		    }
 		    [type="pp"]{

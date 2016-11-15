@@ -1,23 +1,22 @@
 (function(root){
 	html.movesFilterTable = function(){
-		var movesFilter;
-		var movesList;
+		/***************************ELEMENTS***************************/
+		var movesFilterElement;
+		var checkBoxes;
+		var submitButtons;
+		var clearButton;
+		var removeButton;
+		var textBoxes;
+		/***************************FINAL***************************/
+		var filterSubject = new Rx.Subject();
+		/***************************LOCAL***************************/
+		var disp;
+		var eventListeners;
+		var filterCategories;
 		var filteredList;
+		var movesList;
 		var pokemonMovesList;
 
-		var filterCategories = {
-			type: [],
-			category: [],
-			status: [],
-			battle: [],
-			stat: [],
-			dir: [],
-			disp: [],
-			learn: [],
-			power: [],
-			accuracy: [],
-			pp: [],
-		}
 		var HTML = function(moves){
 			movesList = moves.moves;
 			pokemonMovesList = moves.pokemonMoves;
@@ -25,48 +24,48 @@
 			"	<div class=\"movesFilterTable\">"+
 			"		<div class=\"row\">"+
 			"			<div class=\"cell category\" filterCategory=\"type\">"+
-			"				<h3>Types</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].types+"</h3>"+
 			"				<div class=\"table\">"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBox(R.types.bug.name, R.types.bug.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBox(R.types.fighting.name, R.types.fighting.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBox(R.types.normal.name, R.types.normal.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"bug\">"+ html.checkBox(R.types.bug.name, "bug") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fighting\">"+ html.checkBox(R.types.fighting.name, "fighting") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"normal\">"+ html.checkBox(R.types.normal.name, "normal") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBox(R.types.dark.name, R.types.dark.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBox(R.types.flying.name, R.types.flying.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBox(R.types.poison.name, R.types.poison.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dark\">"+ html.checkBox(R.types.dark.name, "dark") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"flying\">"+ html.checkBox(R.types.flying.name, "flying") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"poison\">"+ html.checkBox(R.types.poison.name, "poison") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBox(R.types.dragon.name, R.types.dragon.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBox(R.types.ghost.name, R.types.ghost.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBox(R.types.psychic.name, R.types.psychic.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"dragon\">"+ html.checkBox(R.types.dragon.name, "dragon") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ghost\">"+ html.checkBox(R.types.ghost.name, "ghost") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"psychic\">"+ html.checkBox(R.types.psychic.name, "psychic") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBox(R.types.electric.name, R.types.electric.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBox(R.types.grass.name, R.types.grass.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBox(R.types.rock.name, R.types.rock.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"electric\">"+ html.checkBox(R.types.electric.name, "electric") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"grass\">"+ html.checkBox(R.types.grass.name, "grass") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"rock\">"+ html.checkBox(R.types.rock.name, "rock") +"</div>"+
 			"					</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBox(R.types.fairy.name, R.types.fairy.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBox(R.types.ground.name, R.types.ground.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBox(R.types.steel.name, R.types.steel.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fairy\">"+ html.checkBox(R.types.fairy.name, "fairy") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ground\">"+ html.checkBox(R.types.ground.name, "ground") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"steel\">"+ html.checkBox(R.types.steel.name, "steel") +"</div>"+
 			"						</div>"+
 			"					<div class=\"row\">"+
-			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBox(R.types.fire.name, R.types.fire.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBox(R.types.ice.name, R.types.ice.colors.main) +"</div>"+
-			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBox(R.types.water.name, R.types.water.colors.main) +"</div>"+
+			"						<div class=\"cell name\" filterName=\"fire\">"+ html.checkBox(R.types.fire.name, "fire") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"ice\">"+ html.checkBox(R.types.ice.name, "ice") +"</div>"+
+			"						<div class=\"cell name\" filterName=\"water\">"+ html.checkBox(R.types.water.name, "water") +"</div>"+
 			"					</div>"+
 			"				</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"category\">"+
-			"				<h3>Category</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].category+"</h3>"+
 			"				<div class=\"name\" filterName=\"physical\">"+ html.checkBox(lang.moves.category[lang.userLanguage].physical) +"</div>"+
 			"				<div class=\"name\" filterName=\"special\">"+ html.checkBox(lang.moves.category[lang.userLanguage].special) +"</div>"+
 			"				<div class=\"name\" filterName=\"status\">"+ html.checkBox(lang.moves.category[lang.userLanguage].status) +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"status\">"+
-			"				<h3>Status Effects</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].statusEffects+"</h3>"+
 			"				<div class=\"name\" filterName=\"burn\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].burn) +"</div>"+
 			"				<div class=\"name\" filterName=\"freeze\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].freeze) +"</div>"+
 			"				<div class=\"name\" filterName=\"paralysis\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].paralysis) +"</div>"+
@@ -74,7 +73,7 @@
 			"				<div class=\"name\" filterName=\"sleep\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].sleep) +"</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"battle\">"+
-			"				<h3>Battle Effects</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].battleEffects+"</h3>"+
 			"				<div class=\"name\" filterName=\"confusion\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].confusion) +"</div>"+
 			"				<div class=\"name\" filterName=\"crit\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].crit) +"</div>"+
 			"				<div class=\"name\" filterName=\"flinch\">"+ html.checkBox(lang.moves.effects[lang.userLanguage].flinch) +"</div>"+
@@ -85,7 +84,7 @@
 			"		</div>"+
 			"		<div class=\"row\">"+
 			"			<div class=\"cell\">"+
-			"				<h3>Stat Changes</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].statChanges+"</h3>"+
 			"				<div class=\"cell category\" filterCategory=\"stat\">"+
 			"					<div class=\"name\" filterName=\"attack\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].attack) +"</div>"+
 			"					<div class=\"name\" filterName=\"defense\">"+ html.checkBox(lang.pokemon.stats[lang.userLanguage].defense) +"</div>"+
@@ -109,7 +108,7 @@
 			"				</div>"+
 			"			</div>"+
 			"			<div class=\"cell category\" filterCategory=\"learn\">"+
-			"				<h3>Learned By</h3>"+
+			"				<h3>"+lang.moves.general[lang.userLanguage].learnedBy+"</h3>"+
 			"				<div class=\"name\" filterName=\"egg\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].egg) +"</div>"+
 			"				<div class=\"name\" filterName=\"hm\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].hm) +"</div>"+
 			"				<div class=\"name\" filterName=\"level\">"+ html.checkBox(lang.moves.learn[lang.userLanguage].level) +"</div>"+
@@ -131,19 +130,115 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
-			movesFilter = parent.querySelector(".movesFilterTable");
-			addEventListeners();
+			initVariables(parent);
+			initEventListeners();
 		}
-		addEventListeners = function(){
-			var checkboxs = movesFilter.querySelectorAll(".checkBox");
-			checkboxs.forEach(function(checkbox){
-				$(checkbox).on("click", checkboxClick);
+		var destroy = function(){
+			destroyDisposables();
+			destroyEventListeners();
+		}
+		/***************************GETTERS***************************/
+		var getFilters = function(){
+			return filterCategories;
+		}
+		/***************************GETTERS***************************/
+		var setFilters = function(filters){
+			filterCategories = filters;
+			setCheckBoxes();
+			setTextBoxes();
+			filterMoves();
+		}
+		setCheckBoxes = function(){
+			checkBoxes.forEach(function(checkBox){
+				var category = $(checkBox).parents(".category")[0].getAttribute("filterCategory");
+				var name = $(checkBox).parents(".name")[0].getAttribute("filterName");
+				if(_.contains(filterCategories[category], name)){
+					checkBox.checked = true;
+				}
 			});
-			var buttons = movesFilter.querySelectorAll(".submitButton");
-			buttons.forEach(function(button){
+		}
+		setTextBoxes = function(){
+			var regex;
+			textBoxes.forEach(function(textBox){
+				var category = $(textBox).parents(".category")[0].getAttribute("filterCategory");
+				var type
+
+				var parent = $(e.target).parent()[0];
+				var minInput = parent.querySelector(".minInput");
+				var maxInput = parent.querySelector(".maxInput");
+				var minValue = utill.regex(minInput.value,regex);
+				var maxValue = utill.regex(maxInput.value,regex);
+				if(minValue || maxValue){
+					if(minValue){
+						minValue=parseInt(minInput.value);
+					}else{
+						minValue=0;
+					}
+					if(maxValue){
+						maxValue=parseInt(maxInput.value);
+					}else{
+						maxValue=250;
+					}
+					filterCategories[category] = {min: minValue, max: maxValue};
+				}else{
+					filterCategories[category] = null;
+				}
+			});
+		}
+		/***************************INITIALIZE***************************/
+		initEventListeners = function(){
+			checkBoxes.forEach(function(checkBox){
+				eventListeners.push(checkBox);
+				$(checkBox).on("click", checkboxClick);
+			});
+			submitButtons.forEach(function(button){
+				eventListeners.push(button);
 				$(button).on("click", submitClick);
 			});
+			$(clearButton).on("click", clearClick);
+			$(removeButton).on("click", removeClick);
 		}
+		initFilterCategories = function(){
+			filterCategories = {
+				type: [],
+				category: [],
+				status: [],
+				battle: [],
+				stat: [],
+				dir: [],
+				disp: [],
+				learn: [],
+				power: null,
+				accuracy: null,
+				pp: null,
+			}
+		}
+		initVariables = function(parent){	
+			disp={};
+			eventListeners = [];
+			initFilterCategories();
+			movesFilterElement = parent.querySelector(".movesFilterTable");
+			checkBoxes = movesFilterElement.querySelectorAll(".checkbox");
+			clearButton = movesFilterElement.querySelector(".clearButton");
+			removeButton = movesFilterElement.querySelector(".removeButton");
+			submitButtons = movesFilterElement.querySelectorAll(".submitButton");
+			textBoxes = movesFilterElement.querySelectorAll(".textBox");
+		}
+		/***************************DESTROY***************************/
+		destroyDisposables = function(){
+			for(var key in disp){
+				if(disp.hasOwnProperty(key)){
+					disp[key].dispose();
+					disp[key] = null;
+				}
+			}
+		}
+		destroyEventListeners = function(){
+			eventListeners.forEach(function(event){
+				$(event).off();
+			});
+		}
+		/***************************EVENTS***************************/
 		checkboxClick = function(e){
 			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
 			var name = $(e.target).parents(".name")[0].getAttribute("filterName");
@@ -153,6 +248,19 @@
 				filterCategories[category] = _.without(filterCategories[category], name);
 			}
 			filterMoves();
+		}
+		clearClick = function(){
+			initFilterCategories();
+			checkBoxes.forEach(function(checkBox){
+				checkBox.checked = false;
+			});
+			textBoxes.forEach(function(textBox){
+				textBox.value = null;
+			});
+			filterMoves();
+		}
+		removeClick = function(){
+
 		}
 		submitClick = function(e){
 			var regex;
@@ -182,10 +290,11 @@
 				}
 				filterCategories[category] = {min: minValue, max: maxValue};
 			}else{
-				filterCategories[category] = {};
+				filterCategories[category] = null;
 			}
 			filterMoves();
 		}
+		//***************************MISC***************************//
 		var filterMoves = function(){
 			filteredList = movesList;
 			filterByProperties("type");
@@ -196,7 +305,10 @@
 			filterByStatChanges("dir");
 			filterByStatChanges("disp");
 			filterByLearn();
-			console.log(filteredList);
+			filterByRange("power");
+			filterByRange("accuracy");
+			filterByRange("pp");
+			filterSubject.onNext(filteredList);
 		}
 		filterByProperties = function(property){
 			var temp = [];
@@ -262,87 +374,26 @@
 				filteredList = temp;
 			}
 		}
-		
-		filterPower = function(num){
-			if(movesLists[num].power.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				primaryPokemon.moves.all.forEach(function(move){
-					var movePower = parseInt(dev.moves[move].power);
-					if(movePower>=movesLists[num].power[0] && movePower<=movesLists[num].power[1]){
-						list.push(move);
+		filterByRange = function(property){
+			if(!!filterCategories[property]){
+				var temp = [];
+				filteredList.forEach(function(move){
+					var value = parseInt(R.moves[move][property]);
+					if(value>=filterCategories[property].min && value<=filterCategories[property].max){
+						temp.push(move);
 					}
 				});
-				return list;
+				filteredList = temp;
 			}
 		}
-		filterAccuracy = function(num){
-			if(movesLists[num].accuracy.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				primaryPokemon.moves.all.forEach(function(move){
-					var moveAcc = parseInt(dev.moves[move].accuracy);
-					if(moveAcc>=movesLists[num].accuracy[0] && moveAcc<=movesLists[num].accuracy[1]){
-						list.push(move);
-					}
-				});
-				return list;
-			}
-		}
-		filterPP = function(num){
-			if(movesLists[num].pp.length == 0){
-				return primaryPokemon.moves.all;
-			}else{
-				var list = [];
-				movesLists[num].isFiltered = true;
-				primaryPokemon.moves.all.forEach(function(move){
-					var movePP = parseInt(dev.moves[move].pp);
-					if(movePP>=movesLists[num].pp[0] && movePP<=movesLists[num].pp[1]){
-						list.push(move);
-					}
-				});
-				return list;
-			}
-		}
-		filterTable = function(movesTable, num){
-			movesLists[num].isFiltered = false;
-			
-			var typeFilterList = filterTypes(num);
-			var categoryFilterList = filterCategories(num);
-			var statusFilterList = filterStatus(num);
-			var battleFilterList = filterBattle(num);
-			var statFilterList = filterStat(num);
-			var statDirFilterList = filterStatDir(num);
-			var statNumFilterList = filterStatNum(num);
-			var learnFilterList = filterLearn(num);
-			var powerFilterList = filterPower(num);
-			var accuracyFilterList = filterAccuracy(num);
-			var ppFilterList = filterPP(num);
-
-			var filteredList = primaryPokemon.moves.all;
-			if(movesLists[num].isFiltered){
-				filteredList = _.intersection(typeFilterList,categoryFilterList,statusFilterList,battleFilterList,statFilterList,statDirFilterList,statNumFilterList,learnFilterList,powerFilterList,accuracyFilterList,ppFilterList);
-			}
-			$(movesTable).empty();
-			$(movesTable).append(html.movesHeader(primaryPokemon.battle.primaryType));
-			filteredList.forEach(function(move){
-				var input = {
-					type : primaryPokemon.battle.primaryType,
-					move : dev.moves[move],
-					effect : moveEffectsToString(dev.moves[move].effects),
-				};
-				html.load(movesTable, input);
-			});
-		}
-
 		return {
 			HTML: HTML,
 			hasLoaded : hasLoaded,
+			destroy: destroy,
+			filterSubject: filterSubject,
 			filterMoves: filterMoves,
+			getFilters: getFilters,
+			setFilters: setFilters,
 		}
 	}
 })(this);

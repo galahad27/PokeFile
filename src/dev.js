@@ -3,6 +3,7 @@
 
 	dev.pokemon = {
 		ninetales : {
+			id: "ninetales",
 			name : {
 				en: "Ninetales",
 				jap: "Kyukon",
@@ -121,6 +122,7 @@
 	}
 	dev.moves = {
 		flamethrower : {
+			id: "flamethrower",
 			name : "Flamethrower",
 			type : "fire",
 			category : "special",
@@ -137,6 +139,7 @@
 			pokemon : ["ninetales"],
 		},
 		extrasensory : {
+			id: "extrasensory",
 			name : "Extrasensory",
 			type : "psychic",
 			category : "special",
@@ -153,6 +156,7 @@
 			pokemon : ["ninetales"],	
 		},
 		heatWave : {
+			id: "heatWave",
 			name : "Heat Wave",
 			type : "fire",
 			category : "special",
@@ -169,6 +173,7 @@
 			pokemon : ["ninetales"],
 		},
 		confuseRay : {
+			id: "confuseRay",
 			name : "Confuse Ray",
 			type : "ghost",
 			category : "status",
@@ -185,6 +190,7 @@
 			pokemon : ["ninetales"],
 		},
 		imprison : {
+			id: "imprison",
 			name : "Imprison",
 			type : "psychic",
 			category : "status",
@@ -195,6 +201,7 @@
 			pokemon : ["ninetales"],
 		},
 		nastyPlot : {
+			id: "nastyPlot",
 			name : "Nasty Plot",
 			type : "dark",
 			category : "status",
@@ -212,6 +219,7 @@
 			pokemon : ["ninetales"],
 		},
 		quickAttack : {
+			id: "quickAttack",
 			name : "Quick Attack",
 			type : "normal",
 			category : "physical",
@@ -222,14 +230,14 @@
 				{
 					type : "battle",
 					condition : "priority",
-					chance : null,
 					dir : "+",
-					displacment : "1",
+					disp : "1",
 				},
 			],
 			pokemon : ["ninetales"],
 		},
 		safeguard : {
+			id: "safeguard",
 			name : "Safeguard",
 			type : "normal",
 			category : "status",
@@ -243,15 +251,18 @@
 
 	dev.abilities = {
 		flashFire : {
+			id: "flashFire",
 			name : "Flash Fire",
 		},
 		drought : {
+			id: "drought",
 			name : "Drought",
 		},
 	}
 
 	dev.types = {
 		bug: {
+			id: "bug",
 			name : "Bug",
 			colors :{
 				main : "#A8B820",
@@ -259,6 +270,7 @@
 			},
 		},
 		dark: {
+			id: "dark",
 			name : "Dark",
 			colors :{
 				main : "#705848",
@@ -266,6 +278,7 @@
 			},
 		},
 		dragon: {
+			id: "dragon",
 			name : "Dragon",
 			colors :{
 				main : "#7038F8",
@@ -273,6 +286,7 @@
 			},
 		},
 		electric: {
+			id: "electric",
 			name : "Electric",
 			colors :{
 				main : "#F8D030",
@@ -280,6 +294,7 @@
 			},
 		},
 		fairy: {
+			id: "fairy",
 			name : "Fairy",
 			colors :{
 				main : "#EE99AC",
@@ -287,6 +302,7 @@
 			},
 		},
 		fire: {
+			id: "fire",
 			name : "Fire",
 			colors :{
 				main : "#F08030",
@@ -294,6 +310,7 @@
 			},
 		},
 		fighting: {
+			id: "fighting",
 			name : "Fighting",
 			colors :{
 				main : "#C03028",
@@ -301,6 +318,7 @@
 			},
 		},
 		flying: {
+			id: "flying",
 			name : "Flying",
 			colors :{
 				main : "#A890F0",
@@ -308,6 +326,7 @@
 			},
 		},
 		ghost: {
+			id: "ghost",
 			name : "Ghost",
 			colors :{
 				main : "#705898",
@@ -315,6 +334,7 @@
 			},
 		},
 		grass: {
+			id: "grass",
 			name : "Grass",
 			colors :{
 				main : "#78C850",
@@ -322,6 +342,7 @@
 			},
 		},
 		ground: {
+			id: "ground",
 			name : "Ground",
 			colors :{
 				main : "#E0C068",
@@ -329,6 +350,7 @@
 			},
 		},
 		ice: {
+			id: "ice",
 			name : "Ice",
 			colors :{
 				main : "#98D8D8",
@@ -336,6 +358,7 @@
 			},
 		},
 		normal: {
+			id: "normal",
 			name : "Normal",
 			colors :{
 				main : "#A8A878",
@@ -343,6 +366,7 @@
 			},
 		},
 		poison: {
+			id: "poison",
 			name : "Poison",
 			colors :{
 				main : "#A040A0",
@@ -350,6 +374,7 @@
 			},
 		},
 		psychic: {
+			id: "psychic",
 			name : "Psychic",
 			colors :{
 				main : "#F85888",
@@ -357,6 +382,7 @@
 			},
 		},
 		rock: {
+			id: "rock",
 			name : "Rock",
 			colors :{
 				main : "#B8A038",
@@ -364,6 +390,7 @@
 			},
 		},
 		steel: {
+			id: "steel",
 			name : "Steel",
 			colors :{
 				main : "#B8B8D0",
@@ -371,6 +398,7 @@
 			},
 		},
 		water: {
+			id: "water",
 			name : "Water",
 			colors :{
 				main : "#6890F0",

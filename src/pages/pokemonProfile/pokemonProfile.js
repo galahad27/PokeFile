@@ -55,19 +55,21 @@
 	const TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
 	const MOVESSET = function(index){return "<div class=\"movesSet\" index=\""+index+"\"></div>"};
 	const STATPAGETABS = {pokedex: pokedexElement, stats: statsElement, moves: movesElement};
+	//***************************SUBJECTS***************************//
+	var tabClickSubject = new Rx.Subject();
 	//***************************LOCAL***************************//
 	var primaryPokemon;
 	var primaryTypes;
 	var primaryAbilities;
 
 	var currImageIndex;
-	var movesTableNum;
-	var movesTableList;
+	var filters;
+	var disp;
 
 	//***************************PAGE***************************//
 	page.onBeforeShow = function(){
+		initVariables();
 		initPage();
-		initVariables()
 		initUI();
 		initEventListeners();
 	};
@@ -76,6 +78,7 @@
 	};
 	page.onBeforeHide = function(){
 		destroyEventListeners();
+		destroyDisposables();
 	};
 	page.onHide = function(){
 
@@ -83,7 +86,14 @@
 
 	//***************************INITIALIZE***************************//
 	function initPage(){
-		
+		disp.tab = tabClickSubject
+		.subscribe(function(tab){
+			setBorderWidth(tab);
+			$(statsPageElement).empty();
+			filters.forEach(function(filter){
+				filter.destroy();
+			});
+		});
 	}
 	function initEventListeners(){
 		$(pokedexElement).on("click", pokedexClick);
@@ -100,8 +110,8 @@
 	function initVariables(){
 		getPokemonData();
 		currImageIndex = 0;
-		movesTableNum = 0;
-		movesTableList = [];
+		filters = [];
+		disp = {};
 	}
 	//***************************DESTROY***************************//
 	function destroyEventListeners(){
@@ -109,6 +119,14 @@
 		$(statsElement).off("click", statsClick);
 		$(movesElement).off("click", movesClick);
 		$(pokemonImageElement).on("click", nextImage);
+	}
+	function destroyDisposables(){
+		for(var key in disp){
+			if(disp.hasOwnProperty(key)){
+				disp[key].dispose();
+				disp[key] = null;
+			}
+		}
 	}
 	//***************************GETTERS***************************//
 	function getPokemonData(){
@@ -187,16 +205,16 @@
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "pokemonStatsBarGraph", input);
 	}
-	function addMoves(index){
+	function addMoves(index, filterList){
 		$(statsPageElement).append(MOVESSET(index))
 		var movesSetElement = statsPageElement.querySelector("#statsPage [index=\""+index+"\"]");
 		movesSetElement.style.borderColor = primaryTypes.primaryType.colors.main;
-		var movesList = {};
-		movesList.filter = html.load(movesSetElement, "movesFilterTable", {moves: primaryPokemon.moves.all, pokemonMoves: primaryPokemon.moves});
-		movesList.list = html.load(movesSetElement, "movesListTable", primaryPokemon.battle.types.primaryType);
-		movesTableList[0] = movesList;
-		var filteredMoves = movesTableList[0].filter.filterMoves();
-		movesTableList[0].list.addMoves(filteredMoves);
+		filter  = html.load(movesSetElement, "movesFilterTable", {moves: primaryPokemon.moves.all, pokemonMoves: primaryPokemon.moves});
+		if(!!filterList){
+			filter.setFilters(filterList.getFilters());
+		}
+		filters[index] = filter;
+		html.load(movesSetElement, "movesListTable", {type: primaryPokemon.battle.types.primaryType, filter: filter});
 	}
 	function addPokedexEntries(){
 		var keys = _.keys(primaryPokemon.pokedex);
@@ -242,13 +260,17 @@
 	//***************************REMOVE***************************//
 	//***************************EVENTS***************************//
 	function movesClick(){
-		setBorderWidth("moves");
-		$(statsPageElement).empty();
-		addMoves(movesTableNum);
+		tabClickSubject.onNext("move");
+		if(filters.length>0){
+			filters.forEach(function(filterList, index){
+				addMoves(index, filterList);		
+			});
+		}else{
+			addMoves(0);
+		}
 	}
 	function pokedexClick(){
-		setBorderWidth("pokedex");
-		$(statsPageElement).empty();
+		tabClickSubject.onNext("pokedex");
 		addPokedexEntries();
 	}
 	function pokemonImageClick(){
@@ -259,8 +281,7 @@
 		setImage(pokemonImageElement, primaryPokemon.img.url, index);
 	}
 	function statsClick(){
-		setBorderWidth("stats");
-		$(statsPageElement).empty();
+		tabClickSubject.onNext("stats");
 		addBarGraph();
 		addTables();
 	}
@@ -300,117 +321,7 @@
 		return tempTypes;
 	}
 	//***************************MISC***************************//
-
-
-
-
-
 	
-	
-	
-	// moveEffectsToString = function(effects){
-	// 	var string = "";
-	// 	effects.condition.forEach(function(effect, index){
-	// 		if(!!effects.percentage[index]){
-	// 			if(string == ""){
-	// 				string = effects.percentage[index]+"%";
-	// 			}else{
-	// 				string = string+" | "+effects.percentage[index]+"%";
-	// 			}	
-	// 		}
-	// 		if(!!effects.increase[index]){
-	// 			if(string == ""){
-	// 				string = effects.increase[index];
-	// 			}else{
-	// 				if(!!effects.percentage[index]){
-	// 					string = string+" "+effects.increase[index];
-	// 				}else{
-	// 					string = string+" | "+effects.increase[index];
-	// 				}
-	// 			}	
-	// 		}
-	// 		if(!!effect.stat){
-	// 			if(string == ""){
-	// 				string = effect.dir + effect.num + " " +effect.stat;
-	// 			}else{
-	// 				if(!!effects.percentage[index]){
-	// 					string = string + " " + effect.dir + effect.num + " " +effect.stat;
-	// 				}else{
-	// 					string = string + " | " + effect.dir + effect.num + " " +effect.stat;
-	// 				}	
-	// 			}
-	// 		}else{
-	// 			if(string == ""){
-	// 				string = effect;
-	// 			}else{
-	// 				if(!!effects.percentage[index] || !!effects.increase[index]){
-	// 					string = string + " " + effect;
-	// 				}else{
-	// 					string = string + " | " + effect;
-	// 				}				
-	// 			}
-	// 		}
-	// 	});
-	// 	return string;
-	// }
-	
-
-
-
-	// clearClick = function(movesFilter, movesTable, num){
-	// 	movesListInit(num);
-	// 	fillCheckBoxes(movesFilter, num);
-	// 	fillTextBoxes(movesFilter, num);
-	// 	filterTable(movesTable, num);
-	// }
-	
-	
-
-
-	// 	var clearCallback = function(){
-	// 		clearClick(movesFilter, movesTable, num);
-	// 	};
-	// 	var clearButton = movesFilter.querySelector(".clearButton");
-	// 	$(clearButton).off("click");
-	// 	$(clearButton).on("click", clearCallback);
-	// 	removableEventListeners.push(clearButton);
-
-	// 	var removeCallback = function(){
-	// 		removeClick(movesList);
-	// 	};
-	// 	var removeButton = movesFilter.querySelector(".removeButton");
-	// 	$(removeButton).off("click");
-	// 	$(removeButton).on("click", removeCallback);
-	// 	removableEventListeners.push(removeButton);
-	// }
-	
-
-
-	
-	// removeRemovableEvevntListeners = function(){
-	// 	removableEventListeners.forEach(function(x){
-	// 		$(x).off();
-	// 	});
-	// 	removableEventListeners = [];
-	// }
-	
-
-
-
-
-	// fillCheckBoxes = function(movesFilter, num){
-	// 	var boxes = movesFilter.querySelectorAll(".box");
-	// 	boxes.forEach(function(x){
-	// 		contains = _.some(movesLists[num].checkedBoxes, function(y){
-	// 			return x.getAttribute("filter") == y;
-	// 		})
-	// 		if(contains){
-	// 			x.checked = true;
-	// 		}else{
-	// 			x.checked = false;
-	// 		}
-	// 	});
-	// }
 	// fillTextBoxes = function(movesFilter, num){
 	// 	var ppMin = movesFilter.querySelector(".ppMin");
 	// 	var ppMax = movesFilter.querySelector(".ppMax");
@@ -425,21 +336,5 @@
 	// 	accuracyMax.value = movesLists[num].accuracy[1] || "";
 	// 	powerMin.value = movesLists[num].power[0] || "";
 	// 	powerMax.value = movesLists[num].power[1] || "";
-	// }
-	// filterTypes = function(num){
-	// 	if(movesLists[num].type.length == 0){
-	// 		return primaryPokemon.moves.all;
-	// 	}else{
-	// 		var list = [];
-	// 		movesLists[num].isFiltered = true;
-	// 		movesLists[num].type.forEach(function(type){
-	// 			primaryPokemon.moves.all.forEach(function(move){
-	// 				if(dev.moves[move].type == type){
-	// 					list.push(move);
-	// 				}
-	// 			});
-	// 		});
-	// 		return list;
-	// 	}
 	// }
 })(this);
