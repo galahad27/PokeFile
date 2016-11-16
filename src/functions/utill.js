@@ -12,6 +12,12 @@
 	utill.regex = function(input, regex){
 		return regex.test(input);
 	}
+	utill.printFunctionName = function(name, func){
+		console.log("["+name+" | "+func+"]");
+	}
+	utill.printVariable = function(name, variable){
+		console.log(name.toUpperCase()+": ",variable);
+	}
 
 	root.utill = utill;
 })(this);

@@ -1,0 +1,9 @@
+.scrollbar{
+  position: fixed;
+  .thumb{
+    -webkit-mask: url("/res/img/stock/scrollbar_mask.png");
+    height: 60px;
+    margin-top: 97px;
+    background: orange;
+  }
+}

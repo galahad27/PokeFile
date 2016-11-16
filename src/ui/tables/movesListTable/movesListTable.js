@@ -6,8 +6,10 @@
 		var tableType;
 		var tableFilter;
 		var disp = {}
+		const FILENAME = "movesListTable";
 
 		var HTML = function(input){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			tableType = input.type;
 			tableFilter = input.filter;
 			return ""+
@@ -16,6 +18,7 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			movesListTable = parent.querySelector(".movesListTable");
 			table = movesListTable.querySelector(".table");
 			if(tableFilter){
@@ -26,22 +29,27 @@
 				tableFilter.filterMoves();
 			}
 		}
-		addMoves = function(moves){
+		function addMoves(moves){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			$(table).empty();
 			$(table).append(headerHtml);
 			moves.forEach(function(move){
 				$(table).append(moveHtml(R.moves[move]));
 			});
 		}
-		destroy = function(){
+		function destroy(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			utill.printVariable("disp", disp);
 			for(var key in disp){
 				if(disp.hasOwnProperty(key)){
 					disp[key].dispose();
 					disp[key] = null;
+					delete disp[key];
 				}
 			}
 		}
-		effectsToString = function(effects){
+		function effectsToString(effects){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var string = "";
 			effects.forEach(function(effect, index){
 				if(!!effect.chance){
@@ -55,7 +63,8 @@
 			});
 			return string;
 		}
-		headerHtml = function(){
+		function headerHtml(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return ""+
 			"	<div class=\"row\" background=\""+tableType+"\">"+
 			"		<div class=\"cell\" type=\"move\" border=\""+tableType+"\">"+lang.moves.general[lang.userLanguage].move+"</div>"+
@@ -67,7 +76,8 @@
 			"		<div class=\"cell right\" type=\"pp\" border=\""+tableType+"\">"+lang.moves.stats[lang.userLanguage].pp+"</div>"+
 			"	</div>";
 		}
-		moveHtml = function(move){
+		function moveHtml(move){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return ""+
 			"	<div class=\"row\">"+
 			"		<div class=\"cell\" type=\"move\" border=\""+tableType+"\">"+move.name+"</div>"+
@@ -82,6 +92,7 @@
 		return {
 			HTML: HTML,
 			hasLoaded: hasLoaded,
+			destroy: destroy,
 		}
 	}
 })(this);

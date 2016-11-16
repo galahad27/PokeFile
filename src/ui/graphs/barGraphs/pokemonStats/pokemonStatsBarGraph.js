@@ -1,10 +1,12 @@
 (function(root){
 	html.pokemonStatsBarGraph = function(){
+		const FILENAME = "pokemonStatsBarGraph";
 		var STATMODIFIER = 3;
 		var barGraph;
 		var base;
 
 		var HTML = function(input){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			base = input;
 			return ""+
 			"	<div class=\"pokemonStatsBarGraph\">"+
@@ -62,10 +64,12 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			barGraph = parent.querySelector(".pokemonStatsBarGraph");
 			setBarLength();
 		}
 		var setBarLength = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var hpCover = barGraph.querySelector(".hpBarCover");
 			var attackCover = barGraph.querySelector(".attackBarCover");
 			var defenseCover = barGraph.querySelector(".defenseBarCover");

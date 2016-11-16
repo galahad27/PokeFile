@@ -8,7 +8,9 @@
 		var removeButton;
 		var textBoxes;
 		/***************************FINAL***************************/
+		const FILENAME = "movesFilterTable";
 		var filterSubject = new Rx.Subject();
+		var removeSubject = new Rx.Subject();
 		/***************************LOCAL***************************/
 		var disp;
 		var eventListeners;
@@ -18,6 +20,7 @@
 		var pokemonMovesList;
 
 		var HTML = function(moves){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			movesList = moves.moves;
 			pokemonMovesList = moves.pokemonMoves;
 			return ""+
@@ -130,25 +133,30 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			initVariables(parent);
 			initEventListeners();
 		}
 		var destroy = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			destroyDisposables();
 			destroyEventListeners();
 		}
 		/***************************GETTERS***************************/
 		var getFilters = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return filterCategories;
 		}
-		/***************************GETTERS***************************/
+		/***************************SETTERS***************************/
 		var setFilters = function(filters){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filterCategories = filters;
 			setCheckBoxes();
 			setTextBoxes();
 			filterMoves();
 		}
-		setCheckBoxes = function(){
+		function setCheckBoxes(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			checkBoxes.forEach(function(checkBox){
 				var category = $(checkBox).parents(".category")[0].getAttribute("filterCategory");
 				var name = $(checkBox).parents(".name")[0].getAttribute("filterName");
@@ -157,36 +165,26 @@
 				}
 			});
 		}
-		setTextBoxes = function(){
+		function setTextBoxes(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var regex;
 			textBoxes.forEach(function(textBox){
 				var category = $(textBox).parents(".category")[0].getAttribute("filterCategory");
-				var type
-
-				var parent = $(e.target).parent()[0];
-				var minInput = parent.querySelector(".minInput");
-				var maxInput = parent.querySelector(".maxInput");
-				var minValue = utill.regex(minInput.value,regex);
-				var maxValue = utill.regex(maxInput.value,regex);
-				if(minValue || maxValue){
-					if(minValue){
-						minValue=parseInt(minInput.value);
-					}else{
-						minValue=0;
-					}
-					if(maxValue){
-						maxValue=parseInt(maxInput.value);
-					}else{
-						maxValue=250;
-					}
-					filterCategories[category] = {min: minValue, max: maxValue};
-				}else{
-					filterCategories[category] = null;
-				}
+				var name = textBox.getAttribute("name");
+				!!filterCategories[category] && (textBox.value = filterCategories[category][name]);
 			});
 		}
+		function setRemoveVisablity(value){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			if(value){
+				removeButton.style.visibility = "visible";
+			}else{
+				removeButton.style.visibility = "hidden";
+			}
+		}
 		/***************************INITIALIZE***************************/
-		initEventListeners = function(){
+		function initEventListeners(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			checkBoxes.forEach(function(checkBox){
 				eventListeners.push(checkBox);
 				$(checkBox).on("click", checkboxClick);
@@ -198,7 +196,8 @@
 			$(clearButton).on("click", clearClick);
 			$(removeButton).on("click", removeClick);
 		}
-		initFilterCategories = function(){
+		function initFilterCategories(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filterCategories = {
 				type: [],
 				category: [],
@@ -213,7 +212,8 @@
 				pp: null,
 			}
 		}
-		initVariables = function(parent){	
+		function initVariables(parent){	
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			disp={};
 			eventListeners = [];
 			initFilterCategories();
@@ -225,21 +225,25 @@
 			textBoxes = movesFilterElement.querySelectorAll(".textBox");
 		}
 		/***************************DESTROY***************************/
-		destroyDisposables = function(){
+		function destroyDisposables(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			for(var key in disp){
 				if(disp.hasOwnProperty(key)){
 					disp[key].dispose();
 					disp[key] = null;
+					delete disp[key];
 				}
 			}
 		}
-		destroyEventListeners = function(){
+		function destroyEventListeners(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			eventListeners.forEach(function(event){
 				$(event).off();
 			});
 		}
 		/***************************EVENTS***************************/
-		checkboxClick = function(e){
+		function checkboxClick(e){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
 			var name = $(e.target).parents(".name")[0].getAttribute("filterName");
 			if(e.target.checked){
@@ -249,7 +253,8 @@
 			}
 			filterMoves();
 		}
-		clearClick = function(){
+		function clearClick(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			initFilterCategories();
 			checkBoxes.forEach(function(checkBox){
 				checkBox.checked = false;
@@ -259,10 +264,13 @@
 			});
 			filterMoves();
 		}
-		removeClick = function(){
-
+		function removeClick(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			parent = $(movesFilterElement).parent()[0];
+			removeSubject.onNext(parent.getAttribute("index"));
 		}
-		submitClick = function(e){
+		function submitClick(e){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var regex;
 			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
 			if(category == "power"){
@@ -296,6 +304,7 @@
 		}
 		//***************************MISC***************************//
 		var filterMoves = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filteredList = movesList;
 			filterByProperties("type");
 			filterByProperties("category");
@@ -310,7 +319,8 @@
 			filterByRange("pp");
 			filterSubject.onNext(filteredList);
 		}
-		filterByProperties = function(property){
+		function filterByProperties(property){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[property].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -323,7 +333,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByEffects = function(effect){
+		function filterByEffects(effect){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[effect].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -340,7 +351,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByStatChanges = function(statChange){
+		function filterByStatChanges(statChange){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[statChange].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -358,7 +370,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByLearn = function(){
+		function filterByLearn(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories.learn.forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -374,7 +387,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByRange = function(property){
+		function filterByRange(property){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			if(!!filterCategories[property]){
 				var temp = [];
 				filteredList.forEach(function(move){
@@ -391,9 +405,11 @@
 			hasLoaded : hasLoaded,
 			destroy: destroy,
 			filterSubject: filterSubject,
+			removeSubject: removeSubject,
 			filterMoves: filterMoves,
 			getFilters: getFilters,
 			setFilters: setFilters,
+			setRemoveVisablity: setRemoveVisablity,
 		}
 	}
 })(this);

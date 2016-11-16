@@ -423,8 +423,35 @@
 	utill.regex = function(input, regex){
 		return regex.test(input);
 	}
+	utill.printFunctionName = function(name, func){
+		console.log("["+name+" | "+func+"]");
+	}
+	utill.printVariable = function(name, variable){
+		console.log(name.toUpperCase()+": ",variable);
+	}
 
 	root.utill = utill;
+})(this);
+(function(root){
+	utill.scrollBar = function(scrollbarElement){
+		var parent = $(scrollbarElement).parent();
+		var totalHeight = $(parent).scrollHeight;
+		var visibleHight = $(parent).innerHeight();
+		var barHeight = visibleHight;
+		if(visibleHight<totalHeight){
+			barHeight = visibleHight*(visibleHight/totalHeight);
+		}
+		var init = function(){
+			scrollbarElement.style.height = barHeight;
+		}
+		var move = function(){
+
+		}
+		return {
+			init: init,
+			move: move,
+		}
+	}
 })(this);
 (function(root){
 })(this);
@@ -555,7 +582,10 @@
 	var movesElement = page.querySelector("#moves");
 
 	var statsPageWrapperElement = page.querySelector("#statsPageWrapper");
+	var scrollbarElement = statsPageWrapperElement.querySelector(".scrollbar");
+	var thumbElement = scrollbarElement.querySelector(".thumb");
 	var statsPageElement = page.querySelector("#statsPage");
+	var moreButtonElement;
 
 	var pokemonImageWrapperElement = page.querySelector("#pokemonImageWrapper");
 	var pokemonImageElement = page.querySelector("#pokemonImage");
@@ -579,6 +609,7 @@
 	var abilitiesElement = basicInfoElement.querySelector("#abilities");
 	var hiddenAbilityElement = basicInfoElement.querySelector("#hiddenAbility");
 	//***************************FINAL***************************//
+	const FILENAME = "pokemonProfile";
 	const LEVEL100 = "<h1 id=\"level100\">Level 100</h1>";
 	const LEVEL50 = "<h1 id=\"level50\">Level 50</h1>";
 	const TABLEROW0 = "<div id=\"row0\" class=\"tableRow\"></div>";
@@ -586,9 +617,10 @@
 	const TABLEROW2 = "<div id=\"row2\" class=\"tableRow\"></div>";
 	const TABLEROW3 = "<div id=\"row3\" class=\"tableRow\"></div>";
 	const MOVESSET = function(index){return "<div class=\"movesSet\" index=\""+index+"\"></div>"};
+	const MORE = "<button id=\"more\"type=\"button\">+</button>"
 	const STATPAGETABS = {pokedex: pokedexElement, stats: statsElement, moves: movesElement};
+	const MOVESFILTERSLIMIT = 3;
 	//***************************SUBJECTS***************************//
-	var tabClickSubject = new Rx.Subject();
 	//***************************LOCAL***************************//
 	var primaryPokemon;
 	var primaryTypes;
@@ -596,7 +628,10 @@
 
 	var currImageIndex;
 	var filters;
+	var moveslists;
 	var disp;
+
+	var scrollBarHelper;
 
 	//***************************PAGE***************************//
 	page.onBeforeShow = function(){
@@ -618,50 +653,53 @@
 
 	//***************************INITIALIZE***************************//
 	function initPage(){
-		disp.tab = tabClickSubject
-		.subscribe(function(tab){
-			setBorderWidth(tab);
-			$(statsPageElement).empty();
-			filters.forEach(function(filter){
-				filter.destroy();
-			});
-		});
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 	}
 	function initEventListeners(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		$(pokedexElement).on("click", pokedexClick);
 		$(statsElement).on("click", statsClick);
 		$(movesElement).on("click", movesClick);
 		$(pokemonImageElement).on("click", pokemonImageClick);
 	}
 	function initUI(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		scrollBarHelper = utill.scrollBar(thumbElement);
+		scrollBarHelper.init();
 		setImage(pokemonImageElement, primaryPokemon.img.url, 0);
 		setBasicInfo(primaryPokemon);
 		setColorTheme(primaryTypes);
 		pokedexClick();
 	}
 	function initVariables(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		getPokemonData();
 		currImageIndex = 0;
 		filters = [];
+		moveslists = [];
 		disp = {};
 	}
 	//***************************DESTROY***************************//
 	function destroyEventListeners(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		$(pokedexElement).off("click", pokedexClick);
 		$(statsElement).off("click", statsClick);
 		$(movesElement).off("click", movesClick);
 		$(pokemonImageElement).on("click", nextImage);
 	}
 	function destroyDisposables(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		for(var key in disp){
 			if(disp.hasOwnProperty(key)){
 				disp[key].dispose();
 				disp[key] = null;
+				delete disp[key];
 			}
 		}
 	}
 	//***************************GETTERS***************************//
 	function getPokemonData(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		primaryPokemon = R.pokemon.ninetales;
 		primaryTypes = {
 			primaryType: R.types[primaryPokemon.battle.types.primaryType],
@@ -675,6 +713,7 @@
 	}
 	//***************************SETTERS***************************//
 	function setBasicInfo(pokemon){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		nameElement.innerHTML = pokemon.name.en;
 		altNameElement.innerHTML = pokemon.name.jap;
 		nationalNumElement.innerHTML = lang.pokemonProfile[lang.userLanguage].nationalNum + pokemon.basic.nationalNum;
@@ -698,6 +737,7 @@
 		hiddenAbilityElement.innerHTML = lang.pokemonProfile[lang.userLanguage].hiddenAbility + hiddenAbilityToString(primaryAbilities);
 	}
 	function setBorderWidth(current){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		var STANDARD_WIDTH = "3px";
 		var CHOSEN_WIDTH = "7px";
 		for(var key in STATPAGETABS){
@@ -710,6 +750,7 @@
 		}
 	}
 	function setColorTheme(types){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		pokemonImageWrapperElement.style.background = types.primaryType.colors.main;
 		basicInfoElement.style.background = types.primaryType.colors.main;
 		pokedexElement.style.background = types.primaryType.colors.main;
@@ -729,26 +770,60 @@
 		}
 	}
 	function setImage(img, url, index){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		img.setAttribute("src", url[index]);
 		currImageIndex = index;
 	}
+	function setMoreButtonVisibility(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		if(filters.length<MOVESFILTERSLIMIT){
+			moreButtonElement.style.display = "";
+		}else{
+			moreButtonElement.style.display = "none";
+		}
+	}
 	//***************************ADD***************************//
 	function addBarGraph(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		var input = primaryPokemon.base;
 		var statsBarGraph = html.load(statsPage, "pokemonStatsBarGraph", input);
 	}
+	function addMoreButton(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		$(statsPageElement).append(MORE);
+		moreButtonElement = page.querySelector("#more");
+		setMoreButtonVisibility();
+		var callback = function(){
+			addMoves(filters.length);
+			setMoreButtonVisibility();
+		}
+		$(moreButtonElement).on("click", callback);
+	}
 	function addMoves(index, filterList){
-		$(statsPageElement).append(MOVESSET(index))
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		if(index == 0){
+			$(statsPageElement).append(MOVESSET(index));
+		}else{
+			var preElement = statsPageElement.querySelector("#statsPage [index=\""+(index-1)+"\"]");
+			$(preElement).after(MOVESSET(index));
+		}
 		var movesSetElement = statsPageElement.querySelector("#statsPage [index=\""+index+"\"]");
 		movesSetElement.style.borderColor = primaryTypes.primaryType.colors.main;
-		filter  = html.load(movesSetElement, "movesFilterTable", {moves: primaryPokemon.moves.all, pokemonMoves: primaryPokemon.moves});
+		var filter  = html.load(movesSetElement, "movesFilterTable", {moves: primaryPokemon.moves.all, pokemonMoves: primaryPokemon.moves});
 		if(!!filterList){
 			filter.setFilters(filterList.getFilters());
 		}
 		filters[index] = filter;
-		html.load(movesSetElement, "movesListTable", {type: primaryPokemon.battle.types.primaryType, filter: filter});
+		moveslists[index] = html.load(movesSetElement, "movesListTable", {type: primaryPokemon.battle.types.primaryType, filter: filters[index]});
+		removeSubscribe(filter, index);
+		if(filters.length == 1){
+			filters[0].setRemoveVisablity(false);
+		}else{
+			filters[0].setRemoveVisablity(true);
+		}
 	}
 	function addPokedexEntries(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		var keys = _.keys(primaryPokemon.pokedex);
 		keys.forEach(function(key){
 			var input = [lang.site.games[lang.userLanguage][key], primaryPokemon.pokedex[key]];
@@ -756,6 +831,7 @@
 		});
 	}
 	function addTables(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		$(statsPageElement).append(LEVEL100);
 		$(statsPageElement).append(TABLEROW0);
 		$(statsPageElement).append(TABLEROW1);
@@ -790,9 +866,43 @@
 		html.load(row3Element, "pokemonStatsTable", setInput(lang.pokemon.stats[lang.userLanguage].spAttack, primaryPokemon.base.spAttack, 50, false));
 	}
 	//***************************REMOVE***************************//
-	//***************************EVENTS***************************//
+	function removeMoreButton(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		if(!!moreButtonElement){
+			$(moreButtonElement).off();
+			$(moreButtonElement).remove();
+			moreButtonElement = null;
+		};
+	}
+	//***************************SUBSCRIBE EVENTS***************************//
+	function removeSubscribe(filter, index){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		disp["remove"+index] = filter.removeSubject
+		.subscribe(function(removeIndex){
+			var movesSetElement = statsPageElement.querySelector("#statsPage [index=\""+removeIndex+"\"]");
+			$(movesSetElement).remove();
+			filters[removeIndex].destroy();
+			moveslists[removeIndex].destroy();
+			filters.splice(removeIndex, 1);
+			moveslists.splice(removeIndex, 1);
+			var movesSetElements = statsPageElement.querySelectorAll(".movesSet");
+			movesSetElements.forEach(function(element){
+				var oldIndex = element.getAttribute("index");
+				if(oldIndex>removeIndex){
+					var newIndex = oldIndex-1;
+					element.setAttribute("index", newIndex);
+				}
+			});
+			setMoreButtonVisibility();
+			if(filters.length == 1){
+				filters[0].setRemoveVisablity(false);
+			}
+		});
+	}
+	//***************************CLICK EVENTS***************************//
 	function movesClick(){
-		tabClickSubject.onNext("move");
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		tabClick("move");
 		if(filters.length>0){
 			filters.forEach(function(filterList, index){
 				addMoves(index, filterList);		
@@ -800,12 +910,15 @@
 		}else{
 			addMoves(0);
 		}
+		addMoreButton();
 	}
 	function pokedexClick(){
-		tabClickSubject.onNext("pokedex");
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		tabClick("pokedex");
 		addPokedexEntries();
 	}
 	function pokemonImageClick(){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		var index = 0
 		if(currImageIndex<primaryPokemon.img.url.length-1){
 			index = currImageIndex+1;	
@@ -813,12 +926,27 @@
 		setImage(pokemonImageElement, primaryPokemon.img.url, index);
 	}
 	function statsClick(){
-		tabClickSubject.onNext("stats");
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		tabClick("stats");
 		addBarGraph();
 		addTables();
 	}
+	function tabClick(tab){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
+		setBorderWidth(tab);
+		$(statsPageElement).empty();
+		filters.forEach(function(filter){
+			filter.destroy();
+		});
+		moveslists.forEach(function(moveslist){
+			moveslist.destroy();
+		})
+		removeMoreButton();
+		
+	}
 	//***************************TO STRING***************************//
 	function abilitiesToString(abilities){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		tempAbilities = abilities.firstAbility.name;
 		if(!!abilities.secondAbility){
 			tempAbilities = tempAbilities + " | " + abilities.secondAbility.name;
@@ -826,6 +954,7 @@
 		return tempAbilities;
 	}
 	function evsToString(evs){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		var tempEv="";
 		var keys = _.keys(evs);
 		keys.forEach(function(key, index){
@@ -839,6 +968,7 @@
 		return tempEv;
 	}
 	function hiddenAbilityToString(abilities){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		tempHidden = "";
 		if(!!abilities.hiddenAbility){
 			tempHidden = abilities.hiddenAbility.name;
@@ -846,6 +976,7 @@
 		return tempHidden;
 	}
 	function typesToString(types){
+		utill.printFunctionName(FILENAME, arguments.callee.name);
 		tempTypes = types.primaryType.name;
 		if(!!types.secondaryType){
 			tempTypes = tempTypes + " | " + types.secondaryType.name;
@@ -853,22 +984,6 @@
 		return tempTypes;
 	}
 	//***************************MISC***************************//
-	
-	// fillTextBoxes = function(movesFilter, num){
-	// 	var ppMin = movesFilter.querySelector(".ppMin");
-	// 	var ppMax = movesFilter.querySelector(".ppMax");
-	// 	var accuracyMin = movesFilter.querySelector(".accuracyMin");
-	// 	var accuracyMax = movesFilter.querySelector(".accuracyMax");
-	// 	var powerMin = movesFilter.querySelector(".powerMin");
-	// 	var powerMax = movesFilter.querySelector(".powerMax");
-
-	// 	ppMin.value = movesLists[num].pp[0] || "";
-	// 	ppMax.value = movesLists[num].pp[1] || "";
-	// 	accuracyMin.value = movesLists[num].accuracy[0] || "";
-	// 	accuracyMax.value = movesLists[num].accuracy[1] || "";
-	// 	powerMin.value = movesLists[num].power[0] || "";
-	// 	powerMax.value = movesLists[num].power[1] || "";
-	// }
 })(this);
 (function(root){
 	var lang = {};
@@ -1037,6 +1152,15 @@
 	root.html = html;
 })(this);
 (function(root){
+	html.checkBox = function(title, background){
+		return ""+
+		"<div class=\"checkBox\">"+
+		"	<input class=\"checkbox\" type=\"checkbox\">"+
+		"	<div class=\"title\" background=\""+background+"\">"+title+"</div>"+
+		"</div>";
+	}
+})(this);
+(function(root){
 	html.siteHeader = function(){
 		var HTML = function(){
 			return ""+
@@ -1055,15 +1179,6 @@
 	}
 })(this);
 (function(root){
-	html.checkBox = function(title, background){
-		return ""+
-		"<div class=\"checkBox\">"+
-		"	<input class=\"checkbox\" type=\"checkbox\">"+
-		"	<div class=\"title\" background=\""+background+"\">"+title+"</div>"+
-		"</div>";
-	}
-})(this);
-(function(root){
 	html.pokedexEntry = function(){
 		var HTML = function(input){
 			return "<p class=\"pokedexEntry\"><b>"+input[0]+"</b>: "+input[1]+"</p>";
@@ -1073,7 +1188,14 @@
 		}
 	}
 })(this);
-
+(function(root){
+	html.scroolbar = function(color){
+		return ""+
+		"<div class=\"scroolbar\">"+
+		"		<div class=\"thumb\" background=\""+color+"\"><div>"+
+		"</div>";
+	}
+})(this);
 (function(root){
 	html.movesFilterTable = function(){
 		/***************************ELEMENTS***************************/
@@ -1084,7 +1206,9 @@
 		var removeButton;
 		var textBoxes;
 		/***************************FINAL***************************/
+		const FILENAME = "movesFilterTable";
 		var filterSubject = new Rx.Subject();
+		var removeSubject = new Rx.Subject();
 		/***************************LOCAL***************************/
 		var disp;
 		var eventListeners;
@@ -1094,6 +1218,7 @@
 		var pokemonMovesList;
 
 		var HTML = function(moves){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			movesList = moves.moves;
 			pokemonMovesList = moves.pokemonMoves;
 			return ""+
@@ -1206,25 +1331,30 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			initVariables(parent);
 			initEventListeners();
 		}
 		var destroy = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			destroyDisposables();
 			destroyEventListeners();
 		}
 		/***************************GETTERS***************************/
 		var getFilters = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return filterCategories;
 		}
-		/***************************GETTERS***************************/
+		/***************************SETTERS***************************/
 		var setFilters = function(filters){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filterCategories = filters;
 			setCheckBoxes();
 			setTextBoxes();
 			filterMoves();
 		}
-		setCheckBoxes = function(){
+		function setCheckBoxes(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			checkBoxes.forEach(function(checkBox){
 				var category = $(checkBox).parents(".category")[0].getAttribute("filterCategory");
 				var name = $(checkBox).parents(".name")[0].getAttribute("filterName");
@@ -1233,36 +1363,26 @@
 				}
 			});
 		}
-		setTextBoxes = function(){
+		function setTextBoxes(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var regex;
 			textBoxes.forEach(function(textBox){
 				var category = $(textBox).parents(".category")[0].getAttribute("filterCategory");
-				var type
-
-				var parent = $(e.target).parent()[0];
-				var minInput = parent.querySelector(".minInput");
-				var maxInput = parent.querySelector(".maxInput");
-				var minValue = utill.regex(minInput.value,regex);
-				var maxValue = utill.regex(maxInput.value,regex);
-				if(minValue || maxValue){
-					if(minValue){
-						minValue=parseInt(minInput.value);
-					}else{
-						minValue=0;
-					}
-					if(maxValue){
-						maxValue=parseInt(maxInput.value);
-					}else{
-						maxValue=250;
-					}
-					filterCategories[category] = {min: minValue, max: maxValue};
-				}else{
-					filterCategories[category] = null;
-				}
+				var name = textBox.getAttribute("name");
+				!!filterCategories[category] && (textBox.value = filterCategories[category][name]);
 			});
 		}
+		function setRemoveVisablity(value){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			if(value){
+				removeButton.style.visibility = "visible";
+			}else{
+				removeButton.style.visibility = "hidden";
+			}
+		}
 		/***************************INITIALIZE***************************/
-		initEventListeners = function(){
+		function initEventListeners(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			checkBoxes.forEach(function(checkBox){
 				eventListeners.push(checkBox);
 				$(checkBox).on("click", checkboxClick);
@@ -1274,7 +1394,8 @@
 			$(clearButton).on("click", clearClick);
 			$(removeButton).on("click", removeClick);
 		}
-		initFilterCategories = function(){
+		function initFilterCategories(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filterCategories = {
 				type: [],
 				category: [],
@@ -1289,7 +1410,8 @@
 				pp: null,
 			}
 		}
-		initVariables = function(parent){	
+		function initVariables(parent){	
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			disp={};
 			eventListeners = [];
 			initFilterCategories();
@@ -1301,21 +1423,25 @@
 			textBoxes = movesFilterElement.querySelectorAll(".textBox");
 		}
 		/***************************DESTROY***************************/
-		destroyDisposables = function(){
+		function destroyDisposables(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			for(var key in disp){
 				if(disp.hasOwnProperty(key)){
 					disp[key].dispose();
 					disp[key] = null;
+					delete disp[key];
 				}
 			}
 		}
-		destroyEventListeners = function(){
+		function destroyEventListeners(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			eventListeners.forEach(function(event){
 				$(event).off();
 			});
 		}
 		/***************************EVENTS***************************/
-		checkboxClick = function(e){
+		function checkboxClick(e){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
 			var name = $(e.target).parents(".name")[0].getAttribute("filterName");
 			if(e.target.checked){
@@ -1325,7 +1451,8 @@
 			}
 			filterMoves();
 		}
-		clearClick = function(){
+		function clearClick(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			initFilterCategories();
 			checkBoxes.forEach(function(checkBox){
 				checkBox.checked = false;
@@ -1335,10 +1462,13 @@
 			});
 			filterMoves();
 		}
-		removeClick = function(){
-
+		function removeClick(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			parent = $(movesFilterElement).parent()[0];
+			removeSubject.onNext(parent.getAttribute("index"));
 		}
-		submitClick = function(e){
+		function submitClick(e){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var regex;
 			var category = $(e.target).parents(".category")[0].getAttribute("filterCategory");
 			if(category == "power"){
@@ -1372,6 +1502,7 @@
 		}
 		//***************************MISC***************************//
 		var filterMoves = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			filteredList = movesList;
 			filterByProperties("type");
 			filterByProperties("category");
@@ -1386,7 +1517,8 @@
 			filterByRange("pp");
 			filterSubject.onNext(filteredList);
 		}
-		filterByProperties = function(property){
+		function filterByProperties(property){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[property].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -1399,7 +1531,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByEffects = function(effect){
+		function filterByEffects(effect){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[effect].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -1416,7 +1549,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByStatChanges = function(statChange){
+		function filterByStatChanges(statChange){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories[statChange].forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -1434,7 +1568,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByLearn = function(){
+		function filterByLearn(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var temp = [];
 			filterCategories.learn.forEach(function(filterItem){
 				filteredList.forEach(function(move){
@@ -1450,7 +1585,8 @@
 				filteredList = temp;
 			}
 		}
-		filterByRange = function(property){
+		function filterByRange(property){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			if(!!filterCategories[property]){
 				var temp = [];
 				filteredList.forEach(function(move){
@@ -1467,9 +1603,11 @@
 			hasLoaded : hasLoaded,
 			destroy: destroy,
 			filterSubject: filterSubject,
+			removeSubject: removeSubject,
 			filterMoves: filterMoves,
 			getFilters: getFilters,
 			setFilters: setFilters,
+			setRemoveVisablity: setRemoveVisablity,
 		}
 	}
 })(this);
@@ -1481,8 +1619,10 @@
 		var tableType;
 		var tableFilter;
 		var disp = {}
+		const FILENAME = "movesListTable";
 
 		var HTML = function(input){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			tableType = input.type;
 			tableFilter = input.filter;
 			return ""+
@@ -1491,6 +1631,7 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			movesListTable = parent.querySelector(".movesListTable");
 			table = movesListTable.querySelector(".table");
 			if(tableFilter){
@@ -1501,22 +1642,27 @@
 				tableFilter.filterMoves();
 			}
 		}
-		addMoves = function(moves){
+		function addMoves(moves){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			$(table).empty();
 			$(table).append(headerHtml);
 			moves.forEach(function(move){
 				$(table).append(moveHtml(R.moves[move]));
 			});
 		}
-		destroy = function(){
+		function destroy(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
+			utill.printVariable("disp", disp);
 			for(var key in disp){
 				if(disp.hasOwnProperty(key)){
 					disp[key].dispose();
 					disp[key] = null;
+					delete disp[key];
 				}
 			}
 		}
-		effectsToString = function(effects){
+		function effectsToString(effects){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var string = "";
 			effects.forEach(function(effect, index){
 				if(!!effect.chance){
@@ -1530,7 +1676,8 @@
 			});
 			return string;
 		}
-		headerHtml = function(){
+		function headerHtml(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return ""+
 			"	<div class=\"row\" background=\""+tableType+"\">"+
 			"		<div class=\"cell\" type=\"move\" border=\""+tableType+"\">"+lang.moves.general[lang.userLanguage].move+"</div>"+
@@ -1542,7 +1689,8 @@
 			"		<div class=\"cell right\" type=\"pp\" border=\""+tableType+"\">"+lang.moves.stats[lang.userLanguage].pp+"</div>"+
 			"	</div>";
 		}
-		moveHtml = function(move){
+		function moveHtml(move){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			return ""+
 			"	<div class=\"row\">"+
 			"		<div class=\"cell\" type=\"move\" border=\""+tableType+"\">"+move.name+"</div>"+
@@ -1557,6 +1705,7 @@
 		return {
 			HTML: HTML,
 			hasLoaded: hasLoaded,
+			destroy: destroy,
 		}
 	}
 })(this);
@@ -1597,11 +1746,13 @@
 })(this);
 (function(root){
 	html.pokemonStatsBarGraph = function(){
+		const FILENAME = "pokemonStatsBarGraph";
 		var STATMODIFIER = 3;
 		var barGraph;
 		var base;
 
 		var HTML = function(input){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			base = input;
 			return ""+
 			"	<div class=\"pokemonStatsBarGraph\">"+
@@ -1659,10 +1810,12 @@
 			"	</div>";
 		}
 		var hasLoaded = function(parent){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			barGraph = parent.querySelector(".pokemonStatsBarGraph");
 			setBarLength();
 		}
 		var setBarLength = function(){
+			utill.printFunctionName(FILENAME, arguments.callee.name);
 			var hpCover = barGraph.querySelector(".hpBarCover");
 			var attackCover = barGraph.querySelector(".attackBarCover");
 			var defenseCover = barGraph.querySelector(".defenseBarCover");
@@ -1699,9 +1852,9 @@
 		return""+
 		"<div class=\"minMaxTextBox\">"+
 		"	<div class=\"minText\">Min</div>"+
-		"	<input class=\"minInput textBox\" type=\"text\">"+
+		"	<input class=\"minInput textBox\" name=\"min\" type=\"text\">"+
 		"	<div class=\"maxText\">Max</div>"+
-		"	<input class=\"maxInput textBox\" type=\"text\">"+
+		"	<input class=\"maxInput textBox\" name=\"max\" type=\"text\">"+
 		"	<button class=\"submitButton\" type=\"button\">Submit</button>"+
 		"</div>";
 	}
