@@ -23,8 +23,8 @@
 	var movesElement = page.querySelector("#moves");
 
 	var statsPageWrapperElement = page.querySelector("#statsPageWrapper");
-	var scrollbarElement = statsPageWrapperElement.querySelector(".scrollbar");
-	var thumbElement = scrollbarElement.querySelector(".thumb");
+	var verticalScrollbarElement = statsPageWrapperElement.querySelector("#vert");
+	var horizontalScrollbarElement = statsPageWrapperElement.querySelector("#horz");
 	var statsPageElement = page.querySelector("#statsPage");
 	var moreButtonElement;
 
@@ -72,7 +72,8 @@
 	var moveslists;
 	var disp;
 
-	var scrollBarHelper;
+	var verticalScrollBarHelper;
+	var horizontalScrollBarHelper;
 
 	//***************************PAGE***************************//
 	page.onBeforeShow = function(){
@@ -82,11 +83,16 @@
 		initEventListeners();
 	};
 	page.onShow = function(){
-
+		verticalScrollBarHelper = utill.scrollBar(verticalScrollbarElement, "virtical", "#rgba(0, 0, 0, 0)", primaryTypes.primaryType.colors.main);
+		horizontalScrollBarHelper = utill.scrollBar(horizontalScrollbarElement, "horizontal", "#rgba(0, 0, 0, 0)", primaryTypes.primaryType.colors.main);
+		verticalScrollBarHelper.startScroller();
+		horizontalScrollBarHelper.startScroller();
 	};
 	page.onBeforeHide = function(){
 		destroyEventListeners();
 		destroyDisposables();
+		verticalScrollBarHelper.destroy();
+		horizontalScrollBarHelper.destroy();
 	};
 	page.onHide = function(){
 
@@ -105,12 +111,11 @@
 	}
 	function initUI(){
 		utill.printFunctionName(FILENAME, arguments.callee.name);
-		scrollBarHelper = utill.scrollBar(thumbElement);
-		scrollBarHelper.init();
 		setImage(pokemonImageElement, primaryPokemon.img.url, 0);
 		setBasicInfo(primaryPokemon);
 		setColorTheme(primaryTypes);
 		pokedexClick();
+		//statsClick();
 	}
 	function initVariables(){
 		utill.printFunctionName(FILENAME, arguments.callee.name);
@@ -352,11 +357,15 @@
 			addMoves(0);
 		}
 		addMoreButton();
+		!!verticalScrollBarHelper && verticalScrollBarHelper.resize();
+		!!horizontalScrollBarHelper && horizontalScrollBarHelper.resize();
 	}
 	function pokedexClick(){
 		utill.printFunctionName(FILENAME, arguments.callee.name);
 		tabClick("pokedex");
 		addPokedexEntries();
+		!!verticalScrollBarHelper && verticalScrollBarHelper.resize();
+		!!horizontalScrollBarHelper && horizontalScrollBarHelper.resize();
 	}
 	function pokemonImageClick(){
 		utill.printFunctionName(FILENAME, arguments.callee.name);
@@ -371,6 +380,8 @@
 		tabClick("stats");
 		addBarGraph();
 		addTables();
+		!!verticalScrollBarHelper && verticalScrollBarHelper.resize();
+		!!horizontalScrollBarHelper && horizontalScrollBarHelper.resize();
 	}
 	function tabClick(tab){
 		utill.printFunctionName(FILENAME, arguments.callee.name);
@@ -383,8 +394,8 @@
 			moveslist.destroy();
 		})
 		removeMoreButton();
-		
 	}
+	//***************************OTHER EVENTS***************************//
 	//***************************TO STRING***************************//
 	function abilitiesToString(abilities){
 		utill.printFunctionName(FILENAME, arguments.callee.name);

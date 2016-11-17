@@ -1,9 +1,7 @@
 .scrollbar{
-  position: fixed;
+  position: absolute;
   .thumb{
-    -webkit-mask: url("/res/img/stock/scrollbar_mask.png");
-    height: 60px;
-    margin-top: 97px;
-    background: orange;
+    border-radius: 50px;
+    opacity: 0.7;
   }
 }

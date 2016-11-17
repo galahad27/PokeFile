@@ -1,105 +1,3 @@
-#pokemonImageWrapper {
-  position: absolute;
-  top: 100px;
-  left: 0px;
-  width: 256px;
-  height: 256px;
-  margin-left: 10px;
-  border: 3px solid; }
-  #pokemonImageWrapper img {
-    width: 256px;
-    height: 256px; }
-
-#basicInfo {
-  position: absolute;
-  width: 256px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  top: 400px;
-  left: 0px;
-  border: 3px solid; }
-  #basicInfo div {
-    margin: 5px; }
-  #basicInfo h1 {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo .subtitle {
-    margin-left: 5px;
-    margin-top: 15px;
-    margin-bottom: 0px; }
-  #basicInfo #altName {
-    margin-left: 5px;
-    margin-top: 0px;
-    margin-bottom: 15px; }
-
-#statPageTab {
-  position: fixed;
-  width: 75%;
-  left: 300px;
-  top: 110px; }
-  #statPageTab #pokedex {
-    border: 3px solid; }
-  #statPageTab #stats {
-    border: 3px solid; }
-  #statPageTab #moves {
-    border: 3px solid; }
-
-#statsPageWrapper {
-  position: fixed;
-  top: 137px;
-  bottom: 10px;
-  left: 300px;
-  right: 10px;
-  overflow-y: scroll;
-  overflow-x: scroll;
-  white-space: nowrap;
-  border: 3px solid; }
-  #statsPageWrapper .scrollbar {
-    width: 10px;
-    right: 13px;
-    top: 140px;
-    bottom: 13px;
-    background: black; }
-    #statsPageWrapper .scrollbar .thumb {
-      -webkit-mask: url("/res/img/stock/scrollbar_mask.png");
-      height: 60px;
-      margin-top: 97px;
-      background: orange; }
-  #statsPageWrapper #statsPage {
-    margin: 10px 0px 20px 10px; }
-    #statsPageWrapper #statsPage .pokedexEntry {
-      margin-left: 10px;
-      margin-right: 15px; }
-    #statsPageWrapper #statsPage .pokemonStatsBarGraph {
-      margin: 0px 0px 0px 20px; }
-    #statsPageWrapper #statsPage .tableRow {
-      margin: 0px 0px 0px 20px; }
-      #statsPageWrapper #statsPage .tableRow .pokemonStatsTable {
-        display: inline-block; }
-    #statsPageWrapper #statsPage #row3 {
-      margin-bottom: 20px; }
-    #statsPageWrapper #statsPage #level100 {
-      margin: 20px 0px 0px 20px; }
-    #statsPageWrapper #statsPage #level50 {
-      margin: 20px 0px 0px 20px; }
-    #statsPageWrapper #statsPage .movesSet {
-      border: 1px solid;
-      display: inline-block;
-      margin-right: 10px;
-      vertical-align: top; }
-    #statsPageWrapper #statsPage #more {
-      margin: 0px 10px 10px 10px;
-      width: 60px;
-      height: 60px;
-      display: inline-block;
-      white-space: nowrap;
-      vertical-align: top;
-      font-size: 50px; }
-
-#statsPageWrapper::-webkit-scrollbar {
-  display: none; }
-
 [background="bug"] {
   background: #A8B820; }
 
@@ -214,6 +112,98 @@
 .poke_page {
   display: none; }
 
+#pokemonImageWrapper {
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 256px;
+  height: 256px;
+  margin-left: 10px;
+  border: 3px solid; }
+  #pokemonImageWrapper img {
+    width: 256px;
+    height: 256px; }
+
+#basicInfo {
+  position: absolute;
+  width: 256px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  top: 400px;
+  left: 0px;
+  border: 3px solid; }
+  #basicInfo div {
+    margin: 5px; }
+  #basicInfo h1 {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo .subtitle {
+    margin-left: 5px;
+    margin-top: 15px;
+    margin-bottom: 0px; }
+  #basicInfo #altName {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 15px; }
+
+#statPageTab {
+  position: fixed;
+  width: 75%;
+  left: 300px;
+  top: 110px; }
+  #statPageTab #pokedex {
+    border: 3px solid; }
+  #statPageTab #stats {
+    border: 3px solid; }
+  #statPageTab #moves {
+    border: 3px solid; }
+
+#statsPageWrapper {
+  position: fixed;
+  top: 137px;
+  bottom: 10px;
+  left: 300px;
+  right: 10px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  white-space: nowrap;
+  border: 3px solid; }
+  #statsPageWrapper #statsPage {
+    float: left;
+    margin: 10px 0px 15px 10px; }
+    #statsPageWrapper #statsPage .pokedexEntry {
+      white-space: normal;
+      margin: 0px 15px 10px 0px; }
+    #statsPageWrapper #statsPage .pokemonStatsBarGraph {
+      margin: 0px 0px 0px 20px; }
+    #statsPageWrapper #statsPage .tableRow {
+      margin: 0px 0px 0px 20px; }
+      #statsPageWrapper #statsPage .tableRow .pokemonStatsTable {
+        display: inline-block; }
+    #statsPageWrapper #statsPage #row3 {
+      margin-bottom: 20px; }
+    #statsPageWrapper #statsPage #level100 {
+      margin: 20px 0px 0px 20px; }
+    #statsPageWrapper #statsPage #level50 {
+      margin: 20px 0px 0px 20px; }
+    #statsPageWrapper #statsPage .movesSet {
+      border: 1px solid;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top; }
+    #statsPageWrapper #statsPage #more {
+      margin: 0px 10px 10px 10px;
+      width: 60px;
+      height: 60px;
+      display: inline-block;
+      white-space: nowrap;
+      vertical-align: top;
+      font-size: 50px; }
+
+#statsPageWrapper::-webkit-scrollbar {
+  display: none; }
+
 .mainBarMenu {
   position: fixed;
   top: 40px;
@@ -274,12 +264,10 @@
       margin-right: -3px; }
 
 .scrollbar {
-  position: fixed; }
+  position: absolute; }
   .scrollbar .thumb {
-    -webkit-mask: url("/res/img/stock/scrollbar_mask.png");
-    height: 60px;
-    margin-top: 97px;
-    background: orange; }
+    border-radius: 50px;
+    opacity: 0.7; }
 
 .movesFilterTable {
   display: inline-block; }
